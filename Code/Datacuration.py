@@ -15,8 +15,8 @@ def make_Pickle(set_data, set_filename, force = False):
             print("Unable to save data to", set_filename, ': ', e)
             return
 
-def make_folders():
-    set_dir_name = "pickles/multiprocessing_origin/"
+def make_folders(dir_name):
+    set_dir_name = dir_name
 
     if os.path.exists(set_dir_name):
       # You may override by setting force=True.
@@ -37,8 +37,8 @@ def open_Pickle(pickle_path):
         print("Unable to save data to", pickle_path, ': ', e)
         return
             
-def seperate_indi(groups, cores):
-    nFiles = round(len(groups)/cores)
+def seperate_indi(groups, num_cores, dir_name):
+    nFiles = round(len(groups)/num_cores)
     
     print(nFiles)
     
@@ -47,10 +47,10 @@ def seperate_indi(groups, cores):
     groups_dict = dict(list(groups))
     
     count = 0
-    for i in range(cores):
-        set_file_name = "pickles/multiprocessing_origin/process{0}.pickle".format(i)
+    for i in range(num_cores):
+        set_file_name = dir_name.format(i)
         
-        if count < cores-1:
+        if count < num_cores-1:
             gb = pd.concat(list(groups_dict.values())[nFiles*i:nFiles*(i+1)])
             make_Pickle(gb, set_file_name)
             print('inside')
