@@ -1,4 +1,5 @@
 import numpy as np #numerical function
+import pandas as pd
 import datetime
 import multiprocessing as mp
 
@@ -20,18 +21,23 @@ late_daytim=late_rising+12
 
 
 def add_TotalPlays(data_frame):
-    # add players total number of attempts to df
+    # print("add_Total")
+    ## add players total number of attempts to df
     data_frame['total_plays'] = len(data_frame)
     return data_frame
 
 def add_GapType(df):
+    print("add_GapType")
+    #shor_gap_length1 = pd.DataFrame({'shor_gap_length':np.ones(len(df))*7*60})
+    
     df['localtime']=np.around((df['ga:hour']+df['ga:longitude']*24/360)%24 , decimals=1)
-    df['long_gap']=(df['diff_time']>long_gap_length) & (df['diff_time']<(long_gap_length+gap_window))
-    df['shor_gap']=(df['diff_time']<shor_gap_length)
-    df['sleepgap']=df['long_gap'] & ((df['localtime']>early_rising) & (df['localtime']<late_rising))
+    df['long_gap']=(df['diff_time'].any()>long_gap_length) & (df['diff_time'].any()<(long_gap_length+gap_window))
+    df['shor_gap']=df['diff_time']<shor_gap_length
+    df['sleepgap']=df['long_gap'] & ((df['localtime'].any()>early_rising) & (df['localtime'].any()<late_rising))
     return df
 
 def add_GapCategory(df):
+    # print("add_GapCategory")
     '''categorise people by their gapness'''
     '''here define range over which we define taking gaps'''
     #dfp=df[6:8] #tight range, on game 7
@@ -51,6 +57,7 @@ def add_GapCategory(df):
     return df
 
 def add_DiffTime(df):
+    # print("add_Diff")
     for index, row in df.iterrows():
         '''
         if not index%10:
@@ -75,6 +82,7 @@ def add_DiffTime(df):
     return df
 
 def check_Discon(df, name_vec):
+    # print("check_Discon")
     count = 0
     groups = df.groupby('ga:eventAction')
     
@@ -97,6 +105,7 @@ def filter_time(df):
     return df
 
 def rm_GaInCols(data_frame): # remove ga:
+    # print("rm_GaInCols")
     cols = np.array(data_frame.columns)
     count = 0
     for elmt in cols:
@@ -106,6 +115,7 @@ def rm_GaInCols(data_frame): # remove ga:
     return cols
 
 def data_PostProcess(df, err_plys):
+    # print("data_PostProcess")
     df.sort_values(by=['ga:eventAction', 'ga:eventLabel'], inplace=True) # mac
     #df.sort(columns=['ga:eventAction', 'ga:eventLabel'],inplace=True) # school computer
     df = df.reset_index()
