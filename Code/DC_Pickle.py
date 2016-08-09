@@ -1,6 +1,5 @@
 import pandas as pd #data analysis
 import os #file/directory operations
-# import multiprocessing as mp
 from six.moves import cPickle as pickle
 
 def make_Pickle(set_data, set_filename, force = False):
@@ -39,10 +38,6 @@ def open_Pickle(pickle_path):
             
 def seperate_indi(groups, num_cores, dir_name):
     nFiles = round(len(groups)/num_cores)
-    
-    print(nFiles)
-    
-    # set_dir_name = "pickles/individuals/process{0}".format(i)
     
     groups_dict = dict(list(groups))
     
