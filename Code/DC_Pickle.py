@@ -57,29 +57,14 @@ def seperate_indi(groups, num_cores, dir_name):
         count = count + 1
         
 def seperate_ColData(df, col_name): # seperate columns into each matrix
-    '''
-    def group_Len(data, len_vec): # inner function
-        len_vec.append(len(data))
-
-    group_len = []
-    groups = df.groupby('ga:eventAction') # grouping
-    groups.apply(group_Len, group_len) # get length of each player
-
-    #print(max(group_len), len(groups)) # row = attemt numbers, column = players
-    '''
     groups = df.groupby('eventAction') # grouping
     col_matrix = np.ones((301, len(groups)))*np.nan # make a matrix with player attempts size.
-    
-    #if type(group[col_name]) == str:
-    #col_matrix = np.chararray((301, len(groups)), itemsize=37)
-    #col_matrix = np.zeros((301, len(groups)))
 
     count = 0
     for name, group in groups:
         idx = np.array(group['eventLabel'])-1
         col_matrix[idx, count] = group[col_name]
         count = count + 1
-    #print('Matrix size:', np.shape(col_matrix))
     return col_matrix
     
 def colToPickle(df):
