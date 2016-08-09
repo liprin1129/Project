@@ -26,9 +26,7 @@ def add_TotalPlays(data_frame):
     return data_frame
 
 def add_GapType(df):
-    print("add_GapType")
-    #shor_gap_length1 = pd.DataFrame({'shor_gap_length':np.ones(len(df))*7*60})
-    
+    # print("add_GapType")
     df['localtime']=np.around((df['ga:hour']+df['ga:longitude']*24/360)%24 , decimals=1)
     df['long_gap']=(df['diff_time'].any()>long_gap_length) & (df['diff_time'].any()<(long_gap_length+gap_window))
     df['shor_gap']=df['diff_time']<shor_gap_length
