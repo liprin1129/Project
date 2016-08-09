@@ -68,7 +68,7 @@ def seperate_ColData(df, col_name): # seperate columns into each matrix
     return col_matrix
     
 def colToPickle(df):
-    set_folder_name = '../../data/pickles/seperate_origin/'
+    set_folder_name = '../../data/pickles/seperate/'
     make_folders(set_folder_name)    
     
     for col_name in np.array(df.columns):
@@ -76,11 +76,11 @@ def colToPickle(df):
             print(col_name)
             set_mat = col_name
             locals()[set_mat] = seperate_ColData(df, col_name)
-            make_Pickle(eval(set_mat), '../../data/pickles/seperate_origin/{0}.pickle'.format(col_name))
+            make_Pickle(eval(set_mat), '../../data/pickles/seperate/{0}.pickle'.format(col_name))
         elif col_name == 'eventAction':
             print(col_name)
             groups = df.groupby('eventAction')
             names = pd.DataFrame({'ID':groups.grouper.result_index.values})
-            make_Pickle(names, '../../data/pickles/seperate_origin/eventAction.pickle')
+            make_Pickle(names, '../../data/pickles/seperate/eventAction.pickle')
         elif col_name == 'comb_time':
             print('comb_time : seperation code has not been written')
