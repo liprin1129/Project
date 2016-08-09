@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd #data analysis
 import os #file/directory operations
 from six.moves import cPickle as pickle
@@ -54,3 +55,47 @@ def seperate_indi(groups, num_cores, dir_name):
             gb = pd.concat(list(groups_dict.values())[nFiles*i:])
             make_Pickle(gb, set_file_name)
         count = count + 1
+        
+def seperate_ColData(df, col_name): # seperate columns into each matrix
+    '''
+    def group_Len(data, len_vec): # inner function
+        len_vec.append(len(data))
+
+    group_len = []
+    groups = df.groupby('ga:eventAction') # grouping
+    groups.apply(group_Len, group_len) # get length of each player
+
+    #print(max(group_len), len(groups)) # row = attemt numbers, column = players
+    '''
+    groups = df.groupby('eventAction') # grouping
+    col_matrix = np.ones((301, len(groups)))*np.nan # make a matrix with player attempts size.
+    
+    #if type(group[col_name]) == str:
+    #col_matrix = np.chararray((301, len(groups)), itemsize=37)
+    #col_matrix = np.zeros((301, len(groups)))
+
+    count = 0
+    for name, group in groups:
+        idx = np.array(group['eventLabel'])-1
+        col_matrix[idx, count] = group[col_name]
+        count = count + 1
+    #print('Matrix size:', np.shape(col_matrix))
+    return col_matrix
+    
+def colToPickle(df):
+    set_folder_name = '../../data/pickles/seperate_origin/'
+    make_folders(set_folder_name)    
+    
+    for col_name in np.array(df.columns):
+        if not (col_name == 'eventAction' or col_name == 'comb_time'): # conver to picke except 'eventAction' and 'comb_time'
+            print(col_name)
+            set_mat = col_name
+            locals()[set_mat] = seperate_ColData(df, col_name)
+            make_Pickle(eval(set_mat), '../../data/pickles/seperate_origin/{0}.pickle'.format(col_name))
+        elif col_name == 'eventAction':
+            print(col_name)
+            groups = df.groupby('eventAction')
+            names = pd.DataFrame({'ID':groups.grouper.result_index.values})
+            make_Pickle(names, '../../data/pickles/seperate_origin/eventAction.pickle')
+        elif col_name == 'comb_time':
+            print('comb_time : seperation code has not been written')
