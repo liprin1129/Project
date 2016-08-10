@@ -55,6 +55,7 @@ def seperate_indi(groups, num_cores, dir_name):
             gb = pd.concat(list(groups_dict.values())[nFiles*i:])
             make_Pickle(gb, set_file_name)
         count = count + 1
+    print('finish!')
         
 def seperate_ColData(df, col_name): # seperate columns into each matrix
     groups = df.groupby('eventAction') # grouping
