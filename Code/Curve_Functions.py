@@ -1,5 +1,6 @@
 import numpy as np
-from scipy.optimize import curve_fit
+# from scipy.optimize import curve_fit
+from scipy.optimize import least_squares
 import matplotlib.pyplot as plt
 #import DC_Pickle as dcp
 
@@ -62,11 +63,10 @@ def cost_Function(true_y, pred_y):
     cost = np.sum(diff)
     return cost
 
-def curve_Fitting(func, x, y, file_path, clt_num):
+def curve_Fitting(least_func, curve_func, x, y, seed, file_path, clt_num):
     fig, ax = plt.subplots(1, 1, figsize=(10,8))
     
-    popt, pcov = curve_fit(func, x, y, maxfev = 1000000)
-
+    # popt, pcov = curve_fit(func, x, y, maxfev = 1000000)
     '''
     upper_bound = []
     lower_bound = []
@@ -76,41 +76,30 @@ def curve_Fitting(func, x, y, file_path, clt_num):
     '''
     
     x_fit = np.linspace(0, 15, 100)
-    if len(popt) == 1:
-        y_mean = func(x_fit, popt[0])
-        '''
-        y_upper = func(x_fit, upper_bound[0])
-        y_lower = func(x_fit, lower_bound[0])
-        '''
-        cost = cost_Function(y, func(x, popt[0]))
+    '''
+    if seed == 1:
+        lsq = least_squares(least_func, seed, args=(x, y))
+        y_mean = curve_func(x_fit, lsq.x)
+        cost = lsq.cost
+    '''
     
-    elif len(popt) == 2:
-        y_mean = func(x_fit, popt[0], popt[1])
-        '''
-        y_upper = func(x_fit, upper_bound[0], upper_bound[1])
-        y_lower = func(x_fit, lower_bound[0], lower_bound[1])
-        '''
-        cost = cost_Function(y, func(x, popt[0], popt[1]))
+    if len(seed) == 2:
+        lsq = least_squares(least_func, seed, args=(x, y))
+        y_mean = curve_func(x_fit, lsq.x[0], lsq.x[1])
+        cost = lsq.cost
     
-    elif len(popt) == 3:
-        y_mean = func(x_fit, popt[0], popt[1], popt[2])
-        '''
-        y_upper = func(x_fit, upper_bound[0], upper_bound[1], upper_bound[2])
-        y_lower = func(x_fit, lower_bound[0], lower_bound[1], lower_bound[2])
-        '''
-        cost = cost_Function(y, func(x, popt[0], popt[1], popt[2]))
+    elif len(seed) == 3:
+        lsq = least_squares(least_func, seed, args=(x, y))
+        y_mean = curve_func(x_fit, lsq.x[0], lsq.x[1], lsq.x[2])
+        cost = lsq.cost
 
-    elif len(popt == 4):
-        y_mean = func(x_fit, popt[0], popt[1], popt[2], popt[3])
-        '''
-        y_upper = func(x_fit, upper_bound[0], upper_bound[1], upper_bound[2], upper_bound[3])
-        y_lower = func(x_fit, lower_bound[0], lower_bound[1], lower_bound[2], upper_bound[3])
-        '''
-        cost = cost_Function(y, func(x, popt[0], popt[1], popt[2], popt[3]))
+    elif len(seed) == 4:
+        lsq = least_squares(least_func, seed, args=(x, y))
+        y_mean = curve_func(x_fit, lsq.x[0], lsq.x[1], lsq.x[2], lsq.x[3])
+        cost = lsq.cost
 
-    print(" - Curve Fitting Parameters: {0}".format(popt))    
+    print(" - Curve Fitting Parameters: {0}".format(lsq.x))    
     print(" - Curve Fitting Cost: {0}\n".format(cost))
-    # print(" - Curve Fitting Covariance: \n{0}".format(pcov))
     
     ax.plot(x, y, 'rx', label="average score")
     ax.plot(x_fit, y_mean, 'b-', label="curve fitting")    
@@ -124,9 +113,8 @@ def curve_Fitting(func, x, y, file_path, clt_num):
     '''
     ax.set_ylim([0, max(y)+0.2])
     ax.legend(fontsize=14)
-    ax.set_title("cluster {0}".format(clt_num))
-    ax.text(0.77, 0.03, "cost: {0}".format(round(cost, 2)),
-            horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes, fontsize=15)
+    ax.set_title("cluster {0}: cost {1}".format(clt_num, round(cost, 2)))
+    # ax.text(0.77, 0.03, "cost: {0}".format(round(cost, 2)), horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes, fontsize=15)
     fig.savefig(file_path, dpi=100)
     
-    return popt, pcov, cost
+    return lsq.x, cost
