@@ -24,12 +24,18 @@ def exponential_curve2(x, a, b):
 
 def exponential_curve3(x, a, b, c):
     return a * np.exp(b * -x) + c
+    
+def exponential_curve4(x, a, b, c, d):
+    return a * np.exp(b * -(x+d)) + c
 
 def exponential_least2(w, x, y):
     return exponential_curve2(x, w[0], w[1]) - y
 
 def exponential_least3(w, x, y):
     return exponential_curve3(x, w[0], w[1], w[2]) - y
+    
+def exponential_least4(w, x, y):
+    return exponential_curve4(x, w[0], w[1], w[2], w[3]) - y
 
 
 ############################################
