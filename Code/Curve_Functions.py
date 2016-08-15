@@ -152,23 +152,28 @@ def multi_curveFitting_2(least_func, clt, avg, seed, n_param=2):
     idx = np.argmin(cost)
     return idx, cost[idx], param1[:, idx], param2[:, idx]
     
-def multi_curveFitting_3(least_func, avg, seed, n_param=2):
+def multi_curveFitting_3(least_func, avg, seed, n_curve=2, n_param=2):
     cost = []
     idx_mid2 = [] # save idx2(second change)
     x_range = np.linspace(1, 300, 300)
+
+    for i in range(n_curve):
+        locals()["x{0}".format(i)]
     
-    param1 = np.ones((n_param, 300))*np.nan
-    param2 = np.ones((n_param, 300, 300))*np.nan
-    param3 = np.ones((n_param, 300, 300))*np.nan
-    
-    for n1 in range(300): # iteration for all data
+    for n in range(300): # iteration for all data
+        for i in range(n_curve):
+            if i == 0:
+                locals()["x{0}".format(i)] = x_range[:n+1]
+            if i == n_curve-1:
+                locals()["x{0}".format(i)] = x_range[n+n_curve:]
+                
+        
         print("iter ", n1)
         x1 = x_range[:n1+1]
         y1 = avg[:n1+1]
 
         lsq1 = least_squares(least_func, seed, args=(x1, y1))
         cost1 = lsq1.cost
-        param1[:, n1] = lsq1.x 
         
         cost_remain = []        
         for n2 in range(300-n1):
@@ -183,9 +188,6 @@ def multi_curveFitting_3(least_func, avg, seed, n_param=2):
             lsq3 = least_squares(least_func, seed, args=(x3, y3))
     
             cost_remain.append(lsq2.cost+lsq3.cost)
-
-            param2[:, n1, n2] = lsq2.x
-            param3[:, n1, n2] = lsq3.x
     
         idx2 = np.argmin(cost_remain)
         idx_mid2.append(idx2)
@@ -194,4 +196,4 @@ def multi_curveFitting_3(least_func, avg, seed, n_param=2):
     idx1 = np.argmin(cost)
     idx2 = idx_mid2[idx1]
     
-    return idx1, idx2, cost[idx1], param1[:, idx1], param2[:, idx1, idx2], param3[:, idx1, idx2]
+    return idx1, idx2, cost[idx1]
