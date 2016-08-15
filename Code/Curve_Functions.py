@@ -113,7 +113,7 @@ def curve_Fitting(least_func, curve_func, x, y, seed, file_path, clt_num):
     '''
     ax.set_ylim([0, max(y)+0.2])
     ax.legend(fontsize=14)
-    ax.set_title("cluster {0}: cost {1}".format(clt_num, round(cost, 2)))
+    ax.set_title("Cluster {0} (Cost {1})".format(clt_num, round(cost, 2)))
     # ax.text(0.77, 0.03, "cost: {0}".format(round(cost, 2)), horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes, fontsize=15)
     fig.savefig(file_path, dpi=100)
     
@@ -124,14 +124,14 @@ def curve_Fitting(least_func, curve_func, x, y, seed, file_path, clt_num):
 ## About multipe curve fitting
 ############################################
     
-def multi_curveFitting_2(least_func, avg, seed, min_range=5, n_curve=2):
+def multi_curveFitting_2(least_func, avg, seed, min_range=5):
     cost = []
     #param1 = np.ones((n_param, 300))
     #param2 = np.ones((n_param, 300))
     
     x_range = np.linspace(1, 300, 300)
     for n in range( int(300/min_range) - 1) : # iteration for all data
-        print("iteration ", n)
+        # print("iteration ", n)
 
         x1 = x_range[:min_range*(n+1)]
         x2 = x_range[min_range*(n+1):]
@@ -144,19 +144,16 @@ def multi_curveFitting_2(least_func, avg, seed, min_range=5, n_curve=2):
 
         lsq1 = least_squares(least_func, seed, args=(x1, y1))
         lsq2 = least_squares(least_func, seed, args=(x2, y2))
-
-        cost1 = lsq1.cost
-        cost2 = lsq2.cost
         
         #param1[:, n] = lsq1.x
         #param2[:, n] = lsq2.x
 
-        cost.append(cost1+cost2)
+        cost.append(lsq1.cost+lsq2.cost)
         
     idx = np.argmin(cost)
     return min_range*(idx+1)#, param1[:, idx], param2[:, idx]
 
-def multi_curveFitting_3(least_func, avg, seed, min_range=5, n_curve=2):
+def multi_curveFitting_3(least_func, avg, seed, min_range=5):
     cost = []
     break_point2 = []
     #idx_mid2 = [] # save idx2(second change)
@@ -168,7 +165,7 @@ def multi_curveFitting_3(least_func, avg, seed, min_range=5, n_curve=2):
 
     first_idx = []
     for n in range(int(300/min_range) - 2): # iteration for all data
-        print("\n - iter{0}".format(n))
+        # print("\n - iter{0}".format(n))
         x_idx = 0
         if x_idx == 0:
             end1 = min_range*(n+1) # caculate the first range limit
@@ -181,7 +178,7 @@ def multi_curveFitting_3(least_func, avg, seed, min_range=5, n_curve=2):
         second_idx = []
         second_cost = []
         for j in range(int( (300-(min_range*(n+2))) / min_range) ): # iteration for 2nd and 3rd x_range
-            print("iter {0}-{1}".format(n, j))
+            # print("iter {0}-{1}".format(n, j))
             end2 = min_range*(j+1) + end1 # caculate the second range limit
             x2 = x_range[end1:end2]
             y2 = avg[end1:end2]
@@ -204,6 +201,7 @@ def multi_curveFitting_3(least_func, avg, seed, min_range=5, n_curve=2):
             
     return min_range*(point1+1), point2
     
+'''
 def multi_curveFitting_4(least_func, avg, seed, min_range=5, n_curve=2):
     cost = []
     break_point2 = []
@@ -251,3 +249,4 @@ def multi_curveFitting_4(least_func, avg, seed, min_range=5, n_curve=2):
     point2 = break_point2[point1] # get index of 2nd break point
             
     return min_range*(point1+1), point2
+'''
