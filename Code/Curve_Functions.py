@@ -152,48 +152,51 @@ def multi_curveFitting_2(least_func, clt, avg, seed, n_param=2):
     idx = np.argmin(cost)
     return idx, cost[idx], param1[:, idx], param2[:, idx]
     
-def multi_curveFitting_3(least_func, avg, seed, n_curve=2, n_param=2):
+def multi_curveFitting_3(least_func, avg, seed, n_curve=2):
     cost = []
-    idx_mid2 = [] # save idx2(second change)
+    break_point2 = []
+    #idx_mid2 = [] # save idx2(second change)
+    
     x_range = np.linspace(1, 300, 300)
-
-    for i in range(n_curve):
-        locals()["x{0}".format(i)]
+    min_range = 20 # minimum x_range
     
-    for n in range(300): # iteration for all data
-        for i in range(n_curve):
-            if i == 0:
-                locals()["x{0}".format(i)] = x_range[:n+1]
-            if i == n_curve-1:
-                locals()["x{0}".format(i)] = x_range[n+n_curve:]
-                
-        
-        print("iter ", n1)
-        x1 = x_range[:n1+1]
-        y1 = avg[:n1+1]
+    end1 = 0
+    end2 = 0
 
-        lsq1 = least_squares(least_func, seed, args=(x1, y1))
-        cost1 = lsq1.cost
+    first_idx = []
+    for n in range(int(300/min_range) - 2): # iteration for all data
+        print("\n - iter{0}".format(n))
+        x_idx = 0
+        if x_idx == 0:
+            end1 = min_range*(n+1) # caculate the first range limit
+            x1 = x_range[:end1]
+            y1 = avg[:end1]
+            lsq1 = least_squares(least_func, seed, args=(x1, y1))
+            #print('x1', x1)
+            first_idx.append(end1)
         
-        cost_remain = []        
-        for n2 in range(300-n1):
-            x2 = x_range[n1+1:n2+n1+2]
-            x3 = x_range[n1+n2+2:]
-            # print("x1:{0}, x2:{1}, x3:{2}".format(x1, x2, x3))
-
-            y2 = avg[n1+1:n1+n2+2]
-            y3 = avg[n1+n2+2:]
-            
+        second_idx = []
+        second_cost = []
+        for j in range(int( (300-(min_range*(n+2))) / min_range) ): # iteration for 2nd and 3rd x_range
+            print("iter {0}-{1}".format(n, j))
+            end2 = min_range*(j+1) + end1 # caculate the second range limit
+            x2 = x_range[end1:end2]
+            y2 = avg[end1:end2]
             lsq2 = least_squares(least_func, seed, args=(x2, y2))
+            #print('x2', x2)
+            
+            x3 = x_range[end2:]
+            y3 = avg[end2:]
             lsq3 = least_squares(least_func, seed, args=(x3, y3))
-    
-            cost_remain.append(lsq2.cost+lsq3.cost)
-    
-        idx2 = np.argmin(cost_remain)
-        idx_mid2.append(idx2)
-        cost.append(cost1+cost_remain[idx2])
-    
-    idx1 = np.argmin(cost)
-    idx2 = idx_mid2[idx1]
-    
-    return idx1, idx2, cost[idx1]
+            #print('x3', x3)
+
+            second_idx.append(end2) # save 2nd break points
+            second_cost.append(lsq1.cost + lsq2.cost + lsq3.cost) # save costs
+        
+        break_point2.append(second_idx[np.argmin(second_cost)]) # get index where cost of remained x_ranges is minimum
+        cost.append(second_cost) # save costs
+        
+    point1 = np.argmin(cost) # get array index of cost is minimum
+    point2 = break_point2[point1] # get index of 2nd break point
+            
+    return min_range*(point1+1), point2
