@@ -154,15 +154,17 @@ def multi_curveFitting_2(least_func, clt, avg, seed, n_param=2):
     
 def multi_curveFitting_3(least_func, avg, seed, n_param=2):
     cost = []
-    param1 = np.ones((n_param, 300))
-    param2 = np.ones((n_param, 300, 300))
-    param3 = np.ones((n_param, 300, 300))
+    idx_mid2 = [] # save idx2(second change)
+    x_range = np.linspace(1, 300, 300)
+    
+    param1 = np.ones((n_param, 300))*np.nan
+    param2 = np.ones((n_param, 300, 300))*np.nan
+    param3 = np.ones((n_param, 300, 300))*np.nan
     
     for n1 in range(300): # iteration for all data
-        n1 = n1+1
         print("iter ", n1)
-        x1 = np.linspace(1, n1, n1)
-        y1 = avg[:n1]
+        x1 = x_range[:n1+1]
+        y1 = avg[:n1+1]
 
         lsq1 = least_squares(least_func, seed, args=(x1, y1))
         cost1 = lsq1.cost
@@ -170,14 +172,12 @@ def multi_curveFitting_3(least_func, avg, seed, n_param=2):
         
         cost_remain = []        
         for n2 in range(300-n1):
-            n2 = n2+1
-            x2 = np.linspace(n1+1, n1+n2, n2)
-            x3 = np.linspace(n2+2, 300, 300-n1-n2)
-            print("x1:{0}, x2:{1}, x3:{2}".format(x1, x2, x3))
-            
-            '''
-            y2 = avg[n1:n1+n2]
-            y3 = avg[n1+n2:]
+            x2 = x_range[n1+1:n2+n1+2]
+            x3 = x_range[n1+n2+2:]
+            # print("x1:{0}, x2:{1}, x3:{2}".format(x1, x2, x3))
+
+            y2 = avg[n1+1:n1+n2+2]
+            y3 = avg[n1+n2+2:]
             
             lsq2 = least_squares(least_func, seed, args=(x2, y2))
             lsq3 = least_squares(least_func, seed, args=(x3, y3))
@@ -187,9 +187,11 @@ def multi_curveFitting_3(least_func, avg, seed, n_param=2):
             param2[:, n1, n2] = lsq2.x
             param3[:, n1, n2] = lsq3.x
     
-        idx2 = np.argmin(cost_remain) 
+        idx2 = np.argmin(cost_remain)
+        idx_mid2.append(idx2)
         cost.append(cost1+cost_remain[idx2])
-        
+    
     idx1 = np.argmin(cost)
+    idx2 = idx_mid2[idx1]
+    
     return idx1, idx2, cost[idx1], param1[:, idx1], param2[:, idx1, idx2], param3[:, idx1, idx2]
-            '''
