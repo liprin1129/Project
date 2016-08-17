@@ -1,0 +1,657 @@
+% ----------------------------------------------------------------
+% Report Class (This is a LaTeX2e document)  *********************
+% ----------------------------------------------------------------
+% ACS 322/420 Dissertation Template
+% March 2013, JL
+
+\documentclass[12pt,a4paper]{report}
+\usepackage[lmargin=3.81cm,tmargin=2.54cm,rmargin=2.54cm,bmargin=2.52cm]{geometry}
+\linespread{1.5}
+% Fonts -- the following two packages give your Times Roman in LaTex
+%\usepackage{txfonts}
+\usepackage{mathptmx}
+\usepackage{mathtools} %argmin
+\usepackage{verbatim} 
+\usepackage{algorithmic}
+\usepackage{relsize}
+\usepackage{graphicx}
+%\usepackage[nottoc]{tocbibind} 
+\usepackage{apacite}
+\graphicspath{ {/Users/PureMac/Desktop/Learning_Analytics/Figs/} }
+%\graphicspath{ {Figs/} }
+\begin{document}
+
+\pagenumbering{Roman}
+
+\newpage \section*{ABSTRACT}
+
+% This section is compulsory -- guidelines can be found in the presentation about writing the dissertation.
+
+\newpage \section*{ACKNOWLEDGEMENTS}
+
+
+%%% Table of Contents
+
+\tableofcontents
+
+\thispagestyle{empty}
+
+
+% ======================================================== %
+%		1. Introduction
+% ======================================================== %
+\chapter{Introduction}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% ======================================= %
+%		1.1 Background and Motivation
+% ======================================= %
+\section{Background and Motivation}
+
+% Conditioning paradigms reflects the "neurobiological basis of learning and memory" (Gallistel 2004).  
+Learning curves may reflect different underlying learning processes. For example, in insight learning, it may follow slightly fluctuated level and sudden dramatic increase at some points. Because the learning is sometimes the result of experience through personal interactions with the environment. And following the occurrence of insight, abrupt realisation of how to solve the problem can be repeated in future similar situations. This means that the associated experiences with insights can be parameterised, and it can be linked to future behaviours.
+% Also, experiences and insight may reinforce each other and can be associated to one another. This associated experience can be memorised and be a feedback as a parameter for future learning. 
+% Eventually, behaviour can memorise stimuli and feedbacks, and these may affect and eventually change behaviour.
+% insight learning, associative learning, multi-component/process learning.
+
+% These learning processes are reinforced by the conditioned stimulus
+% Insight learning is the first cognitive learning.  
+% https://psychlopedia.wikispaces.com/insight+learning
+
+%Associative learning : a learning principle that states ideas and experiences reinforce each other and can be mentally linked to one another. Conditioning; behaviour can be modified or learned based on a stimulus and a response. Reinforcers; stimuli used to change behaviour.
+
+Therefore, there are several possible functions which might fit learning curves and represent different learning processes; step function, powerlaw, piecewise powerlaw and etc. Through possible functions and learning curves, people can be grouped into several learning patterns. Moreover, by inspecting people in those groups, 'how they practice' to get the learning curve and 'which features' having an affect upon individuals can be found. Then suggestions for better learning for individuals may be categorised and proposed.
+
+% By fitting those functions to the big data of individuals' game result with various features,
+% may influence the individuals' learning curve' 
+% on their learning process'
+
+For this, online games are a reasonable instrument. As it involves "rapid perception, decision making, and motor responding", as well as it gives rich details of practice history, in order to find individuals' learning curve and investigate their features (Stafford and Dewar, 2013) 
+
+%\textit{An online game involving rapid perception, decision making, and motor responding. Use of game data-> rich details of training history with measures of performance. Relations between \textbf{practice amount} and \textbf{subsequent performance}, and between \textbf{practice spacing} and \textbf{subsequent performance.}\\
+%Greater initial variation in performance is linked to higher subsequent performance-> \textbf{a result we link to the exploration/exploitation trade-off from the computational framework of reinforcement learning.}//
+%Explaining two dilemmas: \\
+%Reinforcement learning, exploration/exploitation dilemma}
+
+% \subsection{[level 3 heading]}
+
+% As a general rule don't use more than three levels for a heading
+
+Text...
+
+% ======================================= %
+%		1.2. Problem Definition
+% ======================================= %
+
+\section{Problem Definition}
+
+There are three main issues in traditional reinforcement learning curve. Because it has smooth power law with diminishing gain derived from average value, all possible individual learning curve are squashed into one learning curve. Thus, it cannot tell which learning curve will belong to a task, behaviour, and learning process. Furthermore, even though identifying bad or good on learnings are important, but it cannot provide sufficient information about those.
+
+Below is the list of problems on current reinforcement learning curve.
+
+\begin{itemize}
+\item Not being able to categorise learning process.
+\item Averaging possible individual learning curves
+\item Not enough information for identification of learning success
+\end{itemize}
+%Explaining about the problem of bootstrapping analysis.\\
+%https://en.wikipedia.org/wiki/Bootstrapping (statistics)\\
+% "Unless one is reasonably sure that the underlying distribution is not heavy tailed, one should hesitate to use the naive bootstrap"\\
+%Bootstrap of the mean in the infinite variance case Athreya, K.B. Ann Stats vol 15 (2) 1987 724-731\\
+
+%%%%%%%%%%%%%%%%%%%
+% Piecewise powerlaw가 임의적으로 구간이 나눠져서 제대로 curve를 보기 어렵다? 
+% 논문을 더 읽어보기!
+%%%%%%%%%%%%%%%%%%%
+
+% This is a suggested section heading
+
+% ======================================= %
+%		1.3. Aims and Objectives
+% ======================================= %
+
+\section{Aims and Objectives}
+%%%%%
+These are the concepts I think you should cover in your introduction:
+
+Skill acquisition \& expertise
+- factors which are known to influence skill acquisition
+- practice amount, practice spacing, others
+
+Using games to study skill acquisition
+
+Learning curves
+- different possible underlying functions
+- problems with averaging over
+
+The ultimate aim, of course, is to identify individuals who learn faster or for longer, and try and relate this to how they practice
+%%%%%
+The aim of this paper is to fit different functions to the Axon game data. In the data, there are 854,064 individuals data about when, where they did the game and other informations, as well as scores of game according to their attempts. And so identify the underlying learning process. Furthermore, it is to inspect features which may have influences on the learning curves. 
+
+\begin{itemize}
+\item Understand several possible functions; step function, powerlaw, piecewise powerlaw and etc.
+\item Understand different underlying learning processes; insight learning, associative learning, multi-component/process learning and etc.
+\item Fit functions to individual Axon game data and compare those to identify.
+\item Test theories of what makes learning most effective, exploiting unsupervised learning, establish which parameter is important for getting learning curve from the data.
+\item Design more effective learning practices.
+\end{itemize}
+% This section is compulsory -- guidelines can be found in the presentation about writing the dissertation
+
+%The aim(s) should provide a general idea of what the project is about and the objectives should be more specific. The objectives should be actions that you expect to do (e.g. simulate..., test..., compare...). At the end of the project it should be possible to assess which of the objectives have been achieved. The objectives will also link into the work programme (below).
+
+% ======================================= %
+%		1.4. Project Management
+% ======================================= %
+
+\section{Project Management}
+
+% This section is compulsory -- guidelines can be found in the presentation about writing the dissertation
+
+Text...
+
+% ======================================================== %
+%		2. Data Curation
+% ======================================================== %
+
+
+\chapter{Data Curation}
+A large number of data were acquired through the online game named Axon which is developed by Preload for Welcome trust \cite{stuart2009Axon}. Totally 1,201,516 machine identities (or players) played the game over 4 million times. The raw data set is fundamentally comprised by the score, date, time of plays and so on in accordance with machine identities which may represent each individual. %\cite{stafford2014tracing}. 
+Undoubtedly, it can be possible to extract information from the data set on how people practiced to get a higher score. For example, it shows how much time they played for each score. 
+However, the raw data set of on-line game seems quite noisy to discern those factors which affect player's learning. It contained many 'undefined' or 'unrepresentable values', and some values are not valid, such as starting play time is later than the time play finished. For this reason, the information on what the analysis needs cannot be identified directly from it.
+
+Thus, the data source needs refining processes until the gemstone of data set could gleam with the evidence of valuable information. In other word, the big data set has to be curated. Stonebraker et al. stated that "data curation is the act of discovering a data source(s) of interest, cleaning and transforming the new data, semantically integrating it with other local data sources, and deduplicating the resulting composite" \cite{stonebraker2013data}.
+
+\bigskip
+Below are the tasks in which steps of data curation are largely expected,
+
+% that this dissertation is interested in, and especially where
+\begin{itemize}
+	\item Cleaning raw data set,
+	%\item Grouping filtered data set according to the same machine ID,
+	\item Incrementally accommodating new data entities,
+	\item Normalising scores grouped by the same players,
+	\item Clustering players, showing the similar patterns.
+\end{itemize}
+
+Especially, data curation tasks followed methods of two previous studies \cite{stafford2014tracing, stafford2016testing}. Accordingly, the curation tasks of cleaning, grouping by machine IDs and accommodating will be explained at the following section. After then, another tasks for data deformation and clustering will be examined.
+
+\begin{comment}
+which certified "the relationship between the practice amount and subsequent performance, and between practice spacing and subsequent performance" and "the consolidation effect for skill learning". In order for these analyses, unnecessary information contained in the data set had to be filtered, and additionally, the new variables were augmented by manifesting some hidden features in the same player through those two analyses.
+
+In gratitude, filtering methods on the data source was already regularized in some degree by Stafford et al. (2014; 2016).
+\end{comment}
+% , K-Means clustering, with the artificial neural network algorithm, competitive learning 
+
+% ======================================= %
+%		2.1. Project Management
+% ======================================= %
+\section{Data Cleaning}
+
+What has to be noted before data cleaning is that it has to be implemented under the grouped data by the same machine IDs. Totally 4,038,802 plays were sorted by players having the same machine IDs, and then 1,201,516 players were detected. The criteria according to the previous two studies \cite{stafford2014tracing, stafford2016testing} are as follow,
+% Though the two studies in 2014 and 2016 about skill learning analysis using the game data source, some curation steps were performed by the following criteria.
+
+%\begin{itemize}
+%	\item 26,727 players who did not play a minimum of 15 games were eliminated,
+%	\item 8\% out of the total number of players attempted more than 300 times, and those were also discharged.
+%	\item 26,175 data which lack valid longitude or timing information for each attempt were filtered.
+%\end{itemize}
+
+\begin{enumerate}
+	\item Players who did not play at least 15 games,
+	\item Players who attempted more than 300 times,
+	\item Data which lack valid longitude or timing information for each attempt.
+\end{enumerate}
+
+The reason of discarding those who played less than 15 attempts is because those cannot show a causal relationship between attempts and scores. In this step, xxx individuals were deleted. 
+And the reason of second step is that plays more than 300 attempts did not show many differences against after 300 attempts. ??? out of total number of players attempted the game more than 300 times, and also they were removed. 
+Finally, the discarded players having unrecognisable time information were ???. As a result, originally 4, 038,802 plays with xxx players were filtered, and reduced to ??? plays and ??? individuals decreased by ???.
+
+\bigskip
+\textbf{Write about discontinuouty}
+
+\section{Data accommodating}
+The next step of data curation for the analysis is to incrementally accommodate hidden but obvious features from the previous cleaned data. The data set is constituted by basic 8 categories and 7 increments.
+
+\subsection{Original variables in the data source}
+\begin{itemize}
+    \item Machine identities:\\
+	When players access the on-line game, tracking code written by Preloaded recorded machine identities. Machine IDs might be considered as representing individuals who actually played the game. They inserted tracking code that recorded a machine identity each time the game was loaded and kept track of the score and the date and time of play
+	\item Scores and Attempt numbers: \\
+	Each player's attempts at the game and scores were recorded in the order of the time.
+	\item Date, Hour and Minute: \\
+	Time information when the game was loaded were recorded. \textbf{(Q. what's the information of this?)}, \textbf{(Q. what's the information of this?)}
+	\item Latitude and Longitude: \\
+	The information of locations where the machine ID accessed the game was collected approximately at the maximum of city-block level.
+\end{itemize}
+	
+\subsection{Hidden variables calculated from the original variables}
+	\begin{itemize}
+		\item Time set: \\
+		Date, hour and minute information were combined together to obtain timing between attempts.
+	    	\item Time difference: \\
+		Time differences were calculated by comparing time to the time of its previous attempt. Therefore, the first attempts do not have values of time difference.
+    		\item Local time: \\
+		Using the formula, "$\textit{local time} = \textit{UTCtime} + (\textit{longitude} × 24\div360),\textit{modulo}24$  \textbf{(Q. understand the formula)}", local times for each play were calculated (Stafford et al., 2016) in seconds. There is data that local time could not be calculated because of missing latitude and longitude information. Calculating the local time facilitates comparison of players in different time zone.
+    		\item Gap types: \\
+		On the basis of time difference, Stafford et al. (2016) classified individuals into 4 groups, "according to the nature of the timing of their first 15 attempts at the game". First group is 'no gap' for those who had less than 15 minute gap between each play. Second group is 'wake' in which players are assumed having a rest in there waking hours if they have "a single gap between 7 and 12 hours". Working hours is time between 5 am and 12 pm. And those who rested for between 7 and 12 hours in working hours were categorised as 'sleep'. Finally, all other individuals are classified as "no category".
+	    	\item Long gap, Short gap and Sleep gap: \\
+		For more detailed analysis, 'rest' which is defined in 'Gap types' categorisation was divided with 3 types. Long gap, short gap and sleep gap were determined when players had a rest 'between 7 hours and 11 hours', 'below 15 minutes', and 'not in working hours' respectively.
+		\item The number of total plays: 
+	\end{itemize}
+
+As the term of hidden variables, there are possibilities that more factors can be mined from the data set and be incrementally accommodated to it if appropriate methods are implemented.
+
+\section{Data Deformation}
+CSV format has been used as a basic data file format for the previous data curation tasks. The main roles of CSV format are loading data-set from the data storage space, processing, reprocessing, and storing. Simply, the data set needs to be stored somewhere in data storage unit of machine(s) where the analysis processes would operate. CSV is an abbreviation of Comma-Separated Values. A data record of CSV format file is a line formed by one or more elements, and commas separate those element values to be distinguishable (Shafranovich, 2008). Saving data in the CSV format has several benefits most of the time: ease to generate, read and edit manually, versatility in most programming languages, and so on (Idris 2014). However, these are true only when data size is manageable. Because fitting all data-set of such a big data in computer memory takes a lot of spaces. In some case loading on the memory cannot be possible depending on computer capability and setup. And taking large space would mean processing will be slow. Thus, CSV format is not very efficient way to manage such a big data (Idris 2014). To solve with those problems, two approaches of being able to reduce storing spaces and of enabling faster speed for analysing were applied; converting CSV file format into Pickle format, and splitting data set into several pieces.
+
+\subsection{Pickle file format}
+There are various file formats which can provide "a high level of data compression such as zip, bzip and gzip" (Idris 2014). 
+
+\subsection{Hash table}
+
+%%%%%% comment %%%%%%%%%%%%%
+\begin{comment}
+(Python 2001)
+There are various file formats which can provide a high level of data compression.
+
+, which is formed from 15 factors, into the data vector having like hash table
+
+By default, the pickle data format uses a relatively compact binary representation. If you need optimal size characteristics, you can efficiently compress pickled data.
+
+
+•CSV is human readable and easy to edit manually
+•CSV is simple to implement and parse
+•CSV is processed by almost all existing applications
+•CSV provides a straightforward information schema 
+•CSV is faster to handle
+•CSV is smaller in size
+•CSV is considered to be standard format
+•CSV is compact. For XML you start tag and end tag for each column in each row. In CSV you write the column headers only once.
+•CSV is easy to generate
+
+Since, depending on your computer setup you might not be able to fit it all in memory, we'll load each class into a separate data-set, store them on disk and curate them independently. Later we'll merge them into a single data-set of manageable size.
+\end{comment}
+
+
+\textbf{Hash table}, %https://youtu.be/h2d9b_nEzoA
+\textbf{cut 15 attempts}.
+%'eventAction', 'eventLabel', 'date', 'hour', 'minute',
+%       'latitude', 'longitude', 'eventValue', 'play_filter', 'comb_time',
+%       'diff_time', 'localtime', 'long_gap', 'shor_gap', 'sleepgap', 'gaptype',
+%       'total_plays'
+
+% ======================================= %
+%		2.4. K-Means Clustering with Competitive Learning Algorithm
+% ======================================= %
+\section{K-Means Clustering with Competitive Learning Algorithm}
+
+In order to identify learning curves of individuals, the first thing to do is clustering players into several groups in which they show similar learning patterns. Traditional ways of identifying individual learning curves is either averaging all data of test subjects 
+%population%
+or fitting different possible underlying functions to observed data-set (Newell \& Rosenbloom 1981; Gallistel et al., 2004; Donner \& Hardy, 2015). Well represented learning curve 
+%for human learning 
+in psychology may be a "smooth power law of diminishing gains" (Donner \& Hardy, 2015). For example, Howard (2014) tested function fitting on chess performance and verified a "power function fit best". 
+
+However, in contrast, Gaschler et al. (2014) stated that "the exponential function was better than the power function fitting" for learning curves of chess players. This different results in the same observation of chess game would stem from that the power law is an artifact which averages many divergent shapes of exponential curves (Heathcote et al., 2000; Murre \& Chessa, 2011) as well as other possible underlying curves. 
+
+Therefore, before analysing the on-line game data set, it would be better assumption that there are many different shapes of learning curves depicting individuals' learning best, rather than only one learning curve. 
+% Hence, it would be better to cluster players by similar learning patterns before identifying which curve functions will fit best on the on-line game data-set.
+
+\bigskip
+In contrast with classification tasks that classify labeled data-set, clustering is an unsupervised classification task which automatically groups similar data without predefined and labeled classes (Hackeling, 2014), and it generates the same result as classification algorithm does (Harrington, 2012). 
+%The algorithm it was used for the analysis is K-Means clustering.
+Among several clustering methods, K-Means clustering was used with artificial neural network algorithm, competitive learning.
+%, for the analysis of the on-line game data set. 
+It is because K-Means clustering algorithm in high dimensions is computationally very slow and the key method of K-Means; comparing distance in 2 and 3 dimensions, would not work in high dimensions (Daume III, 2012). 
+
+Hence, there is possibility that the data-set may not properly be clustered, as the on-line game data-set is comprised of 15 dimensions. Compensating K-Means clustering with neural network algorithm might provide one of solutions for the high dimensions data-set.
+
+% ======================================= %
+%		2.4.1 K-Means clustering
+% ======================================= %
+\subsection{K-Means clustering}
+The name of K-Means is because it discovers k unique clusters, and the mean values of that clusters represent the centres of each cluster. The key idea of K-Means clustering algorithm is to compare distances between all data and centres of clusters. If centroids of clusters were found, each data can be assigned to its nearest centres. In the same manner, centres of clusters can be computed after each data is allocated to clusters.
+
+Again, there are no labels or predefined information of classes in the data set. %In other word, 
+Thus, the information of which approach has to be implemented first between two approaches is unknown. The solutions are to start with initial random point, to iterate calculation of centre position, and to rearrange elements in clusters. Through iterating these three approaches until stopping criteria is satisfied, k means eventually converges to local optimisation, and comprise k clusters. 
+
+\bigskip
+There are two terminating criteria in K-Means clustering algorithm. The first one is using a threshold for the difference of cost functions (\ref{eq:k_means_cost_function}) through subsequent iterations (\ref{eq:threshold1}).
+
+\begin{equation} \label{eq:threshold1}
+	J_i - J_{i-1} < \theta \textrm{where, } \; j \in K,
+\end{equation}
+and cost function $J$ is
+\begin{equation} \label{eq:k_means_cost_function}
+    J(\mathbf{\mu, C; D}) = \sum_n^N || x_n -\mu_{C_k} ||^2
+    = \sum^K_{k=1} \sum_{i \in C_k} ||x_i - \mu_k||^2,
+\end{equation}
+where $\mu$ is mean of cluster, $\mathbf{D}$ is (the number of parameters) data-set, $\mathbf{C}$ is clusters in the data-set, $x$ is data, $N$ is the number of data, and $K$ is the number of clusters. The other one is to use a threshold for the difference of centre positions between successive iterations (\ref{eq:threshold2}).
+\begin{equation} \label{eq:threshold2}
+    x_i - x_{i-1} < \theta \quad \textrm{, where } i \; \textrm{in} \; C_k \,.
+\end{equation}
+
+\bigskip
+
+Below is pseudo-code of K-Means algorithm, 
+\bigskip
+\begin{algorithmic}
+\FORALL{$k$ such that $ 0 \leq k < K$}
+	 \STATE randomly initialise $\mu_k$
+\ENDFOR
+\smallskip
+\WHILE{stopping criteria (\ref{eq:threshold1}) or (\ref{eq:threshold2})}
+	\FORALL{$k \in K$}
+		\FORALL{$i$ such that $ 0 \leq i < N$}
+			\STATE $\mathbf{C}_k \leftarrow \underset{x}{\arg\min}|| \mu_k - x_i ||^2$ ,\\
+		\ENDFOR
+	\ENDFOR
+	\smallskip
+	\FORALL{$k \in K$}
+		\STATE $\mu_k \leftarrow \textrm{mean}(\mathbf{C}_k)$
+	\ENDFOR
+\ENDWHILE
+\RETURN $\mathbf{C, \mu}$
+\end{algorithmic}
+%After finding centers of clusters, each data are assigned to its nearest clusters.
+
+At first, the positions of centroids are randomly initialised. Then, the first for loop in the while loop assigns each data to nearest clusters. The second for loop calculates the centres of clusters. By iterating these two tasks, all centroid of clusters move slightly towards the centres of each cluster, and eventually converges to local optima. For on-line game data analysis, stopping criterion (\ref{eq:threshold2}) was used. This K-Means clustering algorithm was improved with neural network, competitive learning algorithm, in order to cluster the on-line game data-set in high dimensions.
+
+% ======================================= %
+%		2.4.2 Competitive learning
+% ======================================= %
+\subsection{Competitive learning}
+
+Competitive learning is unsupervised learning approaches in which the output neurons contend against each other for the one firing to react from the given pattern in inputs, and therefore only one unit take winner upon all output units (\ref{fig:Competitive_Diagram}). This exclusive phenomenon in synaptic neurons is called 'winner-take-all units', and sometimes they also called 'grandmother cells'. Which means a neuron fires on a specific stimulus. This neural networks has an advantage of clustering unlabeled data, searching the correlations of the input data. One of the most significant application of competitive learning might be vector quantisation. In which, input data-set is a bunch of vectors in data space. And input vectors are compressed and stored by transmitted into prototype vectors.
+
+\begin{figure}[thpb] \label{fig:Competitive_Diagram}
+	\begin{center}
+	\framebox{\parbox{12cm}{ 
+	    \begin{center}
+	        \includegraphics[width=10cm]{Competitive_Diagram.png} 
+	    \end{center}}}
+	\end{center}
+	\caption{Competitive neuron diagram. When an input enters the network, it generates output values according to weights between an input and output neuron (blue arrows). Output neurons compete each others (red arrows), then only one output fires on an input pattern. Output neurons are considered only having binary $0/1$ output}
+\end{figure}
+
+\bigskip
+It has very similar concept to K-Means clustering algorithm, and the prototype vectors can be interpreted as centroids in K-Means clustering. Besides, vector quantization employs Euclidean metric to assign an input vector to the nearest prototype, weight vector. When an input data, usually represented as a vector, is applied at the input of the network, the winner neuron indicates the appropriate class, and if all input data are entered to the network, the input space organises a Voronoi tessellation. To be specific, Voronoi tessellation which was used in the analysis is Centroid Voronoi tessellation, in which means are positioned in each Voronoi cell (center of mass). The weight vectors (or centroid in K-Means) are the vectors of prototypes. 
+
+\bigskip
+Output neurons $O_i$ in (\ref{eq:competitive1}) are the units having the net input in an pattern at a time,
+\begin{equation}\label{eq:competitive1}
+    O_i = \sum_j w_{ij}x_j = \vec{\mathbf{w_i}} \cdot \vec{\mathbf{x}},
+\end{equation}
+for an input vector $\mathbf{x}$, and winner neurons are found by (\ref{eq:competitive2}),
+\begin{equation} \label{eq:competitive2}
+    \vec{\mathbf{w}}_k^T\vec{\mathbf{x}}^\mu > \vec{\mathbf{w}}_i^T\vec{\mathbf{x}}^\mu \quad \textrm{for all i},
+\end{equation}
+where winner neuron is $\vec{\mathbf{w}}_k^T$, and $\vec{\mathbf{x}}^\mu$ is an input of pattern $\mu$.
+(\ref{eq:competitive2}) tells winning unit is the biggest.
+And if the weight vectors connecting between each input and output are normalized, $\vec{\mathbf{w_i}}=1$, then (\ref{eq:competitive1}) can be redefined as below,
+\begin{equation} \label{eq:competitive3}
+    \quad |\vec{x}^\mu - \vec{w}_k^T| \leq |\vec{x}^\mu - \vec{w}_i^T|, \quad
+    \textrm{only if} \;\; |\vec{w}=1| \;\; \textrm{for all i.}
+\end{equation}
+(\ref{eq:competitive3}) shows similarity to the key idea of K-Means clustering, which only consider distances between every data and centroids.
+
+\bigskip
+Competitive learning only consider the output neuron with the maximum output from net value of inner product between input and weight. Biologically, output neurons are connected with other all output neurons with lateral inhibition, as well as excitatory connection itself, and therefore winner takes all units.
+%output neurons have a value of $\vec{w}^T\vec{x}^\mu$, thus the largest output is always win. 
+
+\bigskip
+For competitive learning, the thing has to be remembered is that weights have to be normalised in order for all units to have a unit length.
+
+\subsection{Normalisation}
+For most machine learning algorithm, normalisation is an important for analysing data with different scale to be compared and then to derive information in K-Means clustering (Michael 2015). To be specific about normalisation for competitive learning, network exploit the inner product for each input with weight vectors in order to identify winner output unit. If looking inside of (\ref{eq:competitive2}), the equation for inner product is
+
+\begin{equation}\label{eq:inner_product}
+    \vec{\mathbf{w}}^T \cdot \vec{\mathbf{x}}^\mu = \vec{\mathbf{w}}^T\vec{\mathbf{x}}^\mu \cos(\theta),
+\end{equation}
+with respect to the lengths of both units and a direction between input pattern and weight. Non-normalised one has no way for an criterion of competing output units with weight /vectors. Because the neuron which has the most largest value in length always wins, and that means the algorithm will finish without any learning or no informative outcome through iterations in the both case of not-normalised data-set and weight vectors.
+\begin{figure}[thpb] \label{fig:not_norm_data}
+    \centering
+    \framebox{\parbox{14cm}{
+        \begin{center}
+            \includegraphics[width=6.5cm]{not_norm_data.png}
+            \includegraphics[width=6.5cm]{not_norm_weight.png}
+        \end{center} }}
+	\caption{Examples of not-normalised data and weight in 3 dimensions. In both left and right figures, sphere represents unit length area. Left is the plot of original data with a weight (red arrow). The right one is the figure that has normalised data-set onto the unit length area, but not-normalised weight vectors (green arrow).}
+\end{figure}
+
+\bigskip
+For the solution of that, normalising input and weight vectors simply transforms (\ref{eq:inner_product}) into the equation computing only a direction between those vectors, which tells how closely weight vector is from the input vector. 
+
+Eventually, the inner product in (\ref{eq:competitive3}) becomes the criterion which detects the shortest Euclidean distance by comparing angles between input and weight vectors, (\ref{eq:distance}).
+
+\begin{equation}\label{eq:distance}
+    \begin{split}
+        \vec{\mathbf{w}}_k^T \cdot \vec{\mathbf{x}}^\mu &> 
+        \vec{\mathbf{w}}_i^T \cdot \vec{\mathbf{x}}^\mu \\
+        \cos(\theta_k) &\geq \cos(\theta_i).
+    \end{split}
+\end{equation}
+
+The firing output neuron is still has the largest value among output units when the $\theta$ is smaller than others based on the competition with proximity of the input vector.
+
+(\ref{fig:not_norm_data}) shows not-normalised issues in competitive learning. In the tot-normalised data-set and weight vector, (\ref{eq:inner_product}) always compare only the length, not the closest one in the distance between data and weight vector. It is obvious that the most long vector always win, which cannot be Representative for input patters, and therefore weights would not move to the centre of Voronoi cell.
+
+\subsection{Procedure of the algorithm}
+After normalising data-set and setting weight vectors with unit length, the competitive learning algorithm for pattern classifier exploiting (\ref{eq:competitive1}) and (\ref{eq:distance}) follows as below,
+
+\begin{enumerate}
+\item {choose weight vector with random values}: \newline
+Similar to K-Means clustering, weight vectors which implies center of mass for clusters (or Voronoi cells) are initialised with random values. However, the issue of dead unit would be caused by randomly initialised weight vectors. Dead unit is the unit which is very far from any input patterns, and therefore never fires. And other problem is the optimal number of weight vectors. This problem will be discussed in the next section. The last thing to be noted is that weight vector must have unit length.
+
+\item apply input patterns to the network in turn or in random order: \newline
+After setting initial weights, input data vector as an pattern is entered to the network. It does not matter applying it in turn or in random order. The advantage of competitive learning over K-Means is that K-Means comparing all data, then must be slow, but competitive learning can run in random order input data until it approaches the sufficient learning rate. Therefore it is much faster than K-Means, on condition that how learning rate is prescribed.
+
+\item discover a winner output unit for each input: \newline
+When an input vector is applied to the network, which output unit is likely to take winner position for each normalised input pattern is found through (\ref{eq:distance}). For a given input patter, the winner unit has the largest value among other output neurons. In other world, winner-take-all unit is the most closest vector to the input vector with the smallest angle. Inhibitory and self-exitatory connection are definded biologically, but alternatively using python command, \textbf{numpy.argmax}, just maximum value is searched.
+
+\item Update the winner neuron's weight to be closes to the input vector: \newline
+For each input, winner $\mathbf{w_k}$ is found among the outputs, and then it is updated to be closer by an allowed amount with learning factor $\eta$ to the current input vector. After continued update of the weight for the winner unit, weight vectors will be positioned at the center of Vornoi cells which shows similar patterns of inputs. Below is on-line and batch update rule,
+	\begin{equation} \label{eq:on-line and batch}
+	\begin{split}
+	    \text{on-line rule}&: \Delta \vec{w}_k = \eta(\vec{x}^\mu - \vec{w_k})\\
+	    \text{batch rule}&:\Delta \vec{w}_k = \eta \Sigma_{\mu \in C_k} (\vec{w_k} - \vec{x}^\mu)
+	    %\text{or} \quad \quad \quad&
+	\end{split}
+	\end{equation}
+On-line learning rule updates the change of one data point at a time. However, batch learning rule accumulates weights until the all inputs in a cluster are passed to the network, and sums all of those constantly. Both converges the same centroids of clusters, but batch rule is slower than on-line learning rule which slightly fluctuates towards local optima when updating.
+\end{enumerate}
+
+As mentioned in procedure 1, choose weight vector with random values, the two possible problem; the number of clusters and dead units, of competitive learning have to be handled with proper method. The next section will introduce breakthroughs which can tackle those two issues.
+% ======================================= %
+%		2.4.3 Local optima and optimal number of clusters
+% ======================================= %
+\subsection{Local optima and optimal number of clusters}
+
+Sometimes, a number of mean values might be randomly initialised very nearly to each other. And centroids would converge the same point in the same cluster. In this case, clusters would not describe data-set informatively. This issue is called local optima problem. Unfortunately, there is "no way of knowing what the right answer is" for the outcome of clustering algorithm, but "repeating the algorithm dozens or even more times" can increase reliability of clustering result (Hackeling, 2014). By repeating clustering algorithm several times, the starting random data points will be set differently and converge different or the same local optima as subsequent outcomes. Clustering results are compared relatively with repeated results, and the most frequent similar results can be presumed as reliable result.
+
+%\begin{figure}[thpb]\label{fig:elbow}
+%	\centering
+%	\framebox{\parbox{5.5in}{ \includegraphics[scale=0.55]{elbow_method.png} }}
+%	\caption{Cost values according to the different number of k}
+%\end{figure}
+
+\bigskip
+The another crux of K-Means clustering is that the optimal number of clusters is unknown. There are XXX players in the on-line game data-set, and it has no pre-defined information of how many groups which shows similar learning patterns are. To estimate optimal number of clusters, Elbow method with Akaike Information Criteria (eq:AICandBIC) was used. The criteria which can determine the number of cluster is as follow,
+\begin{equation} \label{eq:AICandBIC}
+    \begin{split}
+        \textrm{Bayes Information Criteria (BIC)}:&\\
+        &\underset{K}{\arg\min} (J_K + K\log D)\\
+        \textrm{Akaike Information Criteria (AIC)}:&\\
+        &\underset{K}{\arg\min} (J_K + 2KD).
+    \end{split}
+\end{equation}
+
+More a number of clusters, less the value of the cost function, $J_K$. Because, increasing K can divide the data-set into smaller pieces of clusters than the actual number of how many clusters necessarily exists in it. Usually, using the Elbow method shows changes of the value of cost function. It go down significantly at the first some K, and suddenly slow down the change. By inspecting the point showing from dramatic to gradual change, generally the optimal number of K is founded. However, when elbow method for the on-line data-set is plot, this inflection point cannot be determined. Because all costs decrease gradually, Fig.~\ref{fig:AIC_BIC_Elbow}. Therefore, AIC was exploited with elbow method. If plotting AIC values in different number of K, it decreases by the certain amount that is not worth to decrease K more, and then start to increase. It is because 2KD or  $K\log D$ proportionally compensates decreasing the value of cost function for K. In high dimensions, AIC criteria gives "high penalty for many clusters" (Daume III, 2012). As a result, K value which minimizes AIC or BIC (\ref{eq:AICandBIC}) could be considered as the optimal number of clusters. 
+
+\begin{figure}[thpb]\label{fig:AIC_BIC_Elbow}
+	\centering
+	\framebox{\parbox{14cm}{
+	    \begin{center}
+	    \includegraphics[width=14cm]{AIC_BIC_Elbow.png}
+	    \end{center} }}
+	\caption{Comparison between AIC and BIC according to the different number of k. AIC is more strict method than BIC to identify the number of clusters.}
+\end{figure}
+
+\bigskip
+Fig.~\ref{fig:AIC_BIC_Elbow} shows the information of elbow method with AIC and BIC for the on-line data-set. It can be seemed that the data-set can be clustered into n clusters. Difference between xx K and xx K is xx and yy K and yy K is yy. If the value of ccc is set as a threshold for these differences, increasing K beyond 11 would not improve the result of clustering.
+
+% ======================================= %
+%		2.4.5 Dealing with dead unit
+% ======================================= %
+\subsection{Dealing with dead unit}
+Dead unit problem may occur when weights are initialised very far from any input vectors. Because those cannot win against those which are closer to input vectors than them. (\ref{fig:dead_unit}) shows geometrically more precise understanding. There are two arrows with different colours. Red arrows are initialised very close to two input groups than green arrow. When those are implied to the network, green weight will never be updated, while red weight will move to the centre between two input groups. 
+% dead unit 에 대한 state 사진 삽입.
+
+\begin{comment}
+Fig. 8 shows more precise understanding. There are two weight vectors with coloured crosses and arrows in its direction. The weight vector with red cross are closer to both clusters of inputs, and green coloured weight is far from this clusters. For all comparisons in (4), the output with red weight vector always wins, and green one never fires and also would never be updated to be closer to the inputs, even though two clusters need to have a weight vector in its centre. Unfortunately, at the end of the learning, the weight with red cross will be positioned in the middle of two clusters, and green weight is at the same location as before the learning.
+\end{comment}
+
+\begin{figure}[thpb] \label{fig:dead_unit}
+	\centering
+	\framebox{\parbox{12cm}{ 
+	    \begin{center}
+	    \includegraphics[width = 12cm]{dead_unit.png} 
+	    \end{center}}}
+	\caption{An example of dead unit problem. Red and Green arrows are initialised weight before applying into the network. Green arrow is set far from both two input clusters, and it is assumed as a dead unit. Unfortunately, green arrow will never fire through the learning, and which means that input vectors are not properly clustered.}
+\end{figure}
+
+\bigskip
+There are several solutions to deal with dead units problem. 
+
+\begin{enumerate}
+\item Leaky learning (LL): LL adjusts learning rate of both winer and loser, and give opportunity for loser to fire in the future, by moving towards more compact cluster.
+% equation 6
+\begin{equation} \label{eq6}
+\begin{split}
+w_{ij}^{new} & = w_{ij}^{old} + \eta_{winner} (x_i - w_{ij}^{old}), \\
+w_{ij}^{new} & = w_{ij}^{old} + \eta_{loser} (x_i - w_{ij}^{old}), \\
+& \text{where } \eta_{winner} \gg \eta_{loser} \, .
+\end{split}
+\end{equation}
+\textbf{find reference.}
+
+\item Add bias (AB): AB adds bias to repeated winner outputs so that they are hard to fire again after as the weight updates iterate. In [3], the equations for AB were referenced,
+% equation 7
+\begin{equation} \label{eq7}
+\begin{split}
+f_j^{new} & = f_j^{old} + \beta (z_j - f_j^{old}), \\
+b_j & = \gamma (1/n - f_j), \\
+w_{ij}^{new} & = w_{ij}^{old} + \alpha (x_i - w_{ij}^{old}) z_j,\\
+y_j & = \Sigma_i w_{ij} x + b_j \, ,
+\end{split}
+\end{equation}
+where $z_j$: selector having 0 for loser or 1 for winner, $\gamma, \beta$: constant factor, $n$: the total number of nodes, $f$: output neuron's firing rate, $b$: bias. Performance of competitive learning can be controlled by regulating the parameters[3].
+
+\item Add noise (AN) to outputs in updating: By adding randomly distributed gaussian distribution into output neutrons in every learning time, frequently winner neurons may be disturbed not to fire, and then even when a winner and losers are obvious by (4), a loser may take top place instead of the winner.
+\begin{equation} \label{eq8}
+\begin{split}
+y_j & = \Sigma_{i}w_{ij}x_i + \epsilon, \\
+& where \,\, \epsilon \sim N(0, \sigma^2)
+\end{split}
+\end{equation}
+
+\item Set weights with random samples from input vectors (SV): solution 1), 2), and 3) above use initial weight values in random, there is the risk that some weights have the value very distant from any clusters. To prevent this problem, SV has initial values randomly taken inputs. Therefor, initial weights alway would always locate in some clusters, and dead unit would never be issued. However, there may be the problem that some initial weight values are sampled some same clusters, and other clusters would remain being excluded. Thus, Gaussian distributed random values with large (LSD) or small (SSD) standard deviation has to be added to the initial weight sampled from inputs so that its vectors have appropriate positions near to clusters of inputs or, sometimes, outside of those.
+\begin{equation} \label{eq9}
+\begin{split}
+w_{ij}^{init} & = w_{ij}^{random} + \epsilon, \\
+& where \,\, \epsilon \sim N(0, \sigma^2)
+\end{split}
+\end{equation}
+\end{enumerate}
+
+\begin{figure}[thpb]\label{fig:states}
+	\centering
+	\framebox{\parbox{14cm}{
+	    \begin{center}
+	    \includegraphics[width=13cm]{states.png}
+	    \end{center} }}
+	\caption{Comparison between AIC and BIC according to the different number of k. AIC is more strict method than BIC to identify the number of clusters.}
+\end{figure}
+
+
+% ======================================= %
+%		2.4.5 Result
+% ======================================= %
+\newpage
+\subsection{Result}
+
+\begin{figure}[thpb] \label{fig:cluster_10}
+	\centering
+	\framebox{\parbox{5.5in}{ \includegraphics[width=5in, height=8in]{cluster_10.png} }}
+	\caption{10 Clusters}
+\end{figure}
+
+% ======================================================== %
+%		2. Data Curation
+% ======================================================== %
+\chapter{Function Fitting}
+
+%%%%%%%%%%% HINT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ideally, you should generate a bibtex file (references.bib) and include all
+% references in the bibtex format into this file. The reference list
+% can then be automatically generated using bibtex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+\begin{thebibliography}{20}
+
+\addcontentsline{toc}{chapter}{REFERENCES}
+
+%\bibitem{test} 
+% \bibitem{lowry1951protein}Lowry, O. H., Rosebrough, N. J., Farr, A. L., and Randall, R. J. (1951). Protein measurement with the Folin phenol reagent. \emph{J. Biol. Chem.}, 193(1), 265--275.
+
+\bibitem{Idris 2014} Idris, I. (2014). \emph{Python Data Analysis}. Packt Publishing Ltd.
+
+\bibitem{Python 2001} Python(TM). (2001). \emph{12.1. Pickle - python object serialization - python 3.5.2 documentation}. Retrieved June 30, 2016, from Python 3.5.2 Document, https://docs.python.org/3/library/pickle.html\#data-stream-format
+
+\bibitem{Shafranovich 2008} Shafranovich, Y. (2008). Common Format and MIME Type for Comma-Separated Values (CSV) Files.[Sl], 2005. \emph{Disponıvel em:$<$ http://www. ietf. org/rfc/rfc4180. txt.}
+
+\bibitem{Stuart 2012} P. Stuart, "Axon - a game for science," 2012. [Online]. Available: http://preloaded.com/axon-game-science/. Accessed: Jun. 24, 2016.
+
+\bibitem{Stafford et al. 2014} Stafford, T., \& Dewar, M. (2014). Tracing the trajectory of skill learning with a very large sample of online game players. \emph{Psychological Science}, 25(2), 511-518.
+
+\bibitem{Stafford et al. 2016} Stafford, T., \& Haasnoot, E. (2016). Testing sleep consolidation in skill learning: a field study using an online game. \emph{Topics in Cognitive Science}.
+
+\bibitem{Stonebraker et al. 2013} Stonebraker, M., Bruckner, D., Ilyas, I. F., Beskales, G., Cherniack, M., Zdonik, S. B.,  Alexander, P., \& Xu, S. (2013, January). Data Curation at Scale: The Data Tamer System. In \emph{CIDR}.
+
+\bibitem{Gallistel et al. 2004} Gallistel, C. R., Fairhurst, S., \& Balsam, P. (2004). The learning curve: Implications of a quantitative analysis. \emph{Proceedings of the National Academy of Sciences, 101}(36), pp.13124–13131.
+
+\bibitem{Newell 1981} Newell, A., \& Rosenbloom, P. S. (1981). Mechanisms of skill acquisition and the law of practice. \emph{Cognitive skills and their acquisition, 1}, pp. 1-55.
+
+\bibitem{Donner 2015} Donner, Y., \& Hardy, J. L. (2015). Piecewise power laws in individual learning curves. \emph{Psychonomic Bulletin \& Review, 22}(5), pp. 1308–1319.
+
+\bibitem{Gaschler et al. 2014} Gaschler, R., Progscha, J., Smallbone, K., Ram, N., \& Bilalic, M. (2014). Playing off the curve -testing quantitative predictions of skill acquisition theories in development of chess performance. \emph{Frontiers in Psychology, 5}, pp. 1–11.
+
+\bibitem{Howard 2014} Howard, R. W. (2014). Learning curves in highly skilled chess players: A test of the generality of the power law of practice. \emph{Acta Psychologica, 151}, pp. 16–23. 
+
+\bibitem{Heathcote et al. 2000} Heathcote, a, Brown, S., \& Mewhort, D. J. (2000). The power law repealed: the case for an exponential law of practice. \emph{Psychonomic Bulletin \& Review, 7}(2), pp. 185–207.
+
+\bibitem{Murre 2011} Murre, J. M., \& Chessa, A. G. (2011). Power laws from individual differences in learning and forgetting: mathematical analyses. \emph{Psychonomic bulletin \& review, 18}(3), pp. 592-597.
+
+\bibitem{Hackeling 2014} Hackeling, G. (2014). \emph{Mastering Machine Learning with scikit-learn}. Packt Publishing Ltd.
+
+\bibitem{Harrington 2012} Harrington, P. (2012). \emph{Machine learning in action} (Vol. 5). Greenwich, CT: Manning.
+
+\bibitem{Daume III 2012} Daume III, H. (2012). \emph{A course in Machine Learning}: ciml.info
+
+\bibitem{Michael 2015} Michael, B. 2015 \emph{Machine Learning in Python: Essential Techniques for Predictive Analysis}. Indianapolis: John Wiley \& Sons, Inc.
+
+\end{thebibliography}
+\end{comment}
+
+\nocite{*}
+\bibliographystyle{apacite}
+%\bibliographystyle{apalike}
+\bibliography{references}
+\end{document}
+
+%\begin{gather*} 
+%2x - 5y =  8 \\ 
+%3x^2 + 9y =  3a + c
+%\end{gather*}
