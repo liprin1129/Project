@@ -8,7 +8,10 @@
 \contentsline {section}{\numberline {2.2}Data accommodating}{6}
 \contentsline {subsection}{\numberline {2.2.1}Original variables in the data source}{6}
 \contentsline {subsection}{\numberline {2.2.2}Hidden variables calculated from the original variables}{6}
-\contentsline {section}{\numberline {2.3}Data Deformation}{7}
+\contentsline {section}{\numberline {2.3}Data Deformation}{8}
 \contentsline {subsection}{\numberline {2.3.1}Pickle file format}{8}
-\contentsline {subsection}{\numberline {2.3.2}Data index table and separation}{8}
+\contentsline {subsection}{\numberline {2.3.2}Data storage and index table}{9}
 \contentsline {section}{\numberline {2.4}K-Means Clustering with Competitive Learning Algorithm}{9}
+\contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{10}
+\contentsline {subsection}{\numberline {2.4.2}Competitive learning}{12}
+\contentsline {chapter}{References}{13}

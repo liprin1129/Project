@@ -265,8 +265,8 @@ Pickle file format can provide "a high level of data compression such as zip, bz
 \bigskip
 Therefore, curated data set after cleaning, accommodating, and deformation process is stored as binary file format, and for the binary file format, pickle specified for Python is used.
 
-\subsection{Data index table and separation}
-Although the big data set can be converted to binary file, it still takes large amount of storage. And it also causes RAM memory optimisation problem. When data curation tasks performed (of course, as well as data analysis task which will be discussed in the next session), processing speed became slower and slower over time. This might be because data occupies all spaces of hardware memory, and exploits virtual memory on main memory unit. Basically, RAM memory provides very high speed compared to hard disk, and it is even faster than Solid State Drive (SSD) which is often considered 'fast'. If data takes all RAM memory spaces, it transfer addresses of some part of it to virtual memory. This task causes many interruptions to the tasks, and eventually decrease processing performance remarkably. 
+\subsection{Data storage and index table}
+Although the big data set can be converted to binary file, it still takes large amount of storage. And it also causes RAM memory optimisation problem. When data curation tasks performed (of course, as well as data analysis task which will be discussed in the next session), processing speed became slower and slower over time. This might be because data occupies all spaces of hardware memory, and exploits virtual memory on main memory unit. Basically, RAM memory provides very high speed compared to hard disk, and it is even faster than Solid State Drive (SSD) which is often considered 'fast'. If data takes all RAM memory spaces, it transfer addresses of some part of it to virtual memory. This task causes many interruptions to the tasks, and eventually decrease processing performance remarkably. And depending on operating systems, Python kernel may face crush.
 
 \bigskip
 Therefore, loading only necessary data to a specific task will be a solution to keep processing performance fast. Whole data set was separated by each type of variables. To secure not to lose player information within the divided data, address of each data has to be indexed directing player ID. As a result of data deformation task, 15 pickle data files were generated; eventLabel, date, hour, minute, latitude, longitude, eventValue, play\_filter, comb\_time, diff\_time, local\_time, long\_gap, shor\_gap, sleep\_gap, gap\_type, and total\_plays, which are pointed by individual ID information, eventAction.
@@ -298,6 +298,89 @@ Since, depending on your computer setup you might not be able to fit it all in m
 %		2.4. K-Means Clustering with Competitive Learning Algorithm
 % ======================================= %
 \section{K-Means Clustering with Competitive Learning Algorithm}
+
+In order to identify learning curves of individuals, the first thing to do is to cluster players into several groups in which they show similar learning patterns. Traditional ways of identifying individual learning curves is either averaging all data of test subjects or fitting different possible underlying functions to observed population data-set \cite{newell1981mechanisms, gallistel2004learning, donner2015piecewise}
+
+\bigskip
+Well represented learning curve in psychology might be a "smooth power law of diminishing gains" \cite{donner2015piecewise}. For example, Howard (2014) tested function fitting on chess performance and verified that "power function fit is best". 
+
+However, in contrast, Gaschler et al. (2014) stated that "the exponential function" is "better than the power function fitting" for learning curves of chess players. This different results of the same observation of chess game would stem from that the power law is an artifact which averages many divergent shapes of exponential curves (Heathcote et al., 2000; Murre \& Chessa, 2011) as well as other possible underlying curves. 
+
+Therefore, before analysing the on-line game data set, it would be better assumption that there are many different shapes of learning curves depicting individuals' learning best, rather than only one learning curve. 
+% Hence, it would be better to cluster players by similar learning patterns before identifying which curve functions will fit best on the on-line game data-set.
+
+\bigskip
+In contrast with classification tasks that classify labelled data-set, clustering is an unsupervised classification task which automatically groups similar data without predefined and labelled classes \cite{hackeling2014mastering}, and it generates the same result as classification algorithm does \cite{harrington2012machine}. 
+
+Among several clustering methods, K-Means clustering was used with artificial neural network algorithm, competitive learning.
+%, for the analysis of the on-line game data set. 
+It is because K-Means clustering algorithm in high dimensions is computationally very slow and the key method of K-Means; comparing distance in 2 and 3 dimensions, would not work for satisfying outcome in high dimensions \cite{daume2012course}.
+
+\bigskip
+Hence, there is possibility that the data-set may not properly be clustered, as the on-line game data-set is comprised of 15 dimensions. Compensating K-Means clustering with neural network algorithm would provide one of solutions for the high dimensions data-set.
+
+% ======================================= %
+%		2.4.1 K-Means clustering
+% ======================================= %
+\subsection{K-Means clustering}
+The name of K-Means is because it discovers k unique clusters, and the mean values of that clusters represent the centres of each cluster. The key idea of the algorithm is to compare only distances between all data and arbitrary number of cluster centres. After centroids of clusters were found, each data can be assigned to its nearest centres. In the same manner, centres of clusters can be computed after each data is allocated to clusters.
+
+Again, there are no labels or predefined any information of classes in the data set. %In other word, 
+Thus, the information of which approach has to be implemented first between two approaches is unknown without doubt. The ways to tackle this are to start with initial random point, to iterate calculation of centre position, and to rearrange elements in clusters. Through iterating these three approaches until stopping criteria is satisfied, k means eventually converges to local optimisation, and comprise k number of clusters. 
+
+\bigskip
+There are two terminating criteria in K-Means clustering algorithm. The first one is using a threshold for the difference of cost functions (\ref{eq:k_means_cost_function}) through subsequent iterations (\ref{eq:threshold1}).
+
+\begin{equation} \label{eq:threshold1}
+	J_i - J_{i-1} < \theta \quad \textrm{, where} \; j \in K,
+\end{equation}
+
+and cost function $J$ is
+
+\begin{equation} \label{eq:k_means_cost_function}
+    J(\mathbf{\mu, C; D}) = \sum_n^N || x_n -\mu_{C_k} ||^2
+    = \sum^K_{k=1} \sum_{i \in C_k} ||x_i - \mu_k||^2,
+\end{equation}
+where $\mu$ is mean of cluster, $\mathbf{D}$ is \ (the number of parameters) data-set, $\mathbf{C}$ is clusters in the data-set, $x$ is data, $N$ is the number of data, and $K$ is the number of clusters. 
+
+The other one is to use a threshold for the difference of centre positions between successive iterations (\ref{eq:threshold2}).
+\begin{equation} \label{eq:threshold2}
+    x_i - x_{i-1} < \theta \quad \textrm{, where } i \; \textrm{in} \; C_k \,.
+\end{equation}
+
+\bigskip
+
+Below is pseudo-code of K-Means clustering algorithm, 
+\bigskip
+\begin{algorithmic}
+\FORALL{$k$ such that $ 0 \leq k < K$}
+	 \STATE randomly initialise $\mu_k$
+\ENDFOR
+\smallskip
+\WHILE{stopping criteria (\ref{eq:threshold1}) or (\ref{eq:threshold2})}
+	\FORALL{$k \in K$}
+		\FORALL{$i$ such that $ 0 \leq i < N$}
+			\STATE $\mathbf{C}_k \leftarrow \underset{x}{\arg\min}|| \mu_k - x_i ||^2$ ,\\
+		\ENDFOR
+	\ENDFOR
+	\smallskip
+	\FORALL{$k \in K$}
+		\STATE $\mu_k \leftarrow \textrm{mean}(\mathbf{C}_k)$
+	\ENDFOR
+\ENDWHILE
+\RETURN $\mathbf{C, \mu}$
+\end{algorithmic}
+%After finding centers of clusters, each data are assigned to its nearest clusters.
+
+\bigskip
+At first, the positions of centroids are randomly initialised. Then, the first for loop in the while loop assigns each data to nearest clusters. The second for loop calculates the centres of clusters. By iterating these two tasks, all centroid of clusters move slightly towards the centres of each cluster, and eventually converges to local optima. For on-line game data analysis, stopping criterion (\ref{eq:threshold2}) was used. 
+
+Moreover, this K-Means clustering algorithm was improved with artificial neural network, competitive learning algorithm, in order to cluster the on-line game data-set in high dimensions.
+
+% ======================================= %
+%		2.4.2 Competitive learning
+% ======================================= %
+\subsection{Competitive learning}
 
 %\nocite{*}
 \bibliographystyle{apacite}
