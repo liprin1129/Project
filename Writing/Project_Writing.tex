@@ -554,25 +554,37 @@ Fig.~\ref{fig:AIC_BIC_Elbow} shows the information of elbow method with AIC and 
 %		2.4.5 Dealing with dead unit
 % ======================================= %
 \subsection{Dealing with dead unit}
-A common problem which occurs at the competitive learning algorithm is dead unit issue. This is the case when weight vectors are initialised far distant from all input vectors.
+A common problem which occurs at the competitive learning algorithm is dead unit issue. This is the case when weight vectors are initialised far distant from all input vectors. As they cannot fire among those which are closer to input vectors. Geometrically speaking, (\ref{fig:dead_unit}) would show precise understanding. Two arrows with different colours represent randomly initialised weight vectors. Red arrow is closer to two input groups than green weight vector. When they are threw into the network, red weight vector will move closer and closer to the centre between two groups at every iterations. Which means red weight vector always takes winner, and green weight vector will never be updated. 
 
-Dead unit problem may occur when weights are initialised very far from any input vectors. Because those cannot win against those which are closer to input vectors than them. (\ref{fig:dead_unit}) shows geometrically more precise understanding. There are two arrows with different colours. Red arrows are initialised very close to two input groups than green arrow. When those are implied to the network, green weight will never be updated, while red weight will move to the centre between two input groups. 
-% dead unit ? ?? state ?? ??.
+\begin{figure}[hb]
+    \centering
+    \framebox{\parbox[t][0.8\textwidth][t]{0.9\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.75\textwidth, height=0.75\textwidth]{dead_unit.png}
+        \end{center} }}
+	\caption{An example of dead unit problem. Red and Green arrows are initialised weight before applying into the network. Green arrow is set far from both two input clusters, and it is assumed as a dead unit. Unfortunately, green arrow will never fire through the learning, and which means that input vectors are not properly clustered.}
+	\label{fig:dead_unit}
+\end{figure}
 
 \begin{comment}
 Fig. 8 shows more precise understanding. There are two weight vectors with coloured crosses and arrows in its direction. The weight vector with red cross are closer to both clusters of inputs, and green coloured weight is far from this clusters. For all comparisons in (4), the output with red weight vector always wins, and green one never fires and also would never be updated to be closer to the inputs, even though two clusters need to have a weight vector in its centre. Unfortunately, at the end of the learning, the weight with red cross will be positioned in the middle of two clusters, and green weight is at the same location as before the learning.
 \end{comment}
 
-\begin{figure}[thpb]
-	\centering
-	\framebox{\parbox{12cm}{ 
-	    \begin{center}
-	    \includegraphics[width = 12cm]{dead_unit.png} 
-	    \end{center}}}
-	\caption{An example of dead unit problem. Red and Green arrows are initialised weight before applying into the network. Green arrow is set far from both two input clusters, and it is assumed as a dead unit. Unfortunately, green arrow will never fire through the learning, and which means that input vectors are not properly clustered.}
-	\label{fig:dead_unit}
+\begin{figure}[ht]
+    \centering
+    \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.85\textwidth, height=0.65\textwidth]{dead_state.png}
+        \end{center} }}
+	\caption{Learning rate and existence of dead units}
+	\label{fig:dead_state}
 \end{figure}
 
+In (\ref{fig:dead_state}), ??? never fired and it is the dead unit, even though neuron ?? and ?? won several time compared to other ?? output neurons.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%????
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bigskip
 There are several solutions to deal with dead units problem. 
 

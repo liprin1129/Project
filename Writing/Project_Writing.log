@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  18 AUG 2016 16:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  18 AUG 2016 17:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -490,20 +490,31 @@ Package pdftex.def Info: Figs/AIC_BIC_Elbow.png used on input line 545.
 File: Figs/dead_unit.png Graphic file (type png)
 
 <use Figs/dead_unit.png>
-Package pdftex.def Info: Figs/dead_unit.png used on input line 571.
-(pdftex.def)             Requested size: 341.43306pt x 352.18672pt.
- [19] [20 <./Figs/dead_unit.png>]
-<Figs/states.png, id=94, 578.16pt x 433.62pt>
+Package pdftex.def Info: Figs/dead_unit.png used on input line 564.
+(pdftex.def)             Requested size: 312.63474pt x 312.63011pt.
+ <Figs/dead_state.png, id=87, 578.16pt x 433.62pt>
+File: Figs/dead_state.png Graphic file (type png)
+
+<use Figs/dead_state.png>
+Package pdftex.def Info: Figs/dead_state.png used on input line 578.
+(pdftex.def)             Requested size: 354.30916pt x 270.95229pt.
+
+
+LaTeX Warning: Reference `fig:dead_state' on page 19 undefined on input line 58
+3.
+
+[19 <./Figs/dead_unit.png>] [20 <./Figs/dead_state.png>]
+<Figs/states.png, id=96, 578.16pt x 433.62pt>
 File: Figs/states.png Graphic file (type png)
  <use Figs/states.png>
-Package pdftex.def Info: Figs/states.png used on input line 625.
+Package pdftex.def Info: Figs/states.png used on input line 637.
 (pdftex.def)             Requested size: 369.88582pt x 277.40999pt.
  [21]
-[22 <./Figs/states.png>] <Figs/cluster_10.png, id=103, 433.62pt x 1517.67pt>
+[22 <./Figs/states.png>] <Figs/cluster_10.png, id=105, 433.62pt x 1517.67pt>
 File: Figs/cluster_10.png Graphic file (type png)
 
 <use Figs/cluster_10.png>
-Package pdftex.def Info: Figs/cluster_10.png used on input line 638.
+Package pdftex.def Info: Figs/cluster_10.png used on input line 650.
 (pdftex.def)             Requested size: 361.36676pt x 578.15637pt.
  [23] [24 <./Figs/cluster_10.png>]
 Chapter 3.
@@ -536,10 +547,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 5225 strings out of 493014
- 79333 string characters out of 6133351
+ 5231 strings out of 493014
+ 79458 string characters out of 6133351
  156121 words of memory out of 5000000
- 8649 multiletter control sequences out of 15000+600000
+ 8654 multiletter control sequences out of 15000+600000
  34417 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,18n,40p,891b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -552,10 +563,10 @@ mf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on Project_Writing.pdf (29 pages, 931980 bytes).
+Output written on Project_Writing.pdf (29 pages, 963434 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
+ 147 PDF objects out of 1000 (max. 8388607)
  91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
