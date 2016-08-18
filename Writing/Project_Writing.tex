@@ -434,7 +434,6 @@ For competitive learning, the thing to note is that weights must be normalised i
 % ======================================= %
 %		2.4.3 Normalisation
 % ======================================= %
-
 \subsection{Normalisation}
 Normalisation is an important for analysing data with different scale to be compared and then to derive information in K-Means clustering \cite{bowles2015machine}. To be specific about normalisation for competitive learning, the network exploits the inner product for each input with weight vectors in order to identify winner output unit. If looking inside of (\ref{eq:competitive2}), the equation for inner product is
 \begin{equation}\label{eq:inner_product}
@@ -481,8 +480,230 @@ The firing output neuron is still has the largest value among output units when 
 
 (\ref{fig:not-normalised}) shows not-normalised issue in competitive learning. In the not-normalised data-set and weight vector, (\ref{eq:inner_product}) always compares only the length, not the closest one in the distance between data and weight vector. It is obvious that the most long vector always win, which cannot be representative for input patters. Thus weights would not move to the centre of Voronoi cell.
 
-%\nocite{*}
+% ======================================= %
+%		2.4.4 Procedure of the algorithm
+% ======================================= %
+\subsection{Procedure of the algorithm}
+After normalising data-set and setting weight vectors with unit length, the competitive learning algorithm for pattern classifier exploiting (\ref{eq:competitive1}) and (\ref{eq:distance}) follows as below,
+
+\begin{enumerate}
+\item {choose weight vector with random values}: \newline
+Similar to K-Means clustering, weight vectors which implies center of mass for clusters (or Voronoi cells) are initialised with random values. However, the issue of dead unit would be caused by randomly initialised weight vectors. Dead unit is the unit which is very far from any input patterns, and therefore never fires. And other problem is the optimal number of weight vectors. This problem will be discussed in the next section. The last thing to be noted is that weight vector must have unit length.
+
+\item apply input patterns to the network in turn or in random order: \newline
+After setting initial weights, input data vector as an pattern is entered to the network. It does not matter applying it in turn or in random order. The advantage of competitive learning over K-Means is that K-Means comparing all data, then must be slow, but competitive learning can run in random order input data until it approaches the sufficient learning rate. Therefore it is much faster than K-Means, on condition that how learning rate is prescribed.
+
+\item discover a winner output unit for each input: \newline
+When an input vector is applied to the network, which output unit is likely to take winner position for each normalised input pattern is found through (\ref{eq:distance}). For a given input patter, the winner unit has the largest value among other output neurons. In other world, winner-take-all unit is the most closest vector to the input vector with the smallest angle. Inhibitory and self-exitatory connection are definded biologically, but alternatively using python command, \textbf{numpy.argmax}, just maximum value is searched.
+
+\item Update the winner neuron's weight to be closes to the input vector: \newline
+For each input, winner $\mathbf{w_k}$ is found among the outputs, and then it is updated to be closer by an allowed amount with learning factor $\eta$ to the current input vector. After continued update of the weight for the winner unit, weight vectors will be positioned at the center of Vornoi cells which shows similar patterns of inputs. Below is on-line and batch update rule,
+	\begin{equation} \label{eq:on-line and batch}
+	\begin{split}
+	    \text{on-line rule}&: \Delta \vec{w}_k = \eta(\vec{x}^\mu - \vec{w_k})\\
+	    \text{batch rule}&:\Delta \vec{w}_k = \eta \Sigma_{\mu \in C_k} (\vec{w_k} - \vec{x}^\mu)
+	    %\text{or} \quad \quad \quad&
+	\end{split}
+	\end{equation}
+On-line learning rule updates the change of one data point at a time. However, batch learning rule accumulates weights until the all inputs in a cluster are passed to the network, and sums all of those constantly. Both converges the same centroids of clusters, but batch rule is slower than on-line learning rule which slightly fluctuates towards local optima when updating.
+\end{enumerate}
+
+As mentioned in procedure 1, choose weight vector with random values, the two possible problem; the number of clusters and dead units, of competitive learning have to be handled with proper method. The next section will introduce breakthroughs which can tackle those two issues.
+% ======================================= %
+%		2.4.3 Local optima and optimal number of clusters
+% ======================================= %
+\subsection{Local optima and optimal number of clusters}
+
+Sometimes, a number of mean values might be randomly initialised very nearly to each other. And centroids would converge a same point in a same cluster. In this case, clusters would not describe data-set informatively. This issue is called local optima problem. Unfortunately, there is "no way of knowing what the right answer is" for the outcome of clustering algorithm, but "repeating the algorithm dozens or even more times" can increase reliability of clustering result \cite{hackeling2014mastering}. By repeating clustering algorithm several times, the starting random data points will be set differently and converge different or the same local optima as subsequent outcomes. Clustering results are compared relatively with repeated results, and the most frequent similar results can be presumed as reliable result.
+
+%\begin{figure}[thpb]\label{fig:elbow}
+%	\centering
+%	\framebox{\parbox{5.5in}{ \includegraphics[scale=0.55]{elbow_method.png} }}
+%	\caption{Cost values according to the different number of k}
+%\end{figure}
+
+\bigskip
+The another crux of K-Means clustering is that the optimal number of clusters is unknown. There are ??? players in the on-line game data-set, and it has no predefined information of how many groups which shows similar learning patterns are. To estimate optimal number of clusters, Elbow method with Bayes and Akaike Information Criteria (\ref{eq:AICandBIC}) was used. The criteria which can determine the number of cluster is as follow,
+\
+\begin{equation} \label{eq:AICandBIC}
+    \begin{split}
+        \textrm{Bayes Information Criteria (BIC)}:&\quad \underset{K}{\arg\min} (J_K + K\log D)\\
+        \textrm{Akaike Information Criteria (AIC)}:&\quad \underset{K}{\arg\min} (J_K + 2KD).
+    \end{split}
+\end{equation}
+
+\bigskip
+The more a number of clusters, the less the value of the cost function, $J_K$. Because, increasing K can divide the data-set into smaller pieces of clusters than the actual number of how many clusters necessarily exists in it. Usually, using the Elbow method shows changes of the value of cost function. It goes down significantly at first some K, and suddenly slow down the change. By inspecting the point showing from dramatic to gradual change, generally the optimal number of K is detected. 
+
+However, when only elbow method for the on-line data-set is plotted, this inflection point is rarely found. Because all costs seem decreasing gradually, Fig.~\ref{fig:AIC_BIC_Elbow}. Therefore, BIC and AIC was exploited with elbow method. If plotting AIC values in different number of K, it will decrease by the certain amount that is not worth to decrease K more, and then start to increase. It is because $2KD$ or  $K\log D$ proportionally compensates decreasing the value of cost function for various number of K. In high dimensions, AIC criteria gives "high penalty for many clusters" \cite{daume2012course}. As a result, K value which minimizes AIC or BIC (\ref{eq:AICandBIC}) could be considered as the optimal number of clusters. 
+
+\begin{figure}[thpb]
+	\centering
+	\framebox{\parbox{14cm}{
+	    \begin{center}
+	    \includegraphics[width=14cm]{AIC_BIC_Elbow.png}
+	    \end{center} }}
+	\caption{Comparison between AIC and BIC according to the different number of k. AIC is more strict method than BIC to identify the number of clusters.}
+	\label{fig:AIC_BIC_Elbow}
+\end{figure}
+
+\bigskip
+Fig.~\ref{fig:AIC_BIC_Elbow} shows the information of elbow method with AIC and BIC to define the number of clusters for the on-line game data-set. By these three graphs, it seems that the data-set can be clustered into n clusters. Difference between 13K and 14K is xx and, 14 K and 15 K is yy. If the number of 14 is set as a threshold for these differences, increasing K beyond 14 would not improve the result of clustering.
+
+% ======================================= %
+%		2.4.5 Dealing with dead unit
+% ======================================= %
+\subsection{Dealing with dead unit}
+A common problem which occurs at the competitive learning algorithm is dead unit issue. This is the case when weight vectors are initialised far distant from all input vectors.
+
+Dead unit problem may occur when weights are initialised very far from any input vectors. Because those cannot win against those which are closer to input vectors than them. (\ref{fig:dead_unit}) shows geometrically more precise understanding. There are two arrows with different colours. Red arrows are initialised very close to two input groups than green arrow. When those are implied to the network, green weight will never be updated, while red weight will move to the centre between two input groups. 
+% dead unit ? ?? state ?? ??.
+
+\begin{comment}
+Fig. 8 shows more precise understanding. There are two weight vectors with coloured crosses and arrows in its direction. The weight vector with red cross are closer to both clusters of inputs, and green coloured weight is far from this clusters. For all comparisons in (4), the output with red weight vector always wins, and green one never fires and also would never be updated to be closer to the inputs, even though two clusters need to have a weight vector in its centre. Unfortunately, at the end of the learning, the weight with red cross will be positioned in the middle of two clusters, and green weight is at the same location as before the learning.
+\end{comment}
+
+\begin{figure}[thpb]
+	\centering
+	\framebox{\parbox{12cm}{ 
+	    \begin{center}
+	    \includegraphics[width = 12cm]{dead_unit.png} 
+	    \end{center}}}
+	\caption{An example of dead unit problem. Red and Green arrows are initialised weight before applying into the network. Green arrow is set far from both two input clusters, and it is assumed as a dead unit. Unfortunately, green arrow will never fire through the learning, and which means that input vectors are not properly clustered.}
+	\label{fig:dead_unit}
+\end{figure}
+
+\bigskip
+There are several solutions to deal with dead units problem. 
+
+\begin{enumerate}
+\item Leaky learning (LL): LL adjusts learning rate of both winer and loser, and give opportunity for loser to fire in the future, by moving towards more compact cluster.
+% equation 6
+\begin{equation} \label{eq6}
+\begin{split}
+w_{ij}^{new} & = w_{ij}^{old} + \eta_{winner} (x_i - w_{ij}^{old}), \\
+w_{ij}^{new} & = w_{ij}^{old} + \eta_{loser} (x_i - w_{ij}^{old}), \\
+& \text{where } \eta_{winner} \gg \eta_{loser} \, .
+\end{split}
+\end{equation}
+\textbf{find reference.}
+
+\item Add bias (AB): AB adds bias to repeated winner outputs so that they are hard to fire again after as the weight updates iterate. In [3], the equations for AB were referenced,
+% equation 7
+\begin{equation} \label{eq7}
+\begin{split}
+f_j^{new} & = f_j^{old} + \beta (z_j - f_j^{old}), \\
+b_j & = \gamma (1/n - f_j), \\
+w_{ij}^{new} & = w_{ij}^{old} + \alpha (x_i - w_{ij}^{old}) z_j,\\
+y_j & = \Sigma_i w_{ij} x + b_j \, ,
+\end{split}
+\end{equation}
+where $z_j$: selector having 0 for loser or 1 for winner, $\gamma, \beta$: constant factor, $n$: the total number of nodes, $f$: output neuron's firing rate, $b$: bias. Performance of competitive learning can be controlled by regulating the parameters[3].
+
+\item Add noise (AN) to outputs in updating: By adding randomly distributed gaussian distribution into output neutrons in every learning time, frequently winner neurons may be disturbed not to fire, and then even when a winner and losers are obvious by (4), a loser may take top place instead of the winner.
+\begin{equation} \label{eq8}
+\begin{split}
+y_j & = \Sigma_{i}w_{ij}x_i + \epsilon, \\
+& where \,\, \epsilon \sim N(0, \sigma^2)
+\end{split}
+\end{equation}
+
+\item Set weights with random samples from input vectors (SV): solution 1), 2), and 3) above use initial weight values in random, there is the risk that some weights have the value very distant from any clusters. To prevent this problem, SV has initial values randomly taken inputs. Therefor, initial weights alway would always locate in some clusters, and dead unit would never be issued. However, there may be the problem that some initial weight values are sampled some same clusters, and other clusters would remain being excluded. Thus, Gaussian distributed random values with large (LSD) or small (SSD) standard deviation has to be added to the initial weight sampled from inputs so that its vectors have appropriate positions near to clusters of inputs or, sometimes, outside of those.
+\begin{equation} \label{eq9}
+\begin{split}
+w_{ij}^{init} & = w_{ij}^{random} + \epsilon, \\
+& where \,\, \epsilon \sim N(0, \sigma^2)
+\end{split}
+\end{equation}
+\end{enumerate}
+
+\begin{figure}[thpb]\label{fig:states}
+	\centering
+	\framebox{\parbox{14cm}{
+	    \begin{center}
+	    \includegraphics[width=13cm]{states.png}
+	    \end{center} }}
+	\caption{Comparison between AIC and BIC according to the different number of k. AIC is more strict method than BIC to identify the number of clusters.}
+\end{figure}
+
+
+% ======================================= %
+%		2.4.5 Result
+% ======================================= %
+\newpage
+\subsection{Result}
+
+\begin{figure}[thpb] \label{fig:cluster_10}
+	\centering
+	\framebox{\parbox{5.5in}{ \includegraphics[width=5in, height=8in]{cluster_10.png} }}
+	\caption{10 Clusters}
+\end{figure}
+
+% ======================================================== %
+%		2. Data Curation
+% ======================================================== %
+\chapter{Function Fitting}
+
+%%%%%%%%%%% HINT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ideally, you should generate a bibtex file (references.bib) and include all
+% references in the bibtex format into this file. The reference list
+% can then be automatically generated using bibtex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+\begin{thebibliography}{20}
+
+\addcontentsline{toc}{chapter}{REFERENCES}
+
+%\bibitem{test} 
+% \bibitem{lowry1951protein}Lowry, O. H., Rosebrough, N. J., Farr, A. L., and Randall, R. J. (1951). Protein measurement with the Folin phenol reagent. \emph{J. Biol. Chem.}, 193(1), 265--275.
+
+\bibitem{Idris 2014} Idris, I. (2014). \emph{Python Data Analysis}. Packt Publishing Ltd.
+
+\bibitem{Python 2001} Python(TM). (2001). \emph{12.1. Pickle - python object serialization - python 3.5.2 documentation}. Retrieved June 30, 2016, from Python 3.5.2 Document, https://docs.python.org/3/library/pickle.html\#data-stream-format
+
+\bibitem{Shafranovich 2008} Shafranovich, Y. (2008). Common Format and MIME Type for Comma-Separated Values (CSV) Files.[Sl], 2005. \emph{Dispon?vel em:$<$ http://www. ietf. org/rfc/rfc4180. txt.}
+
+\bibitem{Stuart 2012} P. Stuart, "Axon - a game for science," 2012. [Online]. Available: http://preloaded.com/axon-game-science/. Accessed: Jun. 24, 2016.
+
+\bibitem{Stafford et al. 2014} Stafford, T., \& Dewar, M. (2014). Tracing the trajectory of skill learning with a very large sample of online game players. \emph{Psychological Science}, 25(2), 511-518.
+
+\bibitem{Stafford et al. 2016} Stafford, T., \& Haasnoot, E. (2016). Testing sleep consolidation in skill learning: a field study using an online game. \emph{Topics in Cognitive Science}.
+
+\bibitem{Stonebraker et al. 2013} Stonebraker, M., Bruckner, D., Ilyas, I. F., Beskales, G., Cherniack, M., Zdonik, S. B.,  Alexander, P., \& Xu, S. (2013, January). Data Curation at Scale: The Data Tamer System. In \emph{CIDR}.
+
+\bibitem{Gallistel et al. 2004} Gallistel, C. R., Fairhurst, S., \& Balsam, P. (2004). The learning curve: Implications of a quantitative analysis. \emph{Proceedings of the National Academy of Sciences, 101}(36), pp.13124?13131.
+
+\bibitem{Newell 1981} Newell, A., \& Rosenbloom, P. S. (1981). Mechanisms of skill acquisition and the law of practice. \emph{Cognitive skills and their acquisition, 1}, pp. 1-55.
+
+\bibitem{Donner 2015} Donner, Y., \& Hardy, J. L. (2015). Piecewise power laws in individual learning curves. \emph{Psychonomic Bulletin \& Review, 22}(5), pp. 1308?1319.
+
+\bibitem{Gaschler et al. 2014} Gaschler, R., Progscha, J., Smallbone, K., Ram, N., \& Bilalic, M. (2014). Playing off the curve -testing quantitative predictions of skill acquisition theories in development of chess performance. \emph{Frontiers in Psychology, 5}, pp. 1?11.
+
+\bibitem{Howard 2014} Howard, R. W. (2014). Learning curves in highly skilled chess players: A test of the generality of the power law of practice. \emph{Acta Psychologica, 151}, pp. 16?23. 
+
+\bibitem{Heathcote et al. 2000} Heathcote, a, Brown, S., \& Mewhort, D. J. (2000). The power law repealed: the case for an exponential law of practice. \emph{Psychonomic Bulletin \& Review, 7}(2), pp. 185?207.
+
+\bibitem{Murre 2011} Murre, J. M., \& Chessa, A. G. (2011). Power laws from individual differences in learning and forgetting: mathematical analyses. \emph{Psychonomic bulletin \& review, 18}(3), pp. 592-597.
+
+\bibitem{Hackeling 2014} Hackeling, G. (2014). \emph{Mastering Machine Learning with scikit-learn}. Packt Publishing Ltd.
+
+\bibitem{Harrington 2012} Harrington, P. (2012). \emph{Machine learning in action} (Vol. 5). Greenwich, CT: Manning.
+
+\bibitem{Daume III 2012} Daume III, H. (2012). \emph{A course in Machine Learning}: ciml.info
+
+\bibitem{Michael 2015} Michael, B. 2015 \emph{Machine Learning in Python: Essential Techniques for Predictive Analysis}. Indianapolis: John Wiley \& Sons, Inc.
+
+\end{thebibliography}
+\end{comment}
+
+\nocite{*}
 \bibliographystyle{apacite}
 %\bibliographystyle{apalike}
 \bibliography{references}
 \end{document}
+
+%\begin{gather*} 
+%2x - 5y =  8 \\ 
+%3x^2 + 9y =  3a + c
+%\end{gather*}

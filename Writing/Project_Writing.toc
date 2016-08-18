@@ -15,4 +15,9 @@
 \contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{10}
 \contentsline {subsection}{\numberline {2.4.2}Competitive learning}{12}
 \contentsline {subsection}{\numberline {2.4.3}Normalisation}{14}
-\contentsline {chapter}{References}{16}
+\contentsline {subsection}{\numberline {2.4.4}Procedure of the algorithm}{15}
+\contentsline {subsection}{\numberline {2.4.5}Local optima and optimal number of clusters}{17}
+\contentsline {subsection}{\numberline {2.4.6}Dealing with dead unit}{19}
+\contentsline {subsection}{\numberline {2.4.7}Result}{23}
+\contentsline {chapter}{\numberline {3}Function Fitting}{25}
+\contentsline {chapter}{References}{26}
