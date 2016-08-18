@@ -14,7 +14,9 @@
 \usepackage{verbatim} 
 \usepackage{algorithmic}
 \usepackage{relsize}
+
 \usepackage{graphicx}
+\usepackage{subcaption}
 %\usepackage[nottoc]{tocbibind} 
 \usepackage{apacite}
 %\graphicspath{ {/Users/PureMac/Desktop/Learning_Analytics/Figs/} }
@@ -247,7 +249,7 @@ Next, local times for each play were calculated in seconds, using the formula, "
 \bigskip
 On the basis of time difference, Stafford et al. (2016) classified individuals into 4 groups, according to "the nature of the timing of their first 15 attempts at the game". First group is 'no gap' for those who had less than 15 minute break between each play. Second group is 'wake' in which players are assumed having a rest in there waking hours if they have "a single gap between 7 and 12 hours". Working hours is time between 5 am and 12 pm. And those who rested for between 7 and 12 hours in working hours were categorised as 'sleep'. Finally, all other individuals are classified as "no category".
 
-Furthermore, for more detailed analysis, 'rest' which is defined in 'Gap types' categorisation was divided with 3 types. Long gap, short gap and sleep gap were determined when players had a rest 'between 7 hours and 11 hours', 'below 15 minutes', and 'not in working hours' respectively.
+Furthermore, for more detailed analysis, 'rest' which is defined in 'gap types' categorisation was divided with 3 types. Long gap, short gap and sleep gap were determined when players had a rest 'between 7 hours and 11 hours', 'below 15 minutes', and 'not in working hours' respectively.
 
 \bigskip
 As the term of hidden variables, there are possibilities that more factors can be mined from the data set and be incrementally accommodated to it if appropriate methods are implemented.
@@ -381,6 +383,58 @@ Moreover, this K-Means clustering algorithm was improved with artificial neural 
 %		2.4.2 Competitive learning
 % ======================================= %
 \subsection{Competitive learning}
+
+Competitive learning is unsupervised learning approaches in which the output neurons contend against each other to react as the one firing from the given pattern in inputs. Therefore only one unit take winner upon all output units (\ref{fig:Competitive_Diagram}). This exclusive phenomenon in synaptic neurons is called 'winner-take-all units', and sometimes they also called 'grandmother cells'. Which means a neuron fires on a specific stimulus. This neural networks has an advantage of clustering unlabelled data and searching the correlations of the input data. One of the most significant application of competitive learning might be vector quantisation. In which, input data-set becomes a bunch of vectors in data space, and input vectors are compressed and stored by transmitting into prototype vectors.
+
+\begin{figure}[ht]
+    \centering
+    \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.85\textwidth, height=0.65\textwidth]{Competitive_Diagram.png}
+        \end{center} }}
+	\caption{Competitive neuron diagram. When an input enters the network, it generates output values according to weights between an input and output neuron (blue arrows). Output neurons compete each others (red arrows), then only one output fires on an input pattern. Output neurons are considered only having binary $0/1$ output.}
+	\label{fig:Competitive_Diagram}
+\end{figure}
+
+\bigskip
+It has very similar concept to K-Means clustering algorithm. The prototype vectors can be interpreted as centroids in k-means. Besides, vector quantisation employs Euclidean metric to assign an input vector to the nearest prototype, weight vector. When an input data, usually represented as a vector, is applied at the input of the network, the winner neuron indicates the appropriate class. 
+
+If all input data are entered to the network, the input space organises a Voronoi tessellation. To be specific, Voronoi tessellation which was used for the analysis is Centroid Voronoi tessellation, in which means are positioned in each Voronoi cell (centre of mass). The weight vectors (or centroid in K-Means) are the vectors of prototypes. 
+
+\bigskip
+Output neurons $O_i$ in (\ref{eq:competitive1}) are the units having the net input in an pattern at a time,
+\begin{equation}\label{eq:competitive1}
+    O_i = \sum_j w_{ij}x_j = \vec{\mathbf{w_i}} \cdot \vec{\mathbf{x}},
+\end{equation}
+for an input vector $\mathbf{x}$. 
+
+Winner neurons are found by (\ref{eq:competitive2}),
+\begin{equation} \label{eq:competitive2}
+    \vec{\mathbf{w}}_k^T\vec{\mathbf{x}}^\mu > \vec{\mathbf{w}}_i^T\vec{\mathbf{x}}^\mu \quad \textrm{for all i},
+\end{equation}
+where winner neuron is $\vec{\mathbf{w}}_k^T$, and $\vec{\mathbf{x}}^\mu$ is an input of pattern $\mu$.
+
+\bigskip
+(\ref{eq:competitive2}) tells winning unit is the biggest. If the weight vectors connecting between each input and output are normalized, $\vec{\mathbf{w_i}}=1$, then (\ref{eq:competitive1}) can be redefined as below,
+\begin{equation} \label{eq:competitive3}
+    \quad |\vec{x}^\mu - \vec{w}_k^T| \leq |\vec{x}^\mu - \vec{w}_i^T|, \quad
+    \textrm{only if} \;\; |\vec{w}=1| \;\; \textrm{for all i.}
+\end{equation}
+
+\bigskip
+(\ref{eq:competitive3}) shows similarity to the key idea of K-Means clustering, which only consider distances between every data and centroids.
+
+\bigskip
+Competitive learning only consider the output neuron with the maximum net value of inner product between input and weight. Biologically, output neurons are connected with other all output neurons with lateral inhibition, as well as excitatory connection itself, and therefore winner takes all units.
+%output neurons have a value of $\vec{w}^T\vec{x}^\mu$, thus the largest output is always win. 
+
+\bigskip
+For competitive learning, the thing to note is that weights must be normalised in order for all units to have a unit length.
+
+% ======================================= %
+%		2.4.3 Normalisation
+% ======================================= %
+\subsection{Normalisation}
 
 %\nocite{*}
 \bibliographystyle{apacite}
