@@ -434,7 +434,52 @@ For competitive learning, the thing to note is that weights must be normalised i
 % ======================================= %
 %		2.4.3 Normalisation
 % ======================================= %
+
 \subsection{Normalisation}
+Normalisation is an important for analysing data with different scale to be compared and then to derive information in K-Means clustering \cite{bowles2015machine}. To be specific about normalisation for competitive learning, the network exploits the inner product for each input with weight vectors in order to identify winner output unit. If looking inside of (\ref{eq:competitive2}), the equation for inner product is
+\begin{equation}\label{eq:inner_product}
+    \vec{\mathbf{w}}^T \cdot \vec{\mathbf{x}}^\mu = \vec{\mathbf{w}}^T\vec{\mathbf{x}}^\mu \cos(\theta),
+\end{equation}
+with respect to the lengths of both units and a direction between input pattern and weight. Not-normalised one has no way for an criterion for competing output units with weight vectors. Because the neuron which has the most largest value in length always wins, and that implies the algorithm will finish without any learning or no informative outcome through iterations in the both case of not-normalised data-set and weight vectors.
+
+\begin{figure}[t]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.9\textwidth]{not_norm_data.png}
+        \end{center} }}
+    \caption{Not-normalised data with a unit weight (red arrow)}
+    \label{fig:not_norm_data}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.9\textwidth]{not_norm_weight.png}
+        \end{center} }}
+    \caption{Normalised data-set with not-normalised weight vectors (green arrow).}
+    \label{fig:not_norm_weight}
+\end{subfigure}
+\caption{Examples of not-normalised data and weight in 3 dimensions. In both left and right figures, sphere represents unit length area.}
+\label{fig:not-normalised}
+\end{figure}
+
+\bigskip
+For the solution of that, normalising input and weight vectors simply transforms (\ref{eq:inner_product}) into the equation computing only a direction between those vectors, which tells how close weight vector is from the input vector. 
+
+Eventually, the inner product in (\ref{eq:competitive3}) becomes the criterion which detects the shortest Euclidean distance by comparing angles between input and weight vectors, (\ref{eq:distance}).
+
+\begin{equation}\label{eq:distance}
+    \begin{split}
+        \vec{\mathbf{w}}_k^T \cdot \vec{\mathbf{x}}^\mu &> 
+        \vec{\mathbf{w}}_i^T \cdot \vec{\mathbf{x}}^\mu \\
+        \cos(\theta_k) &\geq \cos(\theta_i).
+    \end{split}
+\end{equation}
+
+The firing output neuron is still has the largest value among output units when the $\theta$ is smaller than others based on the competition with proximity of the input vector.
+
+(\ref{fig:not-normalised}) shows not-normalised issue in competitive learning. In the not-normalised data-set and weight vector, (\ref{eq:inner_product}) always compares only the length, not the closest one in the distance between data and weight vector. It is obvious that the most long vector always win, which cannot be representative for input patters. Thus weights would not move to the centre of Voronoi cell.
 
 %\nocite{*}
 \bibliographystyle{apacite}

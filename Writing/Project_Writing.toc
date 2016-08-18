@@ -15,4 +15,4 @@
 \contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{10}
 \contentsline {subsection}{\numberline {2.4.2}Competitive learning}{12}
 \contentsline {subsection}{\numberline {2.4.3}Normalisation}{14}
-\contentsline {chapter}{References}{15}
+\contentsline {chapter}{References}{16}
