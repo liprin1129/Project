@@ -510,7 +510,7 @@ On-line learning rule updates the change of one data point at a time. However, b
 
 As mentioned in procedure 1, choose weight vector with random values, the two possible problems; the number of clusters and dead units, of competitive learning have to be handled with proper method. The next section will introduce breakthroughs which can tackle those two issues.
 % ======================================= %
-%		2.4.3 Local optima and optimal number of clusters
+%		2.4.5 Local optima and optimal number of clusters
 % ======================================= %
 \subsection{Local optima and optimal number of clusters}
 
@@ -554,7 +554,7 @@ Fig.~\ref{fig:AIC_BIC_Elbow} shows the information of elbow method with AIC and 
 %		2.4.5 Dealing with dead unit
 % ======================================= %
 \subsection{Dealing with dead unit}
-A common problem which occurs at the competitive learning algorithm is dead unit issue. This is the case when weight vectors are initialised far distant from all input vectors. As they cannot fire among those which are closer to input vectors. Geometrically speaking, (\ref{fig:dead_unit}) would show precise understanding. Two arrows with different colours represent randomly initialised weight vectors. Red arrow is closer to two input groups than green weight vector. When they are threw into the network, red weight vector will move closer and closer to the centre between two groups at every iterations. Which means red weight vector always takes winner, and green weight vector will never be updated. 
+A common problem in competitive learning algorithm is dead unit issue. This is the case when weight vectors are initialised far distant from all input vectors. As they cannot fire among those which are closer to input vectors. Geometrically speaking, (\ref{fig:dead_unit}) would show precise understanding. Two arrows with different colours represent randomly initialised weight vectors. Red arrow is closer to two input groups than green weight vector. When they are threw into the network, red weight vector will move closer and closer to the centre between two groups at every iterations. Which means red weight vector always takes winner, and green weight vector will never be updated. 
 
 \begin{figure}[hb]
     \centering
@@ -565,10 +565,6 @@ A common problem which occurs at the competitive learning algorithm is dead unit
 	\caption{An example of dead unit problem. Red and Green arrows are initialised weight before applying into the network. Green arrow is set far from both two input clusters, and it is assumed as a dead unit. Unfortunately, green arrow will never fire through the learning, and which means that input vectors are not properly clustered.}
 	\label{fig:dead_unit}
 \end{figure}
-
-\begin{comment}
-Fig. 8 shows more precise understanding. There are two weight vectors with coloured crosses and arrows in its direction. The weight vector with red cross are closer to both clusters of inputs, and green coloured weight is far from this clusters. For all comparisons in (4), the output with red weight vector always wins, and green one never fires and also would never be updated to be closer to the inputs, even though two clusters need to have a weight vector in its centre. Unfortunately, at the end of the learning, the weight with red cross will be positioned in the middle of two clusters, and green weight is at the same location as before the learning.
-\end{comment}
 
 \begin{figure}[ht]
     \centering
@@ -582,27 +578,28 @@ Fig. 8 shows more precise understanding. There are two weight vectors with colou
 
 In (\ref{fig:dead_state}), ??? never fired and it is the dead unit, even though neuron ?? and ?? won several time compared to other ?? output neurons.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%????
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bigskip
-There are several solutions to deal with dead units problem. 
-
+There are several approaches which can tackle the dead units problem, and 4 of those;
 \begin{enumerate}
-\item Leaky learning (LL): LL adjusts learning rate of both winer and loser, and give opportunity for loser to fire in the future, by moving towards more compact cluster.
-% equation 6
-\begin{equation} \label{eq6}
+    \item leaky learning (LL),
+    \item add bias (AB),
+    \item add noise (AN),
+    \item initialisation within input space (SV),
+\end{enumerate}
+will be discussed.
+
+\bigskip
+First, leaky learning (LL) is the way of adjusting learning rate for both winner and lower output units. It gives loser units some chances to fire in the future, and they move towards more dense clusters. Equation of LL is as follow,
+\begin{equation} \label{eq:leaky_learning}
 \begin{split}
 w_{ij}^{new} & = w_{ij}^{old} + \eta_{winner} (x_i - w_{ij}^{old}), \\
-w_{ij}^{new} & = w_{ij}^{old} + \eta_{loser} (x_i - w_{ij}^{old}), \\
-& \text{where } \eta_{winner} \gg \eta_{loser} \, .
+w_{ij}^{new} & = w_{ij}^{old} + \eta_{loser} (x_i - w_{ij}^{old}), \quad \text{where } \eta_{winner} \gg \eta_{loser} \, .
 \end{split}
 \end{equation}
-\textbf{find reference.}
 
-\item Add bias (AB): AB adds bias to repeated winner outputs so that they are hard to fire again after as the weight updates iterate. In [3], the equations for AB were referenced,
-% equation 7
-\begin{equation} \label{eq7}
+\bigskip
+The second way to deal with dead units is adding bias (AB) to winner output unis which repeatedly fire. Then, they become hard to win again and again. 
+\begin{equation} \label{eq:add_bias}
 \begin{split}
 f_j^{new} & = f_j^{old} + \beta (z_j - f_j^{old}), \\
 b_j & = \gamma (1/n - f_j), \\
@@ -610,46 +607,94 @@ w_{ij}^{new} & = w_{ij}^{old} + \alpha (x_i - w_{ij}^{old}) z_j,\\
 y_j & = \Sigma_i w_{ij} x + b_j \, ,
 \end{split}
 \end{equation}
-where $z_j$: selector having 0 for loser or 1 for winner, $\gamma, \beta$: constant factor, $n$: the total number of nodes, $f$: output neuron's firing rate, $b$: bias. Performance of competitive learning can be controlled by regulating the parameters[3].
+where $z_j$ is a selector with a value of 0 for loser or 1 for winner, $\gamma, \beta$ are constant factors, $n$ is total nodes, $f$ is firing rate of output neuron, and $b$ is bias. By varying these parameters in (\ref{eq:add_bias}), learning performance can be adjusted.
 
-\item Add noise (AN) to outputs in updating: By adding randomly distributed gaussian distribution into output neutrons in every learning time, frequently winner neurons may be disturbed not to fire, and then even when a winner and losers are obvious by (4), a loser may take top place instead of the winner.
-\begin{equation} \label{eq8}
+\bigskip
+Next is to add noise (AN) to output neurons while they are being updated. For the on-line game data analysis, Gaussian distribution are added to all output neurons. Then, among the output units with Gaussian noises, the largest output neuron is taken as a winner unit. Because of randomness, it is possible that frequently winner neurons may not fire even in the situations when the winner and loser output units are obvious from the equation (\ref{eq:distance}).
+\begin{equation} \label{eq:add_noise}
 \begin{split}
 y_j & = \Sigma_{i}w_{ij}x_i + \epsilon, \\
 & where \,\, \epsilon \sim N(0, \sigma^2)
 \end{split}
 \end{equation}
+This is the simplest method to escape dead units problem, by just adding noises to outputs, one of loser units may take the place to win, instead of actual winner output neuron.
 
-\item Set weights with random samples from input vectors (SV): solution 1), 2), and 3) above use initial weight values in random, there is the risk that some weights have the value very distant from any clusters. To prevent this problem, SV has initial values randomly taken inputs. Therefor, initial weights alway would always locate in some clusters, and dead unit would never be issued. However, there may be the problem that some initial weight values are sampled some same clusters, and other clusters would remain being excluded. Thus, Gaussian distributed random values with large (LSD) or small (SSD) standard deviation has to be added to the initial weight sampled from inputs so that its vectors have appropriate positions near to clusters of inputs or, sometimes, outside of those.
+\bigskip
+The last approach is to initialise weight vectors with randomly sampled vectors from input space. Three approaches which are discussed above do not solve the fundamental problem of dead units, and they still have the risk that some weight vectors are set far from any cluster. Because they randomly initialise weight vectors.
+
+However, SV set initial weights in the actual input space. Therefore, they are always positioned inside the data set. Although they may manage dead units, there is other problem that some weight vectors are initialised near to each other. If some weight vectors are set nearly, they will converge the same optima, and data set will not properly clustered. 
+
+Thus, large (LSD) or small(SSD) values randomly sampled with Gaussian distribution are added to the initial weight vectors, so that they have enough distance from each other.
+
 \begin{equation} \label{eq9}
 \begin{split}
 w_{ij}^{init} & = w_{ij}^{random} + \epsilon, \\
 & where \,\, \epsilon \sim N(0, \sigma^2)
 \end{split}
 \end{equation}
-\end{enumerate}
 
-\begin{figure}[thpb]\label{fig:states}
-	\centering
-	\framebox{\parbox{14cm}{
-	    \begin{center}
-	    \includegraphics[width=13cm]{states.png}
-	    \end{center} }}
-	\caption{Comparison between AIC and BIC according to the different number of k. AIC is more strict method than BIC to identify the number of clusters.}
+\begin{figure}[t]
+    \centering
+    \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.85\textwidth, height=0.65\textwidth]{dead_states_solved.png}
+        \end{center} }}
+	\caption{Learning rate and and entire firing number of output neurons after using SV approach for dead units}
+    \label{fig:dead_states_solved}
 \end{figure}
 
+\bigskip
+In (\ref{fig:dead_states_solved}), it is shown that dead units are not exist. All output neurons fired above about 300 times, though some clusters are dominant in learning. This also give assumptions of how many individuals are belong to each cluster. It has to be noted that output firing state only give a rough estimate, as competitive algorithm exploit random point choice to compare with centroids. In addition, because there are no labelled and predefined features in the data set, there is no way to know how correct a result of clustering is. Thus, the data set is considered as unbiased, which means average from 10 iterations may represent the true value of the population.
 
 % ======================================= %
 %		2.4.5 Result
 % ======================================= %
 \newpage
-\subsection{Result}
+\subsection{Centroids}
 
-\begin{figure}[thpb] \label{fig:cluster_10}
-	\centering
-	\framebox{\parbox{5.5in}{ \includegraphics[width=5in, height=8in]{cluster_10.png} }}
-	\caption{10 Clusters}
+In conclusion of data curation, 1,201,516 individuals are grouped into 14 clusters as Fig.\ref{fig:centroid1}, \ref{fig:centroid2}, \ref{fig:centroid3}. Note that these are the results of truncated 15 attempts. 
+
+\begin{figure}[h]
+    \centering
+    \framebox{\parbox[t][0.35\textheight][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.3\textheight]{centroid1.png}
+        \end{center} }}
+	\caption{Centroids of cluster from 1 to 4}
+    \label{fig:centroid1}
 \end{figure}
+
+\begin{figure}[hb]
+    \centering
+    \framebox{\parbox[t][0.35\textheight][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.3\textheight]{centroid2.png}
+        \end{center} }}
+	\caption{Centroids of cluster from 5 to 8}
+    \label{fig:centroid2}
+\end{figure}
+
+\begin{figure}[hb]
+    \centering
+    \framebox{\parbox[t][0.35\textheight][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.3\textheight]{centroid3.png}
+        \end{center} }}
+	\caption{Centroids of cluster from 9 to 12}
+    \label{fig:centroid3}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \framebox{\parbox[t][0.23\textheight][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.2\textheight]{centroid4.png}
+        \end{center} }}
+	\caption{Centroids of cluster 13 and 14}
+    \label{fig:centroid4}
+\end{figure}
+
+In the next chapter, various curves are fitted to these centroids, and which curve can properly represent learning process for each group.
 
 % ======================================================== %
 %		2. Data Curation
