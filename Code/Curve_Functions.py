@@ -207,8 +207,7 @@ def multi_curveFitting_3(least_func, avg, seed, min_range=5):
             
     return min_range*(point1+1), point2
     
-'''
-def multi_curveFitting_4(least_func, avg, seed, min_range=5, n_curve=2):
+def multi_curveFitting_4(least_func, avg, seed, min_range=5):
     cost = []
     break_point2 = []
     #idx_mid2 = [] # save idx2(second change)
@@ -220,7 +219,7 @@ def multi_curveFitting_4(least_func, avg, seed, min_range=5, n_curve=2):
 
     first_idx = []
     for n in range(int(300/min_range) - 2): # iteration for all data
-        print("\n - iter{0}".format(n))
+        # print("\n - iter{0}".format(n))
         x_idx = 0
         if x_idx == 0:
             end1 = min_range*(n+1) # caculate the first range limit
@@ -233,13 +232,13 @@ def multi_curveFitting_4(least_func, avg, seed, min_range=5, n_curve=2):
         second_idx = []
         second_cost = []
         for j in range(int( (300-(min_range*(n+2))) / min_range) ): # iteration for 2nd and 3rd x_range
-            print("iter {0}-{1}".format(n, j))
+            # print("iter {0}-{1}".format(n, j))
             end2 = min_range*(j+1) + end1 # caculate the second range limit
             x2 = x_range[end1:end2]
             y2 = avg[end1:end2]
             lsq2 = least_squares(least_func, seed, args=(x2, y2))
             #print('x2', x2)
-
+            
             x3 = x_range[end2:]
             y3 = avg[end2:]
             lsq3 = least_squares(least_func, seed, args=(x3, y3))
@@ -255,4 +254,27 @@ def multi_curveFitting_4(least_func, avg, seed, min_range=5, n_curve=2):
     point2 = break_point2[point1] # get index of 2nd break point
             
     return min_range*(point1+1), point2
+
 '''
+def multi_test(x_data, y_data, least_func, seed, scope=10, layer=2):
+    x_range = np.linspace(1, len(x_data), len(x_data))
+    print("loop ", layer)
+    
+    if not len(x_data) >= len(x_data)-scope*layer:
+        print("last: ", len(x_data))
+    else:
+        for i in range( int(len(x_data)/scope - layer) ):
+            if i == 0:
+                end = scope
+                x1 = x_range[:end]
+                y1 = y_data[:end]
+                lsq1 = least_squares(least_func, seed, args=(x1, y1))
+
+            x2 = x_range[end:]
+            y2 = y_data[end:]
+            end = end + 10
+
+            print(i, ":", len(x1), len(x2))
+            multi_test(x2, y2, least_func, seed, scope, layer-1)
+'''        
+#def multi_fit(x_data, y_data, least_func, seed, scope):
