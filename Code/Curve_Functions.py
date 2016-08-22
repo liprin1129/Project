@@ -330,16 +330,55 @@ def curve_Matrix(y_data, least_func, seed=[1,1], window=10, piece=4):
     # print(err_matrix)
     return idx_matrix, err_matrix
     
-def curve3_Fitting(idxM, errM):
+def curve2_Fitting(idxM, errM):
     groups, mat_iter = np.shape(idxM)
     # print(groups, mat_iter)
-    pre_cost = 0
+    pre_cost = np.nan
     min_cost = float('nan')
     min_p = [np.nan]*groups
+    count = 0
 
     ## 1st piece
     for i1 in range(mat_iter):
-        # print('\n')
+        print('iter ', i1)
+        p1 = idxM[0, i1]
+        c1 = errM[0, i1]
+        
+        ## 2nd piece
+        for i2 in range(mat_iter):
+            p2 = idxM[1, i2]
+            c2 = errM[1, i2]
+
+            true_range = p1+p2
+            
+            ## find 300 ranges
+            if(true_range==300):
+                sum_cost = c1 + c2
+                print(sum_cost)
+                ## check a minimum cost
+                if count == 0 or pre_cost > sum_cost:
+                    print("min!!")
+                    min_cost = sum_cost
+                    min_p = p1, p2
+                    count = count+1
+                
+                pre_cost = sum_cost
+
+    print("min_cost: ", min_cost, "at {0}".format(min_p))
+    return min_cost, min_p
+    
+def curve3_Fitting(idxM, errM):
+    groups, mat_iter = np.shape(idxM)
+    # print(groups, mat_iter)
+    pre_cost = np.nan
+    min_cost = float('nan')
+    min_p = [np.nan]*groups
+    check_p = [np.nan]*groups
+    count = 0
+
+    ## 1st piece
+    for i1 in range(mat_iter):
+        print('iter ', i1)
         p1 = idxM[0, i1]
         c1 = errM[0, i1]
         
@@ -352,21 +391,24 @@ def curve3_Fitting(idxM, errM):
             for i3 in range(mat_iter):
                 p3 = idxM[2, i3]
                 c3 = errM[2, i3]
-
-                true_range = p1+p2+p3
+                check_p = p1, p2, p3
                 
-                ## find 300 ranges
-                if(true_range==300):
-                    # print(p1, p2, p3, ":", true_range)
-                    
-                    sum_cost = c1 + c2 + c3
-                    
-                    ## check a minimum cost
-                    if pre_cost > sum_cost:
-                        min_cost = sum_cost
-                        min_p = p1, p2, p3
-                    
-                    pre_cost = sum_cost
+                if len(check_p) == len(set(check_p)):
+                    true_range = p1+p2+p3
+
+                    ## find 300 ranges
+                    if(true_range==300):
+                        # print(p1, p2, p3, ":", true_range)
+
+                        sum_cost = c1 + c2 + c3
+
+                        ## check a minimum cost
+                        if  count==0 or pre_cost > sum_cost:
+                            min_cost = sum_cost
+                            min_p = p1, p2, p3
+                            count = count+1
+
+                        pre_cost = sum_cost
 
     print("min_cost: ", min_cost, "at {0}".format(min_p))
     return min_cost, min_p
