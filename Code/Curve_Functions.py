@@ -255,26 +255,118 @@ def multi_curveFitting_4(least_func, avg, seed, min_range=5):
             
     return min_range*(point1+1), point2
 
-'''
-def multi_test(x_data, y_data, least_func, seed, scope=10, layer=2):
-    x_range = np.linspace(1, len(x_data), len(x_data))
-    print("loop ", layer)
+def curve_Matrix(y_data, least_func, seed=[1,1], window=10, piece=4):
+    ## set initial x ranges
+    x_range = np.linspace(1, 300, 300)
+    y_range = y_data
+    for i in range(piece):
+        if i < piece-1:
+            locals()["x{0}".format(i)] = x_range[i*window:window*(i+1)]
+            locals()["y{0}".format(i)] = y_range[i*window:window*(i+1)]
+        else:
+            locals()["x{0}".format(i)] = x_range[i*window:]
+            locals()["y{0}".format(i)] = y_range[i*window:]
+        # print("x:[{0}, {1}]".format(eval("x{0}".format(i))[0], eval("x{0}".format(i))[-1]))
+        # print("y:[{0}, {1}]".format(eval("y{0}".format(i))[0], eval("y{0}".format(i))[-1]))
     
-    if not len(x_data) >= len(x_data)-scope*layer:
-        print("last: ", len(x_data))
-    else:
-        for i in range( int(len(x_data)/scope - layer) ):
-            if i == 0:
-                end = scope
-                x1 = x_range[:end]
-                y1 = y_data[:end]
-                lsq1 = least_squares(least_func, seed, args=(x1, y1))
+    ## make matrix
+    count = 0
+    mat_iter = len(eval("x{0}".format(piece-1)))
+    while(mat_iter>window):
+        mat_iter = mat_iter-window
+        #print(mat_iter)
+        count = count+1
+    
+    err_matrix = np.zeros([piece, count+1])
+    idx_matrix = np.zeros([piece, count+1])
+    print(np.shape(err_matrix))
+    
+    ## change window for pieces except first pieces
+    for group in range(piece-1):
+        #print("\n\n - pieace ", piece-group-1)
+        #print(" - x{0}:\n".format(piece-group-1), "[{0}, {1}]".format(eval("x{0}".format(piece-group-1))[0], eval("x{0}".format(piece-group-1))[-1]))        
+        partition = 0
+        
+        lsq = least_squares(least_func, seed, args=(eval("x{0}".format(piece-group-1)), eval("y{0}".format(piece-group-1)))) # function fitting
+        err_matrix[piece-group-1, partition] = lsq.cost # save cost
+        idx_matrix[piece-group-1, partition] = len(eval("x{0}".format(piece-group-1))) # save x values
+        #print("cost!!:", lsq.cost)
+        
+        while( len(eval("x{0}".format(piece-group-1))-window) > window):
+            locals()["x{0}".format(piece-group-1)] = eval("x{0}".format(piece-group-1))[window:] # 마지막 piece의 첫번째를 window만큼 더한다.
+            locals()["y{0}".format(piece-group-1)] = eval("y{0}".format(piece-group-1))[window:] # 마지막 piece의 첫번째를 window만큼 더한다.
+            #print("[{0}, {1}]".format(eval("x{0}".format(piece-group-1))[0], eval("x{0}".format(piece-group-1))[-1]))
+            partition = partition+1
+            
+            lsq = least_squares(least_func, seed, args=(eval("x{0}".format(piece-group-1)), eval("y{0}".format(piece-group-1)))) # function fitting
+            err_matrix[piece-group-1, partition] = lsq.cost # save cost
+            idx_matrix[piece-group-1, partition] = len(eval("x{0}".format(piece-group-1))) # save x values
+            #print("cost!!:", lsq.cost)
+            
+        end = eval("x{0}".format(piece-group-1))[0]
+        #print("end: ", end)
+        locals()["x{0}".format(piece-group-2)] = x_range[(piece-group-2)*window:int(end-1)] #처음의 값을 window만큼 이동
+        locals()["y{0}".format(piece-group-2)] = y_range[(piece-group-2)*window:int(end-1)] #처음의 값을 window만큼 이동
 
-            x2 = x_range[end:]
-            y2 = y_data[end:]
-            end = end + 10
+    ## change window for first piece
+    i = 0
+    #print("\n\n - piece  0")
+    #print(" - x0:\n", "[{0}, {1}]".format(eval("x0")[0], eval("x0")[-1]))
+    lsq = least_squares(least_func, seed, args=(eval("x{0}".format(piece-group-1)), eval("y{0}".format(piece-group-1)))) # function fitting
+    err_matrix[i, 0] = lsq.cost # save cost
+    idx_matrix[i, 0] = len(eval("x0"))
+    while( len(eval("x0"))-window):
+        end = eval("x0")[-1]
+        locals()["x0"] = eval("x0")[:int(end-window)] # 마지막 piece의 첫번째를 window만큼 더한다.
+        locals()["y0"] = eval("y0")[:int(end-window)] # 마지막 piece의 첫번째를 window만큼 더한다.
+        #print("[{0}, {1}]".format(eval("x0")[0], eval("x0")[-1]))
+        i = i+1
+        
+        lsq = least_squares(least_func, seed, args=(eval("x0"), eval("y0"))) # function fitting
+        err_matrix[0, i] = lsq.cost # save cost
+        idx_matrix[0, i] = len(eval("x0"))
+        #print("cost!!:", lsq.cost)
+                                               
+    # print(err_matrix)
+    return idx_matrix, err_matrix
+    
+def curve3_Fitting(idxM, errM):
+    groups, mat_iter = np.shape(idxM)
+    # print(groups, mat_iter)
+    pre_cost = 0
+    min_cost = float('nan')
+    min_p = [np.nan]*groups
 
-            print(i, ":", len(x1), len(x2))
-            multi_test(x2, y2, least_func, seed, scope, layer-1)
-'''        
-#def multi_fit(x_data, y_data, least_func, seed, scope):
+    ## 1st piece
+    for i1 in range(mat_iter):
+        # print('\n')
+        p1 = idxM[0, i1]
+        c1 = errM[0, i1]
+        
+        ## 2nd piece
+        for i2 in range(mat_iter):
+            p2 = idxM[1, i2]
+            c2 = errM[1, i2]
+
+            ## 3rd piece
+            for i3 in range(mat_iter):
+                p3 = idxM[2, i3]
+                c3 = errM[2, i3]
+
+                true_range = p1+p2+p3
+                
+                ## find 300 ranges
+                if(true_range==300):
+                    # print(p1, p2, p3, ":", true_range)
+                    
+                    sum_cost = c1 + c2 + c3
+                    
+                    ## check a minimum cost
+                    if pre_cost > sum_cost:
+                        min_cost = sum_cost
+                        min_p = p1, p2, p3
+                    
+                    pre_cost = sum_cost
+
+    print("min_cost: ", min_cost, "at {0}".format(min_p))
+    return min_cost, min_p
