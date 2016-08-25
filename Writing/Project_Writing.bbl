@@ -1,6 +1,30 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Bowles%
+}{%
+Bowles%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+bowles2015machine}
+\APACinsertmetastar {%
+bowles2015machine}%
+\begin{APACrefauthors}%
+Bowles, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2015}.
+\newblock
+\APACrefbtitle {Machine learning in Python: essential techniques for predictive
+  analysis} {Machine learning in python: essential techniques for predictive
+  analysis}.
+\newblock
+\APACaddressPublisher{}{John Wiley \& Sons}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Daum{\'e}~III%
 }{%
 Daum{\'e}~III%
@@ -79,6 +103,39 @@ Gallistel, C\BPBI R.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Gaschler%
+, Progscha%
+, Smallbone%
+, Ram%
+\BCBL {}\ \BBA {} Bilalic%
+}{%
+Gaschler%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+gaschler2007playing}
+\APACinsertmetastar {%
+gaschler2007playing}%
+\begin{APACrefauthors}%
+Gaschler, R.%
+, Progscha, J.%
+, Smallbone, K.%
+, Ram, N.%
+\BCBL {}\ \BBA {} Bilalic, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Playing off the curve-testing quantitative predictions
+  of skill acquisition theories in development of chess performance} {Playing
+  off the curve-testing quantitative predictions of skill acquisition theories
+  in development of chess performance}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychological perspectives on expertise}{20}{40}{137}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Hackeling%
 }{%
 Hackeling%
@@ -125,6 +182,59 @@ Harrington, P.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Heathcote%
+, Brown%
+\BCBL {}\ \BBA {} Mewhort%
+}{%
+Heathcote%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2000}}%
+}]{%
+heathcote2000power}
+\APACinsertmetastar {%
+heathcote2000power}%
+\begin{APACrefauthors}%
+Heathcote, A.%
+, Brown, S.%
+\BCBL {}\ \BBA {} Mewhort, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The power law repealed: The case for an exponential law
+  of practice} {The power law repealed: The case for an exponential law of
+  practice}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychonomic bulletin \& review}{7}{2}{185--207}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Howard%
+}{%
+Howard%
+}{%
+{\protect \APACyear {2014}}%
+}]{%
+howard2014learning}
+\APACinsertmetastar {%
+howard2014learning}%
+\begin{APACrefauthors}%
+Howard, R\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Learning curves in highly skilled chess players: a test
+  of the generality of the power law of practice} {Learning curves in highly
+  skilled chess players: a test of the generality of the power law of
+  practice}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Acta psychologica}{151}{}{16--23}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Idris%
 }{%
 Idris%
@@ -144,6 +254,33 @@ Idris, I.%
 \APACrefbtitle {Python Data Analysis} {Python data analysis}.
 \newblock
 \APACaddressPublisher{}{Packt Publishing Ltd}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Murre%
+\ \BBA {} Chessa%
+}{%
+Murre%
+\ \BBA {} Chessa%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+murre2011power}
+\APACinsertmetastar {%
+murre2011power}%
+\begin{APACrefauthors}%
+Murre, J\BPBI M.%
+\BCBT {}\ \BBA {} Chessa, A\BPBI G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Power laws from individual differences in learning and
+  forgetting: mathematical analyses} {Power laws from individual differences in
+  learning and forgetting: mathematical analyses}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychonomic bulletin \& review}{18}{3}{592--597}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -178,7 +315,7 @@ on-line Python~document%
 on-line Python~document%
 }{%
 {\protect \APACyear {{\protect \bibnodate {}}}}%
-}]{%
+{\protect \APACexlab {{\protect \BCntND {1}}}}}]{%
 python2016pickle}
 \APACinsertmetastar {%
 python2016pickle}%
@@ -187,13 +324,38 @@ on-line Python~document.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
+\APACrefYearMonthDay{{\protect \bibnodate {}}{\protect \BCntND {1}}}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {12.1. pickle — Python object serialization} {12.1.
-  pickle — python object serialization}{\BBCQ}\ [\bibcomputersoftwaremanual].
+{\BBOQ}\APACrefatitle {12.1. pickle --- Python object serialization} {12.1.
+  pickle --- python object serialization}{\BBCQ}\ [\bibcomputersoftwaremanual].
 \newblock
 \APACrefnote{Retrieved August 16, 2016, from
   https://docs.python.org/3/library/pickle.html}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+on-line Python~document%
+}{%
+on-line Python~document%
+}{%
+{\protect \APACyear {{\protect \bibnodate {}}}}%
+{\protect \APACexlab {{\protect \BCntND {2}}}}}]{%
+python2016multiprocessing}
+\APACinsertmetastar {%
+python2016multiprocessing}%
+\begin{APACrefauthors}%
+on-line Python~document.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{{\protect \bibnodate {}}{\protect \BCntND {2}}}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {16.6. multiprocessing --- Process-based ``threading''
+  interface} {16.6. multiprocessing --- process-based ``threading''
+  interface}{\BBCQ}\ [\bibcomputersoftwaremanual].
+\newblock
+\APACrefnote{Retrieved July 13, 2016,
+  https://docs.python.org/2/library/multiprocessing.html}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
