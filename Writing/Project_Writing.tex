@@ -877,21 +877,7 @@ Similarly, all different functions also can be combined together, such as power 
 Every players may show a large variety of learning patterns, but those learning curves are ambiguous. Thus, functions are fitted as many and various as possible, and compared with each other under a criterion, squared lost function. This criterion will be discussed in session \ref{sbs:square_lost_function}
 
 \bigskip
-Another clue which provides best curve fitting information in piecewise functions is identifying such transition points (or change-points) in the data set \cite{gallistel2004learning}. To identify the true discontinuities, Donner and Hardy (2015) suggested two conditions. First, Large data set is required with many individual learning curves. At the same time, that learning curves should have long enough data sequence including "potentially infrequent discontinuities". Fortunately, the on-line game data set complies with the conditions. ??? individuals comprise the train set and almost players have discontinuous data sequence because of unknown reason.
-
-In addition, in this on-line game data analysis, transition points would not only represent discontinuities of data sequences but also provide the position where squared errors in a piece wise function are  minimum. The minimum cost can tell which points will result in the best curve fitting on the data set. Fig. \ref{fig:pieces} shows how to find the exact transition points. Firstly, entire data range is separated to $n-1$ transition points in $n$ pieces. Thus, there are three lines as the transition points with different colours (red, green, blue). Minimum 50 window in each piece is used for the example, though actual window is 10. Accordingly, transition point 1 is on 50, point 2 is on 100, and the last point is on 150, and the last piece have remained 150 of attempt range as an initial condition. In each pieces, a single function's cost is saved into a matrix. The shape of matrix is $[\textit{\textrm{ number of pieces $\times$ number of shift of a last transition point}}]$. (\ref{eq:cost_matrix}) is an example of the cost matrix for 3 transition points with 4 pieces.
-
-\begin{equation} \label{eq:cost_matrix}
-\begin{split}
-   \mathbf{M}= \left[\begin{array}{lll}
-        1	& 	1	&	1\\
-        51	&	101	&	151\\
-        101	&	151	&	201\\
-        151	&	201	&	251\\
-        w_3 + w_5 x_n^{w_4} &\quad \textrm{if $x_n >$ transition point} & b\end{array} \right].
-\end{split}
-\end{equation}
-Because a start point of the first piece does not change, all elements in the first row are 1. 
+Another clue about best curve fitting information in piecewise functions is identifying such transition points (or change-points) in the data set \cite{gallistel2004learning}. To identify the true discontinuities, Donner and Hardy (2015) suggested two conditions. First, Large data set is required with many individual learning curves. At the same time, that learning curves should have long enough data sequence including "potentially infrequent discontinuities". Fortunately, the on-line game data set complies with the conditions. ??? individuals comprise the train set and almost players have discontinuous data sequence because of unknown reason.
 
 \begin{figure}[htpb]
     \centering
@@ -903,7 +889,9 @@ Because a start point of the first piece does not change, all elements in the fi
     \label{fig:pieces}
 \end{figure}
 
-For this, a matrix which will save costs of each piece is introduced
+In addition, in this on-line game data analysis, transition points would not only represent discontinuities of data sequences but also provide the position where squared errors in a piece wise function are  minimum. The minimum cost can tell which points will result in the best curve fitting on the data set. Fig. \ref{fig:pieces} shows how to find the exact transition points. Firstly, entire data range is separated to $n-1$ transition points in $n$ pieces. Thus, there are three lines as the transition points with different colours (red, green, blue). Minimum 50 window in each piece is used for the example, though actual window is 10. Accordingly, transition point 1 is on 50, point 2 is on 100, and the last point is on 150, and the last piece have remained 150 of attempt range as an initial condition. How to find these transition point will be discussed in session \ref{abs:breaking_point}.
+
+To sum up, individual learning curve may be represented as a single curve or multiple curves. Four function; polynomial, exponential, power, and step-like function, will be examined for the clustered on-line game data set.  In the next session, it will be discussed that the way to identify the best fitting learning curves on the basis of these assumptions.
 
 \section{Method}
 \subsection{Squared Lost Function} \label{sbs:square_lost_function}
@@ -911,8 +899,50 @@ parametric approach (An introduction to statistical learning, 21p~24p)
 \subsection{Overfitting} \label{sbs:overfitting}
 \subsection{Training Set and Validation Set} \label{sbs:Training_Validation}
 At first, assumption for learning processes will be tested on 14 data sets in which groups show similar learning patterns between 15 attempts and scores.
-\subsection{Choice of Breaking Point}
-\subsection{Number of Break Points}
+\subsection{Choice of Breaking Point} \label{abs:breaking_point}
+In each pieces, a single function's cost is saved into a matrix. At the same time, length and staring points of each piece is also saved into another matrix. The shape of both matrices is $[\textit{\textrm{ number of pieces $\times$ number of shift of a last transition point}}]$. (\ref{eq:cost_matrix}) and (\ref{eq:length_matrix}) are an examples of the cost matrix and length matrix for 3 transition points with 4 pieces.
+
+\begin{equation} \label{eq:cost_matrix}
+\begin{split}
+   \mathbf{M}= \left[\begin{array}{lll}
+        1	& 	1	&	1\\
+        51	&	101	&	151\\
+        101	&	151	&	201\\
+        151	&	201	&	251
+        \end{array} \right].
+\end{split}
+\end{equation}
+
+\begin{equation} \label{eq:length_matrix}
+\begin{split}
+   \mathbf{L}= \left[\begin{array}{lll}
+        150	& 	100	&	50\\
+        150	& 	100	&	50\\
+        150	& 	100	&	50\\
+        150	& 	100	&	50
+        \end{array} \right].
+\end{split}
+\end{equation}
+
+Because a start point of the first piece does not change, all elements in the first row are 1. How many iteration is needed is calculated based on the size of the last row. In this case, the last piece has initially 150 range and minimum window 50, then a number of shift in each breaking-point becomes $150 \div 50 = 3$. Therefore, cost matrix has $4\times3$ shape.
+
+\bigskip
+Using those two matrices, the optimal points which allow the piecewise function has a minimum error cost can be identified. Firstly, it is repeated that one element in each row is derived and summed. Then the total value from every iterations is checked whether is 300. 300 means the entire range of each individual data set. Then matrix L is mapped to the cost matrix, and tested that transition points are plausible. If a start point in a later row is smaller than earlier rows, the total cost value is discarded, and the costs in which each start point are greater than earlier rows from themselves are compared with each other. Finally, a minimum cost with corresponding starting points is found. Below is an pseudocode of the algorithm to find starting point with a minimum cost.
+
+\bigskip
+\begin{algorithmic}
+\STATE Initialise $l, c, s$
+\FOR{i in rows of length matrix}
+	\FOR{j in rows of index matrix}
+		\STATE $l \leftarrow \sum \textrm{row}_{i,j}$
+		\IF{$l$ is 300 and $\textrm{element}_{i+1,j} > \textrm{element}_{i,j}$}
+			\STATE $c \leftarrow \sum \textrm{cost}_{i,j}$
+		\ENDIF
+	 \ENDFOR
+\ENDFOR
+\STATE $s \leftarrow \textrm{Map $\arg\min$ c into starting point matrix}$
+\RETURN $s$ and $\min c$
+\end{algorithmic}
 
 \section{Curve Fittings}
 

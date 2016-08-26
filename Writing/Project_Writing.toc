@@ -25,11 +25,10 @@
 \contentsline {subsection}{\numberline {3.1.1}Parametric Method}{28}
 \contentsline {subsection}{\numberline {3.1.2}Functions for Single Curve}{30}
 \contentsline {subsection}{\numberline {3.1.3}Piecewise Function}{32}
-\contentsline {section}{\numberline {3.2}Method}{35}
-\contentsline {subsection}{\numberline {3.2.1}Squared Lost Function}{35}
-\contentsline {subsection}{\numberline {3.2.2}Overfitting}{35}
-\contentsline {subsection}{\numberline {3.2.3}Training Set and Validation Set}{35}
-\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{35}
-\contentsline {subsection}{\numberline {3.2.5}Number of Break Points}{35}
-\contentsline {section}{\numberline {3.3}Curve Fittings}{35}
-\contentsline {chapter}{References}{36}
+\contentsline {section}{\numberline {3.2}Method}{34}
+\contentsline {subsection}{\numberline {3.2.1}Squared Lost Function}{34}
+\contentsline {subsection}{\numberline {3.2.2}Overfitting}{34}
+\contentsline {subsection}{\numberline {3.2.3}Training Set and Validation Set}{34}
+\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{34}
+\contentsline {section}{\numberline {3.3}Curve Fittings}{36}
+\contentsline {chapter}{References}{37}
