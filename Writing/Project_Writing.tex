@@ -273,6 +273,8 @@ Although the big data set can be converted to binary file, it still takes a larg
 \bigskip
 Therefore, loading only necessary data to a specific task will be a solution to keep processing performance fast. Whole data set was separated by each type of variables. To secure and not to lose player information within the divided data, addresses of all data have to be indexed directing player ID. As a result of data deformation task, 15 pickle data files were generated; eventLabel, date, hour, minute, latitude, longitude, eventValue, play\_filter, comb\_time, diff\_time, local\_time, long\_gap, shor\_gap, sleep\_gap, gap\_type, and total\_plays, which are indicated by individual ID information, eventAction.
 
+\subsection{Multiprocessing}
+Because the raw data set is a large amount, the process time for data curation would take long time. Commonly, using multithreading is the easiest way to solve this operating time problem. However, unfortunately Python does not allow multiple statements at a kernel. Therefore, 
 %%%%%% comment %%%%%%%%%%%%%
 \begin{comment}
 (Python 2001)
@@ -386,7 +388,7 @@ Moreover, this K-Means clustering algorithm was improved with artificial neural 
 
 Competitive learning is unsupervised learning approaches in which the output neurons contend against each other to react as the one firing from the given pattern in inputs. Therefore only one unit take the winner upon all output units (\ref{fig:Competitive_Diagram}). This exclusive phenomenon in synaptic neurons is called 'winner-take-all units', and sometimes they are also called 'grandmother cells'. Which means a neuron fires on a specific stimulus. This neural networks has an advantage of clustering unlabelled data and searching the correlations of the input data. One of the most significant application of competitive learning might be vector quantisation. In which, input data-set becomes a bunch of vectors in data space, and input vectors are compressed and stored by transmitting into prototype vectors.
 
-\begin{figure}[ht]
+\begin{figure}[htpb]
     \centering
     \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
         \begin{center}
@@ -441,7 +443,7 @@ Normalisation is important for analysing data with different scale to be compare
 \end{equation}
 with respect to the lengths of both units and a direction between input pattern and weight. Not-normalised one has no way for a criterion for competing output units with weight vectors. Because the neuron which has the largest value in length always wins. That implies the algorithm will finish without any learning or no informative outcome through iterations, in the both cases of not-normalised data-set and weight vectors.
 
-\begin{figure}[t]
+\begin{figure}[htpb]
 \begin{subfigure}{0.5\textwidth}
     \centering
     \framebox{\parbox{0.95\textwidth}{
@@ -556,7 +558,7 @@ Fig.~\ref{fig:AIC_BIC_Elbow} shows the information of elbow method with AIC and 
 \subsection{Dealing with dead unit}
 A common problem in competitive learning algorithm is dead unit issue. This is the case when weight vectors are initialised far distant from all input vectors. As they cannot fire among those which are closer to input vectors. Geometrically speaking, (\ref{fig:dead_unit}) would show precise understanding. Two arrows with different colours represent randomly initialised weight vectors. Red arrow is closer to two input groups than green weight vector. When they are threw into the network, red weight vector will move closer and closer to the centre between two groups at every iterations. Which means red weight vector always takes winner, and green weight vector will never be updated. 
 
-\begin{figure}[hb]
+\begin{figure}[htpb]
     \centering
     \framebox{\parbox[t][0.8\textwidth][t]{0.9\textwidth}{
         \begin{center}
@@ -566,7 +568,7 @@ A common problem in competitive learning algorithm is dead unit issue. This is t
 	\label{fig:dead_unit}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[htpb]
     \centering
     \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
         \begin{center}
@@ -626,14 +628,14 @@ However, SV set initial weights in the actual input space. Therefore, they are a
 
 Thus, large (LSD) or small(SSD) values randomly sampled with Gaussian distribution are added to the initial weight vectors, so that they have enough distance from each other.
 
-\begin{equation} \label{eq9}
+\begin{equation} \label{eq:SV}
 \begin{split}
 w_{ij}^{init} & = w_{ij}^{random} + \epsilon, \\
 & where \,\, \epsilon \sim N(0, \sigma^2)
 \end{split}
 \end{equation}
 
-\begin{figure}[t]
+\begin{figure}[htpb]
     \centering
     \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
         \begin{center}
@@ -654,7 +656,7 @@ In (\ref{fig:dead_states_solved}), it is shown that dead units are not exist. Al
 
 In conclusion of data curation, 1,201,516 individuals are grouped into 14 clusters as Fig.\ref{fig:centroid1}, \ref{fig:centroid2}, \ref{fig:centroid3}. Note that these are the results of truncated 15 attempts. 
 
-\begin{figure}[h]
+\begin{figure}[htpb]
     \centering
     \framebox{\parbox[t][0.35\textheight][t]{0.95\textwidth}{
         \begin{center}
@@ -664,7 +666,7 @@ In conclusion of data curation, 1,201,516 individuals are grouped into 14 cluste
     \label{fig:centroid1}
 \end{figure}
 
-\begin{figure}[hb]
+\begin{figure}[htpb]
     \centering
     \framebox{\parbox[t][0.35\textheight][t]{0.95\textwidth}{
         \begin{center}
@@ -674,7 +676,7 @@ In conclusion of data curation, 1,201,516 individuals are grouped into 14 cluste
     \label{fig:centroid2}
 \end{figure}
 
-\begin{figure}[hb]
+\begin{figure}[htpb]
     \centering
     \framebox{\parbox[t][0.35\textheight][t]{0.95\textwidth}{
         \begin{center}
@@ -684,7 +686,7 @@ In conclusion of data curation, 1,201,516 individuals are grouped into 14 cluste
     \label{fig:centroid3}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[htpb]
     \centering
     \framebox{\parbox[t][0.23\textheight][t]{0.95\textwidth}{
         \begin{center}
@@ -694,73 +696,228 @@ In conclusion of data curation, 1,201,516 individuals are grouped into 14 cluste
     \label{fig:centroid4}
 \end{figure}
 
-In the next chapter, various curves are fitted to these centroids, and which curve can properly represent learning process for each group.
+In the next chapter, various curves are fitted to these centroids, and which curve may properly represent learning process for each group.
 
 % ======================================================== %
-%		2. Data Curation
+%		3. Function Fitting
 % ======================================================== %
 \chapter{Function Fitting}
+In this chapter, it is examined that to which type of relationships (learning processes) between variables (attempts) and corresponding responses (scores) players follow. The relationships can be modelled to some functions, and which may give a clue interrelating the amount of practises and performance of the on-line game data set.
 
-%%%%%%%%%%% HINT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Ideally, you should generate a bibtex file (references.bib) and include all
-% references in the bibtex format into this file. The reference list
-% can then be automatically generated using bibtex.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+This process can be called as 'inference' in statistical learning. Inference is different from 'prediction'. To make sure of concise understanding, both method estimate function $f$ which may show the relationship between inputs and outputs. For unbiased model, it can be described as
+\begin{equation} \label{eq:unbiased}
+    \hat{Y} = \hat{f}(X),
+\end{equation}
+where average of errors goes to zero, and at symbols represent estimates. However, prediction is used for the situations that predictors (inputs) are easily obtained but responses (outputs) are not readily available. Thus $\hat{f}$ is treated as an estimator to predict currently unknown responses. On the other hand, inference has a different feature to "develop an accurate model" to "understand the relationship" between inputs and outputs \cite{james2013introduction}. In other words, it prospects a functional relationship between a set of independent variables and target variables. Thus, to find a best curve for the data set would be the task of inference.
 
 \begin{comment}
-\begin{thebibliography}{20}
+x: predictors, independent variables, features, or variables.
+y: response or dependent variable. 
 
-\addcontentsline{toc}{chapter}{REFERENCES}
-
-%\bibitem{test} 
-% \bibitem{lowry1951protein}Lowry, O. H., Rosebrough, N. J., Farr, A. L., and Randall, R. J. (1951). Protein measurement with the Folin phenol reagent. \emph{J. Biol. Chem.}, 193(1), 265--275.
-
-\bibitem{Idris 2014} Idris, I. (2014). \emph{Python Data Analysis}. Packt Publishing Ltd.
-
-\bibitem{Python 2001} Python(TM). (2001). \emph{12.1. Pickle - python object serialization - python 3.5.2 documentation}. Retrieved June 30, 2016, from Python 3.5.2 Document, https://docs.python.org/3/library/pickle.html\#data-stream-format
-
-\bibitem{Shafranovich 2008} Shafranovich, Y. (2008). Common Format and MIME Type for Comma-Separated Values (CSV) Files.[Sl], 2005. \emph{Dispon?vel em:$<$ http://www. ietf. org/rfc/rfc4180. txt.}
-
-\bibitem{Stuart 2012} P. Stuart, "Axon - a game for science," 2012. [Online]. Available: http://preloaded.com/axon-game-science/. Accessed: Jun. 24, 2016.
-
-\bibitem{Stafford et al. 2014} Stafford, T., \& Dewar, M. (2014). Tracing the trajectory of skill learning with a very large sample of online game players. \emph{Psychological Science}, 25(2), 511-518.
-
-\bibitem{Stafford et al. 2016} Stafford, T., \& Haasnoot, E. (2016). Testing sleep consolidation in skill learning: a field study using an online game. \emph{Topics in Cognitive Science}.
-
-\bibitem{Stonebraker et al. 2013} Stonebraker, M., Bruckner, D., Ilyas, I. F., Beskales, G., Cherniack, M., Zdonik, S. B.,  Alexander, P., \& Xu, S. (2013, January). Data Curation at Scale: The Data Tamer System. In \emph{CIDR}.
-
-\bibitem{Gallistel et al. 2004} Gallistel, C. R., Fairhurst, S., \& Balsam, P. (2004). The learning curve: Implications of a quantitative analysis. \emph{Proceedings of the National Academy of Sciences, 101}(36), pp.13124?13131.
-
-\bibitem{Newell 1981} Newell, A., \& Rosenbloom, P. S. (1981). Mechanisms of skill acquisition and the law of practice. \emph{Cognitive skills and their acquisition, 1}, pp. 1-55.
-
-\bibitem{Donner 2015} Donner, Y., \& Hardy, J. L. (2015). Piecewise power laws in individual learning curves. \emph{Psychonomic Bulletin \& Review, 22}(5), pp. 1308?1319.
-
-\bibitem{Gaschler et al. 2014} Gaschler, R., Progscha, J., Smallbone, K., Ram, N., \& Bilalic, M. (2014). Playing off the curve -testing quantitative predictions of skill acquisition theories in development of chess performance. \emph{Frontiers in Psychology, 5}, pp. 1?11.
-
-\bibitem{Howard 2014} Howard, R. W. (2014). Learning curves in highly skilled chess players: A test of the generality of the power law of practice. \emph{Acta Psychologica, 151}, pp. 16?23. 
-
-\bibitem{Heathcote et al. 2000} Heathcote, a, Brown, S., \& Mewhort, D. J. (2000). The power law repealed: the case for an exponential law of practice. \emph{Psychonomic Bulletin \& Review, 7}(2), pp. 185?207.
-
-\bibitem{Murre 2011} Murre, J. M., \& Chessa, A. G. (2011). Power laws from individual differences in learning and forgetting: mathematical analyses. \emph{Psychonomic bulletin \& review, 18}(3), pp. 592-597.
-
-\bibitem{Hackeling 2014} Hackeling, G. (2014). \emph{Mastering Machine Learning with scikit-learn}. Packt Publishing Ltd.
-
-\bibitem{Harrington 2012} Harrington, P. (2012). \emph{Machine learning in action} (Vol. 5). Greenwich, CT: Manning.
-
-\bibitem{Daume III 2012} Daume III, H. (2012). \emph{A course in Machine Learning}: ciml.info
-
-\bibitem{Michael 2015} Michael, B. 2015 \emph{Machine Learning in Python: Essential Techniques for Predictive Analysis}. Indianapolis: John Wiley \& Sons, Inc.
-
-\end{thebibliography}
+The best fitting function will be identified, by fitting various functions to the data set and comparing least square error of the functions from true responses. Firstly,  on the data set of 15 attempts.
 \end{comment}
 
-\nocite{*}
+\bigskip
+Possible functions are introduced in the next session, and then the method of how to identify a best fitting model will be explained. Finally, models as the results of the inference task will be briefly discussed.
+
+\section{Functions}
+There are many functions which can map input variables to target responses. The easiest and most straightforward function in machine learning might be a linear model \cite{rogers2015first}. Though linear model has historically been taken for a model $f$, but can the method be also applied to the on-line game data set as a function of individual learning pattern? In general, the true relationship might be more complex, and a linear function may not inference an accurate model.
+
+\bigskip
+In the same manner, a well known function in Psychology is a power function \cite{howard2014learning}. It has been controversy but considered as 'describing skill acquisition process well', whereby performance rapidly improves in early learning, decreases gradually, and reaches asymptote. Newell and Rosenbloom (1981) argued that "a single law, the power law of practice, adequately describes all of the practice data". Nevertheless, it is also argued that single exponential function may fit better for individuals than a power function, as it is produced by averaged many individual exponential functions \cite{murre2011power}.
+
+\bigskip
+Others say that individual learning curve may show an abrupt or 'aha! moment'. The untrained subjects show often "step-like increase" \cite{gallistel2004learning}, and the insight solution are "correct more often" than "analytic solutions" for different types of problems; even in the analytic problems, (compound remote associates, anagrams, rebus puzzles, and visual aha problems). Thus, there is possibility that learning curve of the on-line game data set might show step-like appearance.
+
+\bigskip
+Therefore, it would be better to fit various possible functions and to compare each other. After then, a curve which shows the best result can be assumed the function representing performance of learning best.
+
+% ======================================= %
+%		3.1.1 Parametric Method
+% ======================================= %
+\subsection{Parametric Method} \label{sbs:Parametric Method}
+Fitting models to the data set are involved with finding appropriate parameters of the functions. Once parameters are determined, those are substituted to the model. Then the best fitting curve can be drawn on the input variables. This model-based based approach in statistical inferring needs three steps of assumption.
+
+\bigskip
+Firstly, specific shape of model has to be predefined before a learning process. For example, the on-line game data might have relationship as polynomial function in the first order,
+\begin{equation} \label{eq:first_order}
+    \begin{split}
+        \textrm{first order model}:&\quad f(x_n;\; w_0, w_1) = w_0 + w_1 x_n,\\
+        \textrm{second order model}:&\quad f(x_n;\; w_0, w_1, w_2) = w_0 + w_1, x_n, + w_1 x_n^2
+    \end{split}
+\end{equation}
+where parameters are $w_0, w_1$ and $w_2$, $x_n$ represents data points, and $n \in \{1, 2, \cdots, n\}$. Likewise, once the model is defined, a number of model parameters are automatically determined, and set as factors which have to be mined from statistical inferring process.
+
+\bigskip
+Next thing what have to be noted is linearity of the model. Most models in machine learning would be practically linear function such as a first order polynomial function above. If a model is linear itself or in the parameters, the predefined function such as equation (\ref{eq:first_order}) can be alternatively simplified into vector and matrix formation,
+
+\begin{comment}
+\begin{equation} \label{eq:vector_matrix}
+\begin{split}
+\textrm{first order model}:&\quad f(x_n;\; \textbf{\textrm{w}}) = \textbf{\textrm{w}}^T \textbf{\textrm{x_n}}\\
+\textrm{first order model}:&\quad f(\textbf{\textrm{x}};\; \textbf{\textrm{w}}) = \textbf{\textrm{X}} \textbf{\textrm{w}},
+\end{split}
+\end{equation}
+\end{comment}
+
+\begin{equation} \label{eq:Saa}
+\begin{split}
+    \textrm{vector}:&\quad f(x_n;\; \textbf{\textrm{w}}) = \textbf{\textrm{w}}^T \textbf{\textrm{x}}_n,\\
+    \textrm{matrix}:&\quad f(\textbf{\textrm{x}};\; \textbf{\textrm{w}}) = \textbf{\textrm{X}} \textbf{\textrm{w}},
+\end{split}
+\end{equation}
+where $\textbf{\textrm{w}}$ is a vector containing parameters, and $\mathbf{X}$ is a matrix consisted with data vector. For instance, a second order polynomial model has a data vector as $\textbf{\textrm{x}}_n=[1,\; x_n,\; x_n^2]^T$, and in matrix form,
+\[
+\begin{split}
+    \mathbf{X} = 
+        \left[ \begin{array}{c}
+        \textbf{\textrm{x}}_1^T \\
+        \textbf{\textrm{x}}_2^T \\
+            \vdots \\
+        \textbf{\textrm{x}}_N^T 
+        \end{array} \right] =
+        \left[ \begin{array}{ccc}
+        1 & x_1 & x_1^2 \\
+        1 & x_2 & x_2^2 \\
+            \vdots \\
+        1 & x_N & x_N^2
+        \end{array} \right].
+\end{split}
+\]
+Checking the linearity of the model is important. Because function fitting process can be particularly simpler on linear functions than non-linear functions. In linear function, just taking partial derivatives of the loss function with respect to each parameter will result in the optimum values of parameters. The loss function will be discussed in session \ref{sbs:square_lost_function}, squared lost function.
+
+\bigskip
+Finally, parametric methods needs a training data to fit the model. For the analytics on on-line game data, there are curated 300 data sets for each individuals, as well as centroids of 13 clusters. Theses 300 data also can be separated into two parts; training set and validation set. Training data is used to fit the model the same role as before, and validation data is for testing the fitted curve, so as to check it represents well of the data set. For more specific of training and validation set, these will be explained later in the session \ref{sbs:Training_Validation}.
+
+% ======================================= %
+%		3.1.2 Functions for Single Curve
+% ======================================= %
+\subsection{Functions for Single Curve}
+In total 4 functions which are briefly explained above are examined as possible candidates for curve fitting,
+
+\begin{enumerate}
+    \item polynomial functions in different orders
+    \item exponential functions with different parameters,
+    \item power functions with various parameters,
+    \item step function.
+\end{enumerate}
+
+Polynomial functions from first up to five orders are trained for on-line game learning curve. First and second order were introduce in equation (\ref{eq:first_order}). Other remained functions are as below,
+\begin{equation} \label{eq:high_order}
+\begin{split}
+    \textrm{3rd order model}:&\quad f(x_n;\; \textbf{\textrm{w}}) = 
+        w_0 + w_1 x_n + w_2 x_n^2 + w_3 x_n^3\\
+    \textrm{4th order model}:&\quad f(x_n;\; \textbf{\textrm{w}}) =
+        w_0 + w_1 x_n + w_2 x_n^2 + w_3 x_n^3 + w_4 x_n^4\\
+    \textrm{5th order model}:&\quad f(x_n;\; \textbf{\textrm{w}}) = 
+        w_0 + w_1 x_n + w_2 x_n^2 + w_3 x_n^3 + w_4 x_n^4 + w_5 x_n^5.
+\end{split}
+\end{equation}
+
+Although, high order polynomial functions are non-linear on function itself, but they are still linear in parameters. In polynomial function, increasing number of order, lower cost they return. This situation is called as 'over fitting' problem in machine learning. Over fitting problem is common and must be solved in function fitting. This will be discussed in session \ref{sbs:overfitting}, overfitting.
+
+\bigskip
+Next function is exponential functions which are often considered describing individual learning curves well. Function fitting for exponential function is examined with from one to four parameters.
+\begin{equation} \label{eq:exponential_function}
+\begin{split}
+    \textrm{one parameter}:&\quad f(x_n; \; w_0) =  w_0 + e^{x_n},\\
+    \textrm{two parameters}:&\quad f(x_n;\; \textbf{\textrm{w}}) = w_0 + w_1 e^{x_n},\\
+    \textrm{three parameters}:&\quad f(x_n;\; \textbf{\textrm{w}}) = w_0 + w_1 e^{w_2x_n},\\
+    \textrm{four parameters}:&\quad f(x_n;\; \textbf{\textrm{w}}) = w_0 + w_1 e^{w_2 (x_n+w_3)},
+\end{split}
+\end{equation}
+where $w_0$ is asymptote, $w_1$ is slope, $w_2$ is power, and $w_3$ is delay of the exponential function. It might be thought that exponential function with four parameter will fit best among various number of parameters and training model with parameters less than four will be time consuming, because more parameters there are, more complexity the function can have. However, Heathcote et al. showed that exponential functions with three parameters (asymptote, slope and power) described learning result better than the three parameter power function \cite{heathcote2000power}. Therefore, in order to find the best curve fitting best to the on-line game data set, same model with different number of parameters has to be trained and compared. Interestingly, the exponential function fitting may result in step within the range of input variables, when inputs or $w_2$ goes to $-\infty$. This case will be discussed later. 
+
+\bigskip
+The model of power law is also tested, varying the number of parameters.
+\begin{equation} \label{eq:power_function}
+\begin{split}
+    \textrm{two parameters}:&\quad f(x_n;\; \textbf{\textrm{w}}) = w_0 + x^{w_1},\\
+    \textrm{three parameters}:&\quad f(x_n;\; \textbf{\textrm{w}}) = w_0 + w_2 x^{w_1},\\
+    \textrm{four parameters}:&\quad f(x_n;\; \textbf{\textrm{w}}) = w_0 + w_2 (x+w_3)^{w_1},
+\end{split}
+\end{equation}
+where $w_0$ is asymptote, $w_1$ is power, $w_2$ is slope, and $w_3$ is delay. Power function with one parameters is omitted. Because power function with only $w_0$ parameter is first order polynomial function $f(x) = w_0+x$. Like wise exponential function, if $w_1$ goes $-infty$, it will show step-like shape, but if $w_1$ converges to $1$, the power function will become first order polynomial function.
+
+\bigskip
+Finally, players might show step-like learning curve,
+\begin{equation} \label{eq:step_like}
+\begin{split}
+    f(x_n; \textbf{\textrm{w}}) = \left\{ \begin{array}{ll}
+        w_0 & \textrm{if $x_n \geq$ break point},\\
+        w_1 & \textrm{if $x_n <$ break point}.\end{array} \right.
+\end{split}
+\end{equation}
+While above polynomial, exponential and power functions are continuous over a range of input variables, step-like function shows 'discrete' appearance which has a separate unconnected 'break point'. Thus, step-like function shows an abrupt change between a left side and right side at the break point. Step-like function is largely related to feature of piecewise, as well as other three functions are also trained on several pieces of train set.
+
+% ======================================= %
+%		3.1.3 Piecewise Function
+% ======================================= %
+\subsection{Piecewise Function} \label{sbs:piecewise}
+Piecewise function may be continuous within pieces, but the continuity will break at the point between pieces. Pieces defines at least two equations on different parts of the input domain. Individual learning curves performed on the on-line game may contain this feature, as Gallistel (2004) argued that smooth power function (or Weibull function) cannot provide reasonable evidences of individual learning curves, and discontinuity occurs at change-points. Therefore, individual learning curves of the on-line game might be explained better through piecewise defined functions than the single curve functions.
+
+\bigskip
+For the analytics, above four functions are combined themselves. For instance, multiple power functions constitutes a piecewise power function. In the same manner, piecewise exponential and step functions have multiple exponential and step functions respectively. Below is an example of piecewise power function having 3 parameters with 1 transition point,
+\begin{equation}
+\begin{split}
+    f(x_n; \textbf{\textrm{w}}) = \left\{ \begin{array}{ll}
+        w_0 + w_2 x_n^{w_1} &\quad \textrm{if $x_n \leq$ transition point},\\
+        w_3 + w_5 x_n^{w_4} &\quad \textrm{if $x_n >$ transition point}.\end{array} \right.
+\end{split}
+\end{equation}
+Similarly, all different functions also can be combined together, such as power function comprises earlier part of learning and step-like or polynomial functions follow after a transition point,
+\begin{equation}
+\begin{split}
+    f(x_n; \textbf{\textrm{w}}) = \left\{ \begin{array}{ll}
+        w_0 + w_2 x_n^{w_1} &\quad \textrm{if $x_n \leq$ transition point},\\
+        w_3 + 2_4 x_n &\quad \textrm{if $x_n >$ transition point}.\end{array} \right.
+\end{split}
+\end{equation}
+Every players may show a large variety of learning patterns, but those learning curves are ambiguous. Thus, functions are fitted as many and various as possible, and compared with each other under a criterion, squared lost function. This criterion will be discussed in session \ref{sbs:square_lost_function}
+
+\bigskip
+Another clue which provides best curve fitting information in piecewise functions is identifying such transition points (or change-points) in the data set \cite{gallistel2004learning}. To identify the true discontinuities, Donner and Hardy (2015) suggested two conditions. First, Large data set is required with many individual learning curves. At the same time, that learning curves should have long enough data sequence including "potentially infrequent discontinuities". Fortunately, the on-line game data set complies with the conditions. ??? individuals comprise the train set and almost players have discontinuous data sequence because of unknown reason.
+
+In addition, in this on-line game data analysis, transition points would not only represent discontinuities of data sequences but also provide the position where squared errors in a piece wise function are  minimum. The minimum cost can tell which points will result in the best curve fitting on the data set. Fig. \ref{fig:pieces} shows how to find the exact transition points. Firstly, entire data range is separated to $n-1$ transition points in $n$ pieces. Thus, there are three lines as the transition points with different colours (red, green, blue). Minimum 50 window in each piece is used for the example, though actual window is 10. Accordingly, transition point 1 is on 50, point 2 is on 100, and the last point is on 150, and the last piece have remained 150 of attempt range as an initial condition. In each pieces, a single function's cost is saved into a matrix. The shape of matrix is $[\textit{\textrm{ number of pieces $\times$ number of shift of a last transition point}}]$. (\ref{eq:cost_matrix}) is an example of the cost matrix for 3 transition points with 4 pieces.
+
+\begin{equation} \label{eq:cost_matrix}
+\begin{split}
+   \mathbf{M}= \left[\begin{array}{lll}
+        1	& 	1	&	1\\
+        51	&	101	&	151\\
+        101	&	151	&	201\\
+        151	&	201	&	251\\
+        w_3 + w_5 x_n^{w_4} &\quad \textrm{if $x_n >$ transition point} & b\end{array} \right].
+\end{split}
+\end{equation}
+Because a start point of the first piece does not change, all elements in the first row are 1. 
+
+\begin{figure}[htpb]
+    \centering
+    \framebox{\parbox[t][0.5\textheight][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.48\textheight]{piece_test.jpg}
+        \end{center} }}
+	\caption{Transition point shift in 4 pieces}
+    \label{fig:pieces}
+\end{figure}
+
+For this, a matrix which will save costs of each piece is introduced
+
+\section{Method}
+\subsection{Squared Lost Function} \label{sbs:square_lost_function}
+parametric approach (An introduction to statistical learning, 21p~24p)
+\subsection{Overfitting} \label{sbs:overfitting}
+\subsection{Training Set and Validation Set} \label{sbs:Training_Validation}
+At first, assumption for learning processes will be tested on 14 data sets in which groups show similar learning patterns between 15 attempts and scores.
+\subsection{Choice of Breaking Point}
+\subsection{Number of Break Points}
+
+\section{Curve Fittings}
+
+%\nocite{*}
 \bibliographystyle{apacite}
 %\bibliographystyle{apalike}
 \bibliography{references}
 \end{document}
-
-%\begin{gather*} 
-%2x - 5y =  8 \\ 
-%3x^2 + 9y =  3a + c
-%\end{gather*}

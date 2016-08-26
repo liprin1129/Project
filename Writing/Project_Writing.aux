@@ -30,13 +30,14 @@
 \citation{newell1981mechanisms}
 \citation{gallistel2004learning}
 \citation{donner2015piecewise}
-\citation{donner2015piecewise}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Data storage and index table}{9}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}K-Means Clustering with Competitive Learning Algorithm}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Multiprocessing}{9}}
+\citation{donner2015piecewise}
 \citation{hackeling2014mastering}
 \citation{harrington2012machine}
 \citation{daume2012course}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}K-Means Clustering with Competitive Learning Algorithm}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{11}}
 \newlabel{eq:threshold1}{{2.1}{11}}
 \newlabel{eq:k_means_cost_function}{{2.2}{11}}
 \newlabel{eq:threshold2}{{2.3}{11}}
@@ -44,53 +45,85 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Competitive neuron diagram. When an input enters the network, it generates output values according to weights between an input and output neuron (blue arrows). Output neurons compete with each other (red arrows), then only one output fires on an input pattern. Output neurons are considered only having binary $0/1$ output.\relax }}{13}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:Competitive_Diagram}{{2.1}{13}}
-\newlabel{eq:competitive1}{{2.4}{13}}
-\newlabel{eq:competitive2}{{2.5}{13}}
-\newlabel{eq:competitive3}{{2.6}{13}}
 \citation{bowles2015machine}
+\newlabel{eq:competitive1}{{2.4}{14}}
+\newlabel{eq:competitive2}{{2.5}{14}}
+\newlabel{eq:competitive3}{{2.6}{14}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Normalisation}{14}}
 \newlabel{eq:inner_product}{{2.7}{14}}
-\newlabel{eq:distance}{{2.8}{14}}
 \newlabel{fig:not_norm_data}{{2.2a}{15}}
 \newlabel{sub@fig:not_norm_data}{{a}{15}}
 \newlabel{fig:not_norm_weight}{{2.2b}{15}}
 \newlabel{sub@fig:not_norm_weight}{{b}{15}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Examples of not-normalised data and weight in 3 dimensions. In both left and right figures, sphere represents unit length area.\relax }}{15}}
 \newlabel{fig:not-normalised}{{2.2}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Procedure of the algorithm}{15}}
-\newlabel{eq:on-line and batch}{{2.9}{16}}
+\newlabel{eq:distance}{{2.8}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.4}Procedure of the algorithm}{16}}
 \citation{hackeling2014mastering}
-\citation{daume2012course}
+\newlabel{eq:on-line and batch}{{2.9}{17}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.5}Local optima and optimal number of clusters}{17}}
-\newlabel{eq:AICandBIC}{{2.10}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Comparison between AIC and BIC according to the different number of k. AIC are more strict method than BIC to identify the number of clusters.\relax }}{18}}
-\newlabel{fig:AIC_BIC_Elbow}{{2.3}{18}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Dealing with dead unit}{19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces An example of dead unit problem. Red and Green arrows are initialised weight before applying into the network. Green arrow is set far from both two input clusters, and it is assumed as a dead unit. Unfortunately, green arrow will never fire through the learning, and which means that input vectors are not properly clustered.\relax }}{19}}
-\newlabel{fig:dead_unit}{{2.4}{19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Learning rate and existence of dead units\relax }}{20}}
-\newlabel{fig:dead_state}{{2.5}{20}}
-\newlabel{eq:leaky_learning}{{2.11}{20}}
-\newlabel{eq:add_bias}{{2.12}{21}}
-\newlabel{eq:add_noise}{{2.13}{21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Learning rate and and entire firing number of output neurons after using SV approach for dead units\relax }}{22}}
-\newlabel{fig:dead_states_solved}{{2.6}{22}}
-\newlabel{eq9}{{2.14}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Centroids}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Centroids of cluster from 1 to 4\relax }}{23}}
-\newlabel{fig:centroid1}{{2.7}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Centroids of cluster from 5 to 8\relax }}{24}}
-\newlabel{fig:centroid2}{{2.8}{24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Centroids of cluster from 9 to 12\relax }}{24}}
-\newlabel{fig:centroid3}{{2.9}{24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces Centroids of cluster 13 and 14\relax }}{25}}
-\newlabel{fig:centroid4}{{2.10}{25}}
-\citation{*}
-\bibstyle{apacite}
-\bibdata{references}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Function Fitting}{26}}
+\citation{daume2012course}
+\newlabel{eq:AICandBIC}{{2.10}{18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.6}Dealing with dead unit}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Comparison between AIC and BIC according to the different number of k. AIC are more strict method than BIC to identify the number of clusters.\relax }}{19}}
+\newlabel{fig:AIC_BIC_Elbow}{{2.3}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces An example of dead unit problem. Red and Green arrows are initialised weight before applying into the network. Green arrow is set far from both two input clusters, and it is assumed as a dead unit. Unfortunately, green arrow will never fire through the learning, and which means that input vectors are not properly clustered.\relax }}{20}}
+\newlabel{fig:dead_unit}{{2.4}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Learning rate and existence of dead units\relax }}{21}}
+\newlabel{fig:dead_state}{{2.5}{21}}
+\newlabel{eq:leaky_learning}{{2.11}{21}}
+\newlabel{eq:add_bias}{{2.12}{22}}
+\newlabel{eq:add_noise}{{2.13}{22}}
+\newlabel{eq:SV}{{2.14}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Learning rate and and entire firing number of output neurons after using SV approach for dead units\relax }}{23}}
+\newlabel{fig:dead_states_solved}{{2.6}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.7}Centroids}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Centroids of cluster from 1 to 4\relax }}{24}}
+\newlabel{fig:centroid1}{{2.7}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Centroids of cluster from 5 to 8\relax }}{25}}
+\newlabel{fig:centroid2}{{2.8}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Centroids of cluster from 9 to 12\relax }}{25}}
+\newlabel{fig:centroid3}{{2.9}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces Centroids of cluster 13 and 14\relax }}{26}}
+\newlabel{fig:centroid4}{{2.10}{26}}
+\citation{james2013introduction}
+\citation{rogers2015first}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Function Fitting}{27}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{eq:unbiased}{{3.1}{27}}
+\citation{howard2014learning}
+\citation{murre2011power}
+\citation{gallistel2004learning}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Functions}{28}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Parametric Method}{28}}
+\newlabel{sbs:Parametric Method}{{3.1.1}{28}}
+\newlabel{eq:first_order}{{3.2}{29}}
+\newlabel{eq:Saa}{{3.3}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Functions for Single Curve}{30}}
+\newlabel{eq:high_order}{{3.4}{30}}
+\citation{heathcote2000power}
+\newlabel{eq:exponential_function}{{3.5}{31}}
+\newlabel{eq:power_function}{{3.6}{31}}
+\newlabel{eq:step_like}{{3.7}{31}}
+\citation{gallistel2004learning}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Piecewise Function}{32}}
+\newlabel{sbs:piecewise}{{3.1.3}{32}}
+\newlabel{eq:cost_matrix}{{3.10}{33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Transition point shift in 4 pieces\relax }}{34}}
+\newlabel{fig:pieces}{{3.1}{34}}
+\bibstyle{apacite}
+\bibdata{references}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Method}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Squared Lost Function}{35}}
+\newlabel{sbs:square_lost_function}{{3.2.1}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Overfitting}{35}}
+\newlabel{sbs:overfitting}{{3.2.2}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Training Set and Validation Set}{35}}
+\newlabel{sbs:Training_Validation}{{3.2.3}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}Number of Break Points}{35}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Curve Fittings}{35}}
 \bibcite{bowles2015machine}{\citeauthoryear {Bowles}{Bowles}{{\APACyear {2015}}}}
 \APACbibcite{bowles2015machine}{\citeauthoryear {Bowles}{Bowles}{{\APACyear {2015}}}}
 \bibcite{daume2012course}{\citeauthoryear {Daum{\'e}\nobreakspace  {}III}{Daum{\'e}\nobreakspace  {}III}{{\APACyear {2012}}}}
@@ -117,7 +150,7 @@
 \APACbibcite{newell1981mechanisms}{\citeauthoryear {Newell\ \BBA{} Rosenbloom}{Newell\ \BBA{} Rosenbloom}{{\APACyear {1981}}}}
 \bibcite{python2016pickle}{\citeauthoryear {on-line Python\nobreakspace  {}document}{on-line Python\nobreakspace  {}document}{{\APACyear {{\bibnodate {}}}}{\APACexlab {{\BCntND {1}}}}}}
 \APACbibcite{python2016pickle}{\citeauthoryear {on-line Python\nobreakspace  {}document}{on-line Python\nobreakspace  {}document}{{\APACyear {{\bibnodate {}}}}{\APACexlab {{\BCntND {1}}}}}}
-\@writefile{toc}{\contentsline {chapter}{References}{27}}
+\@writefile{toc}{\contentsline {chapter}{References}{36}}
 \bibcite{python2016multiprocessing}{\citeauthoryear {on-line Python\nobreakspace  {}document}{on-line Python\nobreakspace  {}document}{{\APACyear {{\bibnodate {}}}}{\APACexlab {{\BCntND {2}}}}}}
 \APACbibcite{python2016multiprocessing}{\citeauthoryear {on-line Python\nobreakspace  {}document}{on-line Python\nobreakspace  {}document}{{\APACyear {{\bibnodate {}}}}{\APACexlab {{\BCntND {2}}}}}}
 \bibcite{shafranovich2008common}{\citeauthoryear {Shafranovich}{Shafranovich}{{\APACyear {2008}}}}

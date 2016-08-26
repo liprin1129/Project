@@ -11,13 +11,25 @@
 \contentsline {section}{\numberline {2.3}Data Deformation}{8}
 \contentsline {subsection}{\numberline {2.3.1}Pickle file format}{8}
 \contentsline {subsection}{\numberline {2.3.2}Data storage and index table}{9}
-\contentsline {section}{\numberline {2.4}K-Means Clustering with Competitive Learning Algorithm}{9}
-\contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{10}
+\contentsline {subsection}{\numberline {2.3.3}Multiprocessing}{9}
+\contentsline {section}{\numberline {2.4}K-Means Clustering with Competitive Learning Algorithm}{10}
+\contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{11}
 \contentsline {subsection}{\numberline {2.4.2}Competitive learning}{12}
 \contentsline {subsection}{\numberline {2.4.3}Normalisation}{14}
-\contentsline {subsection}{\numberline {2.4.4}Procedure of the algorithm}{15}
+\contentsline {subsection}{\numberline {2.4.4}Procedure of the algorithm}{16}
 \contentsline {subsection}{\numberline {2.4.5}Local optima and optimal number of clusters}{17}
-\contentsline {subsection}{\numberline {2.4.6}Dealing with dead unit}{19}
-\contentsline {subsection}{\numberline {2.4.7}Centroids}{23}
-\contentsline {chapter}{\numberline {3}Function Fitting}{26}
-\contentsline {chapter}{References}{27}
+\contentsline {subsection}{\numberline {2.4.6}Dealing with dead unit}{18}
+\contentsline {subsection}{\numberline {2.4.7}Centroids}{24}
+\contentsline {chapter}{\numberline {3}Function Fitting}{27}
+\contentsline {section}{\numberline {3.1}Functions}{28}
+\contentsline {subsection}{\numberline {3.1.1}Parametric Method}{28}
+\contentsline {subsection}{\numberline {3.1.2}Functions for Single Curve}{30}
+\contentsline {subsection}{\numberline {3.1.3}Piecewise Function}{32}
+\contentsline {section}{\numberline {3.2}Method}{35}
+\contentsline {subsection}{\numberline {3.2.1}Squared Lost Function}{35}
+\contentsline {subsection}{\numberline {3.2.2}Overfitting}{35}
+\contentsline {subsection}{\numberline {3.2.3}Training Set and Validation Set}{35}
+\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{35}
+\contentsline {subsection}{\numberline {3.2.5}Number of Break Points}{35}
+\contentsline {section}{\numberline {3.3}Curve Fittings}{35}
+\contentsline {chapter}{References}{36}
