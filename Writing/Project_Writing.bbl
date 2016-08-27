@@ -103,39 +103,6 @@ Gallistel, C\BPBI R.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Gaschler%
-, Progscha%
-, Smallbone%
-, Ram%
-\BCBL {}\ \BBA {} Bilalic%
-}{%
-Gaschler%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2007}}%
-}]{%
-gaschler2007playing}
-\APACinsertmetastar {%
-gaschler2007playing}%
-\begin{APACrefauthors}%
-Gaschler, R.%
-, Progscha, J.%
-, Smallbone, K.%
-, Ram, N.%
-\BCBL {}\ \BBA {} Bilalic, M.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2007}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Playing off the curve-testing quantitative predictions
-  of skill acquisition theories in development of chess performance} {Playing
-  off the curve-testing quantitative predictions of skill acquisition theories
-  in development of chess performance}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Psychological perspectives on expertise}{20}{40}{137}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Hackeling%
 }{%
 Hackeling%
@@ -257,6 +224,35 @@ Idris, I.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+James%
+, Witten%
+, Hastie%
+\BCBL {}\ \BBA {} Tibshirani%
+}{%
+James%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
+}]{%
+james2013introduction}
+\APACinsertmetastar {%
+james2013introduction}%
+\begin{APACrefauthors}%
+James, G.%
+, Witten, D.%
+, Hastie, T.%
+\BCBL {}\ \BBA {} Tibshirani, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2013}.
+\newblock
+\APACrefbtitle {An introduction to statistical learning} {An introduction to
+  statistical learning}\ (\BVOL~6).
+\newblock
+\APACaddressPublisher{}{Springer}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Murre%
 \ \BBA {} Chessa%
 }{%
@@ -310,9 +306,9 @@ Newell, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-on-line Python~document%
+python on-line document%
 }{%
-on-line Python~document%
+python on-line document%
 }{%
 {\protect \APACyear {{\protect \bibnodate {}}}}%
 {\protect \APACexlab {{\protect \BCntND {1}}}}}]{%
@@ -320,42 +316,67 @@ python2016pickle}
 \APACinsertmetastar {%
 python2016pickle}%
 \begin{APACrefauthors}%
-on-line Python~document.%
+python on-line document.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{{\protect \bibnodate {}}{\protect \BCntND {1}}}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {12.1. pickle --- Python object serialization} {12.1.
-  pickle --- python object serialization}{\BBCQ}\ [\bibcomputersoftwaremanual].
+{\BBOQ}\APACrefatitle {12.1. pickle ? Python object serialization} {12.1.
+  pickle ? python object serialization}{\BBCQ}\ [\bibcomputersoftwaremanual].
 \newblock
 \APACrefnote{Retrieved August 16, 2016, from
   https://docs.python.org/3/library/pickle.html}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-on-line Python~document%
+python on-line document%
 }{%
-on-line Python~document%
+python on-line document%
 }{%
 {\protect \APACyear {{\protect \bibnodate {}}}}%
 {\protect \APACexlab {{\protect \BCntND {2}}}}}]{%
-python2016multiprocessing}
+pythonLeastSquare}
 \APACinsertmetastar {%
-python2016multiprocessing}%
+pythonLeastSquare}%
 \begin{APACrefauthors}%
-on-line Python~document.%
+python on-line document.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{{\protect \bibnodate {}}{\protect \BCntND {2}}}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {16.6. multiprocessing --- Process-based ``threading''
-  interface} {16.6. multiprocessing --- process-based ``threading''
-  interface}{\BBCQ}\ [\bibcomputersoftwaremanual].
+{\BBOQ}\APACrefatitle {SciPy.org - scipy.optimize.least\_squares} {Scipy.org -
+  scipy.optimize.least\_squares}{\BBCQ}\ [\bibcomputersoftwaremanual].
 \newblock
-\APACrefnote{Retrieved July 13, 2016,
-  https://docs.python.org/2/library/multiprocessing.html}
+\APACrefnote{Retrieved Aug 11, 2016,
+  http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least\_squares.html\#jjmore}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Rogers%
+\ \BBA {} Girolami%
+}{%
+Rogers%
+\ \BBA {} Girolami%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+rogers2015first}
+\APACinsertmetastar {%
+rogers2015first}%
+\begin{APACrefauthors}%
+Rogers, S.%
+\BCBT {}\ \BBA {} Girolami, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2015}.
+\newblock
+\APACrefbtitle {A first course in machine learning} {A first course in machine
+  learning}.
+\newblock
+\APACaddressPublisher{}{CRC Press}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

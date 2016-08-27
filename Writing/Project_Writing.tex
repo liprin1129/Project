@@ -412,14 +412,14 @@ for an input vector $\mathbf{x}$.
 
 Winner neurons are found by (\ref{eq:competitive2}),
 \begin{equation} \label{eq:competitive2}
-    \vec{\mathbf{w}}_k^T\vec{\mathbf{x}}^\mu > \vec{\mathbf{w}}_i^T\vec{\mathbf{x}}^\mu \quad \textrm{for all i},
+    \vec{\mathbf{w}}_k^\top\vec{\mathbf{x}}^\mu > \vec{\mathbf{w}}_i^\top\vec{\mathbf{x}}^\mu \quad \textrm{for all i},
 \end{equation}
-where winner neuron is $\vec{\mathbf{w}}_k^T$, and $\vec{\mathbf{x}}^\mu$ is an input of pattern $\mu$.
+where winner neuron is $\vec{\mathbf{w}}_k^\top$, and $\vec{\mathbf{x}}^\mu$ is an input of pattern $\mu$.
 
 \bigskip
 (\ref{eq:competitive2}) tells winning unit is the biggest. If the weight vectors connecting between each input and output are normalized, $\vec{\mathbf{w_i}}=1$, then (\ref{eq:competitive1}) can be redefined as below,
 \begin{equation} \label{eq:competitive3}
-    \quad |\vec{x}^\mu - \vec{w}_k^T| \leq |\vec{x}^\mu - \vec{w}_i^T|, \quad
+    \quad |\vec{x}^\mu - \vec{w}_k^\top| \leq |\vec{x}^\mu - \vec{w}_i^\top|, \quad
     \textrm{only if} \;\; |\vec{w}=1| \;\; \textrm{for all i.}
 \end{equation}
 
@@ -428,7 +428,7 @@ where winner neuron is $\vec{\mathbf{w}}_k^T$, and $\vec{\mathbf{x}}^\mu$ is an 
 
 \bigskip
 Competitive learning only consider the output neuron with the maximum net value of inner product between input and weight. Biologically, output neurons are connected with other output neurons with lateral inhibition, as well as excitatory connection itself, and therefore winner takes all units.
-%output neurons have a value of $\vec{w}^T\vec{x}^\mu$, thus the largest output is always win. 
+%output neurons have a value of $\vec{w}^\top\vec{x}^\mu$, thus the largest output is always win. 
 
 \bigskip
 For competitive learning, the thing to note is that weights must be normalised in order for all units to have a unit length.
@@ -439,7 +439,7 @@ For competitive learning, the thing to note is that weights must be normalised i
 \subsection{Normalisation}
 Normalisation is important for analysing data with different scale to be compared and then to derive information in K-Means clustering \cite{bowles2015machine}. To be specific about normalisation for competitive learning, the network exploits the inner product for each input with weight vectors in order to identify winner output unit. If looking inside of (\ref{eq:competitive2}), the equation for inner product is
 \begin{equation}\label{eq:inner_product}
-    \vec{\mathbf{w}}^T \cdot \vec{\mathbf{x}}^\mu = \vec{\mathbf{w}}^T\vec{\mathbf{x}}^\mu \cos(\theta),
+    \vec{\mathbf{w}}^\top \cdot \vec{\mathbf{x}}^\mu = \vec{\mathbf{w}}^\top\vec{\mathbf{x}}^\mu \cos(\theta),
 \end{equation}
 with respect to the lengths of both units and a direction between input pattern and weight. Not-normalised one has no way for a criterion for competing output units with weight vectors. Because the neuron which has the largest value in length always wins. That implies the algorithm will finish without any learning or no informative outcome through iterations, in the both cases of not-normalised data-set and weight vectors.
 
@@ -472,8 +472,8 @@ Eventually, the inner product in (\ref{eq:competitive3}) becomes the criterion w
 
 \begin{equation}\label{eq:distance}
     \begin{split}
-        \vec{\mathbf{w}}_k^T \cdot \vec{\mathbf{x}}^\mu &> 
-        \vec{\mathbf{w}}_i^T \cdot \vec{\mathbf{x}}^\mu \\
+        \vec{\mathbf{w}}_k^\top \cdot \vec{\mathbf{x}}^\mu &> 
+        \vec{\mathbf{w}}_i^\top \cdot \vec{\mathbf{x}}^\mu \\
         \cos(\theta_k) &\geq \cos(\theta_i).
     \end{split}
 \end{equation}
@@ -753,29 +753,29 @@ where parameters are $w_0, w_1$ and $w_2$, $x_n$ represents data points, and $n 
 What has to be noted next is that linearity of the model. Most models in machine learning would be practically linear function such as a first order polynomial function above. If a model is linear itself or in the parameters, the predefined function such as equation (\ref{eq:first_order}) can be alternatively simplified into vector and matrix formation,
 
 \begin{comment}
-\begin{equation} \label{eq:vector_matrix}
+\begin{equation}
 \begin{split}
-\textrm{first order model}:&\quad f(x_n;\; \textbf{\textrm{w}}) = \textbf{\textrm{w}}^T \textbf{\textrm{x_n}}\\
+\textrm{first order model}:&\quad f(x_n;\; \textbf{\textrm{w}}) = \textbf{\textrm{w}}^\top \textbf{\textrm{x_n}}\\
 \textrm{first order model}:&\quad f(\textbf{\textrm{x}};\; \textbf{\textrm{w}}) = \textbf{\textrm{X}} \textbf{\textrm{w}},
 \end{split}
 \end{equation}
 \end{comment}
 
-\begin{equation} \label{eq:Saa}
+\begin{equation} \label{eq:vector_matrix}
 \begin{split}
-    \textrm{vector}:&\quad f(x_n;\; \textbf{\textrm{w}}) = \textbf{\textrm{w}}^T \textbf{\textrm{x}}_n,\\
+    \textrm{vector}:&\quad f(x_n;\; \textbf{\textrm{w}}) = \textbf{\textrm{w}}^\top \textbf{\textrm{x}}_n,\\
     \textrm{matrix}:&\quad f(\textbf{\textrm{x}};\; \textbf{\textrm{w}}) = \textbf{\textrm{X}} \textbf{\textrm{w}},
 \end{split}
 \end{equation}
-where $\textbf{\textrm{w}}$ is a vector containing parameters, and $\mathbf{X}$ is a matrix consisted with data vector. For instance, a second order polynomial model has a data vector as $\textbf{\textrm{x}}_n=[1,\; x_n,\; x_n^2]^T$, and in matrix form,
+where $\textbf{\textrm{w}}$ is a vector containing parameters, and $\mathbf{X}$ is a matrix consisted with data vector. For instance, a second order polynomial model has a data vector as $\textbf{\textrm{x}}_n=[1,\; x_n,\; x_n^2]^\top$, and in matrix form,
 \[
 \begin{split}
     \mathbf{X} = 
         \left[ \begin{array}{c}
-        \textbf{\textrm{x}}_1^T \\
-        \textbf{\textrm{x}}_2^T \\
+        \textbf{\textrm{x}}_1^\top \\
+        \textbf{\textrm{x}}_2^\top \\
             \vdots \\
-        \textbf{\textrm{x}}_N^T 
+        \textbf{\textrm{x}}_N^\top 
         \end{array} \right] =
         \left[ \begin{array}{ccc}
         1 & x_1 & x_1^2 \\
@@ -888,18 +888,100 @@ To sum up, individual learning curve may be represented as a single curve or mul
 %		3.2 Method
 % ======================================= %
 \section{Method}
-Through the previous chapter, it is discussed that several possible models might be contained in the on-line data set as individual learning curves. However, the data set seem containing noises, and they make hard to identify true parameters of the models in such high disturbance. Furthermore, even though feasible parameters are found, some criteria which measure how the trained learning curves fit well on the models are necessary. If not, there is no way to distinguish the best individual learning curve among various outcomes.
+Through the previous chapter, it is discussed that what kind of models might be contained in the on-line data set as the individual learning curves. However, the on-line data set seems containing many noises, and they make hard to identify true parameters of the models with such high disturbance. Furthermore, even after feasible parameters are found, some criteria which measure how the trained learning curves fit well on the predefined models are necessary. If not, there is no way to distinguish the best individual learning curve among various outcomes.
 
-Therefore, some appropriate methods have to be operated through curve fitting process. This session introduces those methods.
+Therefore, some appropriate methods have to be operated through the curve fitting process. This session introduces the curve fitting method and relevant criteria.
 
-\newpage
-
-In searching for optimal learning curve from the data set, 
-Each model has their own parameters. After training models on the data set, best learning  parameters  
 \subsection{Squared Lost Function} \label{sbs:square_lost_function}
-parametric approach (An introduction to statistical learning, 21p~24p)
+There are several optimality criterion to search for optimal parameters. Squared lost function is one of possible and well known method to fit the linear model \cite{james2013introduction} which is linear itself or in parameters. The best learning curve may consist of the parameters producing a line that passes as many and close as possible the data points.
+
+\bigskip
+The squared lost function is defined as below,
+\begin{equation} \label{eq:loss_function}
+\begin{split}
+    \mathcal{L}_{n}(y_n,\; f(x_n; \textbf{\textrm{w}})) =& (y_n - f(x_n;\; \textbf{\textrm{w}}) )^2,\\
+    \mathcal{L}_{\textrm{avg}}(\textbf{\textrm{y}}, \; f(\textbf{\textrm{x}}, \textbf{\textrm{w}}) =& \frac{1}{N}\sum_{n=1}^{N}\mathcal{L}_{n}(y_n,\; f(x_n; \textbf{\textrm{w}}))
+\end{split}
+\end{equation}
+where $\mathcal{L}_n$ represents cost value of the difference between true value $y_n$ and trained value $f(x_n)$, and $\mathcal{L}_\textrm{avg}$ is average cost of errors loss. If the value of cost is smaller and smaller, the model with trained parameter becomes closer to the true variables at the input position $n$. In other words, the average errors loss will decrease when the trained function increases with accurate parameters to the true values. 
+%The best curve will have a minimum cost of average loss discovered by tuning parameters across the entire data set as follow,
+
+\bigskip
+The $\arg\min$ of the average loss is involved finding such geometrical turning points with respect to parameters, and it will tells the minima corresponding the turning points,
+\begin{equation} \label{eq:avg_loss_function}
+\begin{split}
+    \textbf{w}_{\textrm{opt}} = {\arg\min}_{\textbf{w}} \frac{1}{N}\sum_{n=1}^{N}(y_n - f(x_n;\; \textbf{w}) )^2. %\textbf{\textrm{w}})) =  
+\end{split}
+\end{equation}
+
+\bigskip
+One way to identify those turning points with respect to parameters is using first and second partial derivatives, using vector and matrix formation. Substituting (\ref{eq:vector_matrix}) to the loss function will lead to (\ref{eq:loss_function}),
+\begin{equation} \label{eq:loss_derivative}
+\begin{split}
+    \frac{\partial \mathcal{L}_{\textrm{avg}}}{\partial \textbf{w}} &=
+    \frac{\partial}{\partial \textbf{w}}
+    \bigg[ \frac{1}{N}\sum_{n=1}^{N}\mathcal{L}_{n}(y_n - \textbf{w}^\top\textbf{x}_n)^2 \bigg] \\
+    &= \frac{\partial}{\partial \textbf{w}}
+    \bigg[\frac{1}{N}(\textbf{y} - \mathbf{X}\textbf{w})^\top(\textbf{y} - \mathbf{X}\textbf{w}) \bigg]\\
+    &= \frac{\partial}{\partial \textbf{w}}
+    \bigg[\frac{1}{N}\textbf{w}^\top\mathbf{X}^\top\mathbf{X}\textbf{w} - 
+    \frac{2}{N}\textbf{w}^\top\mathbf{X}^\top\textbf{y} + 
+    \frac{1}{N}\textbf{y}^\top\frac{1}{N}\textbf{y}
+    \bigg]
+\end{split}
+\end{equation}
+
+First derivatives of the model (or gradient of the function) must be zero with respect to the turning points in a graph in parameters. Thus (\ref{eq:loss_derivative}) results in the solution,
+\begin{equation} \label{eq:loss_zero}
+\begin{split}
+    \frac{\partial \mathcal{L}_{\textrm{avg}}}{\partial \textbf{w}} =
+    \frac{2}{N}\mathbf{X}^\top\mathbf{X}\textbf{w} &-\frac{2}{N}\mathbf{X}^\top\textbf{y} = 0\\
+    \mathbf{X}^\top\mathbf{X}\textbf{w} &= \mathbf{X}^\top \textbf{y}
+\end{split}
+\end{equation}
+Then, (\ref{eq:loss_zero}) is solved with respect to $\textbf{w}$, using the Python command \textbf{\textit{numpy.linalg.solve}} or QR decomposition,
+\begin{equation}
+\begin{split}
+    \mathbf{X}^\top \mathbf{X} \textbf{w} & = \mathbf{X}^\top \mathbf{y} \\
+    (\mathbf{Q}\mathbf{R})^\top (\mathbf{Q}\mathbf{R})\textbf{w} &=
+    (\mathbf{Q}\mathbf{R})^\top \mathbf{y} \\
+    \mathbf{R}^\top (\mathbf{Q}^\top \mathbf{Q}) \mathbf{R} \textbf{w} &=
+    \mathbf{R}^\top \mathbf{Q}^\top \mathbf{y} \\
+    \mathbf{R}^\top \mathbf{R} \textbf{w} &= \mathbf{R}^\top \mathbf{Q}^\top \mathbf{y} \\
+    \mathbf{R} \textbf{w} &= \mathbf{Q}^\top \mathbf{y},
+\end{split}
+\end{equation}
+where $\mathbf{Q}$ is orthogonal matrix, so that $\mathbf{Q}^\top \mathbf{Q}=\mathbf{I}$, and matrix $\mathbf{R}$ is upper triangular. QR decomposition may provide a solution with more numerically stability, because $\mathbf{X}\top \mathbf{X}$ is removed, in which all elements are squared and then potentially numerical precision is disappeared. However, QR decomposition will operate on X directly, preserving the model's numerical precision.
+Finally, second derivatives tells that whether the turning  points correspond to minimum, maximum or saddle point. 
+%Using the vector and matrix formation for linear functions in parameters, the partial derivative develops simple task.
+%A potential minimum can be derived easily; computing the partial derivatives, equating to zero, and solving for parameters.
+
+\bigskip
+For non-linear function, it is not tractable to find the optimal parameters by equating partial derivatives to zero, and trans-positioning matrices in order to remain parameter matrix. In addition, to set the parameter and variable matrices is not impossible in non-linear functions with respect to parameters. In this case, 'gradient descent' method is used, which minimises the squared lost function.
+
+\bigskip
+\begin{algorithmic}
+\STATE Initialise $p_n$ \COMMENT{there are $n$ number of parameters}
+\STATE Set $\eta$ \COMMENT{learning rate prevents overshoot problem}
+\WHILE{$p_{n\_new}-p_{n\_old}$ is not greatly smaller}
+     \FOR{$i=0$ to $n$}
+         \STATE $p_{n\_new} \leftarrow p_{n\_old} + \eta \frac{\partial \mathcal{L}}{\partial p_n}$
+     \ENDFOR
+\ENDWHILE
+\end{algorithmic}
+
+\bigskip
+Through these two methods, it can be determined that the optimal parameters which results in the best learning curve. For convenience of these methods, Python command scipy.optimize.least\_squares is utilised, which "solve a nonlinear least-squares problem with bounds on the variables" \cite{pythonLeastSquare}, and returns costs and other useful arguments.
+
+\bigskip
+Squared lost function is used not only for to find the optimal parameters, but also for the criteria to compare the fitted learning curves. For this analysis, it is assumed that the best fitting learning curve among different models will have a minimum cost.
+
 \subsection{Overfitting} \label{sbs:overfitting}
+The term of overfitting in machine learning is the case that "a model is too complex and is using its surplus complexity to fit to noise" \cite{rogers2015first}
+\textbf{Definition}\\
+\textbf{AIC, BIC}
 \subsection{Training Set and Validation Set} \label{sbs:Training_Validation}
+\textbf{validation check}\\
 At first, assumption for learning processes will be tested on 14 data sets in which groups show similar learning patterns between 15 attempts and scores.
 \subsection{Choice of Breaking Point} \label{abs:breaking_point}
 Fig. \ref{fig:pieces} shows an example how to find the exact transition points. Firstly, entire data range is separated to $n-1$ transition points in $n$ pieces. Thus, there are three lines as the transition points with different colours (red, green, blue). Minimum 50 window in each piece is used for the example, though actual window is 10. Accordingly, transition point 1 is on 50, point 2 is on 100, and the last point is on 150, and the last piece have remained 150 of attempt range as an initial condition.
