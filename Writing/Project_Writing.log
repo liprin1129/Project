@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  27 AUG 2016 22:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  28 AUG 2016 17:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -535,14 +535,14 @@ Chapter 3.
 ] [28] [29] [30] [31] [32] [33]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 942.
- [34] [35]
-<Figs/piece_test.jpg, id=160, 722.7pt x 542.025pt>
+ [34] [35] [36]
+<Figs/piece_test.jpg, id=163, 722.7pt x 542.025pt>
 File: Figs/piece_test.jpg Graphic file (type jpg)
  <use Figs/piece_test.jpg>
-Package pdftex.def Info: Figs/piece_test.jpg used on input line 994.
+Package pdftex.def Info: Figs/piece_test.jpg used on input line 1001.
 (pdftex.def)             Requested size: 375.1445pt x 336.52344pt.
 
-[36] [37 <./Figs/piece_test.jpg>] (./Project_Writing.bbl [38] [39]
+[37 <./Figs/piece_test.jpg>] [38] (./Project_Writing.bbl [39]
 Underfull \hbox (badness 2351) in paragraph at lines 319--331
 []\OT1/ptm/m/n/12 python on-line doc-u-ment.  (n.d.[][]).  12.1. pickle ? pytho
 n ob-ject se-ri-al-
@@ -580,13 +580,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 343--355
 
 ) [41] (./Project_Writing.aux) ) 
 Here is how much of TeX's memory you used:
- 5317 strings out of 493014
- 81158 string characters out of 6133351
- 160105 words of memory out of 5000000
- 8730 multiletter control sequences out of 15000+600000
+ 5318 strings out of 493014
+ 81180 string characters out of 6133351
+ 160118 words of memory out of 5000000
+ 8731 multiletter control sequences out of 15000+600000
  40464 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,26n,40p,993b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,26n,40p,993b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/d
 vips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts
@@ -599,7 +599,7 @@ e/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/tex
 mf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on Project_Writing.pdf (45 pages, 1188317 bytes).
+Output written on Project_Writing.pdf (45 pages, 1189364 bytes).
 PDF statistics:
  220 PDF objects out of 1000 (max. 8388607)
  137 compressed objects within 2 object streams

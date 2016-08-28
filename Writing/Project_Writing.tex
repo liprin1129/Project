@@ -514,7 +514,7 @@ As mentioned in procedure 1, choose weight vector with random values, the two po
 % ======================================= %
 %		2.4.5 Local optima and optimal number of clusters
 % ======================================= %
-\subsection{Local optima and optimal number of clusters}
+\subsection{Local optima and optimal number of clusters} \label{sbs:number_clusters}
 
 Sometimes, a number of mean values might be randomly initialised very nearly to each other. And centroids would converge a same point in a same cluster. In this case, clusters would not describe data-set informatively. This issue is called local optima problem. Unfortunately, there is "no way of knowing what the right answer is" for the outcome of clustering algorithm, but "repeating the algorithm dozens or even more times" can increase reliability of clustering result \cite{hackeling2014mastering}. By repeating clustering algorithm several times, the starting random data points will be set differently and converge different or the same local optima as subsequent outcomes. Clustering results are compared relatively with repeated results, and the most frequent similar results can be presumed as reliable result.
 
@@ -815,7 +815,7 @@ Polynomial functions from first up to five orders are trained for on-line game l
 \end{split}
 \end{equation}
 
-Although high order polynomial functions are non-linear on function itself, they are still linear in parameters. In polynomial function, the increasing number of order, the lower cost they return. This situation is known as 'over fitting' problem in machine learning. Over fitting problem is common and must be solved in function fitting. This will be discussed in session \ref{sbs:overfitting}, overfitting.
+Although high order polynomial functions are non-linear on function itself, they are still linear in parameters. In polynomial function, the increasing number of order, the lower cost they return. This situation is known as 'over fitting' problem in machine learning. Over fitting problem is common and must be solved in function fitting. This will be discussed in session \ref{sbs:over-fitting}, overfitting.
 
 \bigskip
 Next function is exponential functions which are often considered describing individual learning curves well. Function fitting for exponential function is examined from one to four parameters.
@@ -976,11 +976,18 @@ Through these two methods, it can be determined that the optimal parameters whic
 \bigskip
 Squared lost function is used not only for to find the optimal parameters, but also for the criteria to compare the fitted learning curves. For this analysis, it is assumed that the best fitting learning curve among different models will have a minimum cost.
 
-\subsection{Overfitting} \label{sbs:overfitting}
-The term of overfitting in machine learning is the case that "a model is too complex and is using its surplus complexity to fit to noise" \cite{rogers2015first}
-\textbf{Definition}\\
-\textbf{AIC, BIC}
+\subsection{Over-fitting and Regularisation} \label{sbs:over-fitting}
+The term of over-fitting in machine learning is the case that "a model is too complex and is using its surplus complexity to fit to noise" \cite{rogers2015first}. For example, in polynomial model, the higher order the function is, the lower errors loss the model will have. It makes sense that the best learning curve will have the least cost in different single functions. However, this criteria cannot afford the comparison method between a single function and piecewise model, because separating the data range as smaller as possible means fitting data set in small interval, and will lead definitely and undoubtedly smaller cost (over-fitting), such as the situation that increasing the number of clusters leads smaller mean square errors in session (\ref{sbs:number_clusters}). 
+
+\bigskip
+Regularisation prevents the model to become too complex, by penalising over complexity \cite{rogers2015first}. Likewise the solution of k-mean clustering with competitive learning algorithm, 'Bayes information criteria' (BIC) and 'Akaike Information Criteria' (AIC), equation (\ref{eq:AICandBIC}), are used as the regularisation criteria. 
+
 \subsection{Training Set and Validation Set} \label{sbs:Training_Validation}
+Separating the entire data set into two parts; training set and validation set, is another method to deal with the over-fitting problem. Ideally, the best fitting learning curve can generalise predictions close to the true value. Therefore, separating the individual data-set with 300 attempts to two parts can have the same role of the generalisation. Although the model fits well on the training set and have very small cost, the generalised predictions from the model for an unseen data may have great disparity with big errors loss.
+
+\bigskip
+Therefore, to choose the best function among a set of models, each model is trained on the reduced training set, and then the corresponding costs are computed on the validation set. 
+
 \textbf{validation check}\\
 At first, assumption for learning processes will be tested on 14 data sets in which groups show similar learning patterns between 15 attempts and scores.
 \subsection{Choice of Breaking Point} \label{abs:breaking_point}
