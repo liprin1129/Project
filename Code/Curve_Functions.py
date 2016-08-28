@@ -319,9 +319,9 @@ def curve_Matrix(y_data, least_func, seed=[1,1], window=10, piece=4):
     #print(" - x0:\n", "[{0}, {1}]".format(eval("x0")[0], eval("x0")[-1]))
     ## save matrix
     lsq = least_squares(least_func, seed, args=(eval("x{0}".format(piece-group-1)), eval("y{0}".format(piece-group-1)))) # function fitting
-    err_matrix[0, 0] = lsq.cost # save cost
-    idx_matrix[0, 0] = eval("x0")[0]# len(eval("x0"))
-    len_matrix[0, 0] = len(eval("x0"))
+    err_matrix[0, count] = lsq.cost # save cost
+    idx_matrix[0, count] = eval("x0")[0]# len(eval("x0"))
+    len_matrix[0, count] = len(eval("x0"))
     while( len(eval("x0"))-window):
         end = eval("x0")[-1]
         locals()["x0"] = eval("x0")[:int(end-window)] # 마지막 piece의 첫번째를 window만큼 더한다.
@@ -331,9 +331,9 @@ def curve_Matrix(y_data, least_func, seed=[1,1], window=10, piece=4):
         
         ## save matrix
         lsq = least_squares(least_func, seed, args=(eval("x0"), eval("y0"))) # function fitting
-        err_matrix[0, i] = lsq.cost # save cost
-        idx_matrix[0, i] = eval("x0")[0]# len(eval("x0"))
-        len_matrix[0, i] = len(eval("x0"))
+        err_matrix[0, count-i] = lsq.cost # save cost
+        idx_matrix[0, count-i] = eval("x0")[0]
+        len_matrix[0, count-i] = len(eval("x0"))
         #print("cost!!:", lsq.cost)
                                                
     # print(err_matrix)
@@ -344,8 +344,8 @@ def curve2_Fitting(idxM, lenM, errM):
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
-
+    min_bp = [np.nan]*groups # minimum break points
+    
     count = 0
 
     ## 1st piece
@@ -363,9 +363,7 @@ def curve2_Fitting(idxM, lenM, errM):
 
             ## check whether range is 300 and index is valid
             true_range = l1+l2
-            bp = p1, p2
-            bp_checker = np.sort(bp) == bp
-            if (true_range==300) and not(bp_checker.all() == False):
+            if (true_range==300) and (p1<p2):
                 sum_cost = c1+c2
 
                 ## check a minimum cost
@@ -373,19 +371,20 @@ def curve2_Fitting(idxM, lenM, errM):
                     #print("indd!!!!")
                     min_cost = sum_cost
                     min_l = l1, l2
+                    min_bp = p1, p2
                     count = count+1
 
                 pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
 
 def curve3_Fitting(idxM, lenM, errM):
     groups, mat_iter = np.shape(lenM)
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
+    min_bp = [np.nan]*groups # minimum break points
 
     count = 0
 
@@ -410,29 +409,29 @@ def curve3_Fitting(idxM, lenM, errM):
 
                 ## check whether range is 300 and index is valid
                 true_range = l1+l2+l3
-                bp = p1, p2, p3
-                bp_checker = np.sort(bp) == bp
-                if (true_range==300) and not(bp_checker.all() == False):
+                if (true_range==300) and (p1<p2<p3):#bp_checker.all() == False):
+                    #print(bp)
                     sum_cost = c1+c2+c3
 
                     ## check a minimum cost
                     if  count==0 or pre_cost > sum_cost:
-                        #print("indd!!!!")
+                        #print("indd!!!!", bp)
                         min_cost = sum_cost
                         min_l = l1, l2, l3
+                        min_bp = p1, p2, p3
                         count = count+1
 
                     pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
     
 def curve4_Fitting(idxM, lenM, errM):
     groups, mat_iter = np.shape(lenM)
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
+    min_bp = [np.nan]*groups # minimum break points
 
     count = 0
 
@@ -463,9 +462,7 @@ def curve4_Fitting(idxM, lenM, errM):
 
                     ## check whether range is 300 and index is valid
                     true_range = l1+l2+l3+l4
-                    bp = p1, p2, p3, p4
-                    bp_checker = np.sort(bp) == bp
-                    if (true_range==300) and not(bp_checker.all() == False):
+                    if (true_range==300) and (p1<p2<p3<p4):
                         sum_cost = c1+c2+c3+c4
 
                         ## check a minimum cost
@@ -473,19 +470,20 @@ def curve4_Fitting(idxM, lenM, errM):
                             #print("indd!!!!")
                             min_cost = sum_cost
                             min_l = l1, l2, l3, l4
+                            min_bp = p1, p2, p3, p4
                             count = count+1
 
                         pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
     
 def curve5_Fitting(idxM, lenM, errM):
     groups, mat_iter = np.shape(lenM)
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
+    min_bp = [np.nan]*groups # minimum break points
 
     count = 0
 
@@ -522,9 +520,8 @@ def curve5_Fitting(idxM, lenM, errM):
 
                         ## check whether range is 300 and index is valid
                         true_range = l1+l2+l3+l4+l5
-                        bp = p1, p2, p3, p4, p5
-                        bp_checker = np.sort(bp) == bp
-                        if (true_range==300) and not(bp_checker.all() == False):
+                        
+                        if (true_range==300) and (p1<p2<p3<p4<p5):
                             sum_cost = c1+c2+c3+c4+c5
 
                             ## check a minimum cost
@@ -532,19 +529,20 @@ def curve5_Fitting(idxM, lenM, errM):
                                 #print("indd!!!!")
                                 min_cost = sum_cost
                                 min_l = l1, l2, l3, l4, l5
+                                min_bp = p1, p2, p3, p4, p5
                                 count = count+1
 
                             pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
 
 def curve6_Fitting(idxM, lenM, errM):
     groups, mat_iter = np.shape(lenM)
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
+    min_bp = [np.nan]*groups # minimum break points
 
     count = 0
 
@@ -587,9 +585,8 @@ def curve6_Fitting(idxM, lenM, errM):
 
                             ## check whether range is 300 and index is valid
                             true_range = l1+l2+l3+l4+l5+l6
-                            bp = p1, p2, p3, p4, p5, p6
-                            bp_checker = np.sort(bp) == bp
-                            if (true_range==300) and not(bp_checker.all() == False):
+                            
+                            if (true_range==300) and (p1<p2<p3<p4<p5<p6):
                                 sum_cost = c1+c2+c3+c4+c5+c6
 
                                 ## check a minimum cost
@@ -597,19 +594,20 @@ def curve6_Fitting(idxM, lenM, errM):
                                     #print("indd!!!!")
                                     min_cost = sum_cost
                                     min_l = l1, l2, l3, l4, l5, l6
+                                    min_bp = p1, p2, p3, p4, p5, p6
                                     count = count+1
 
                                 pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
 
 def curve7_Fitting(idxM, lenM, errM):
     groups, mat_iter = np.shape(lenM)
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
+    min_bp = [np.nan]*groups # minimum break points
 
     count = 0
 
@@ -658,9 +656,8 @@ def curve7_Fitting(idxM, lenM, errM):
 
                                 ## check whether range is 300 and index is valid
                                 true_range = l1+l2+l3+l4+l5+l6+l7
-                                bp = p1, p2, p3, p4, p5, p6, p7
-                                bp_checker = np.sort(bp) == bp
-                                if (true_range==300) and not(bp_checker.all() == False):
+
+                                if (true_range==300) and (p1<p2<p3<p4<p5<p6<p7):
                                     sum_cost = c1+c2+c3+c4+c5+c6+c7
 
                                     ## check a minimum cost
@@ -668,19 +665,20 @@ def curve7_Fitting(idxM, lenM, errM):
                                         #print("indd!!!!")
                                         min_cost = sum_cost
                                         min_l = l1, l2, l3, l4, l5, l6, l7
+                                        min_bp = p1, p2, p3, p4, p5, p6, p7
                                         count = count+1
 
                                     pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
 
 def curve8_Fitting(idxM, lenM, errM):
     groups, mat_iter = np.shape(lenM)
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
+    min_bp = [np.nan]*groups # minimum break points
 
     count = 0
 
@@ -735,9 +733,8 @@ def curve8_Fitting(idxM, lenM, errM):
 
                                     ## check whether range is 300 and index is valid
                                     true_range = l1+l2+l3+l4+l5+l6+l7+l8
-                                    bp = p1, p2, p3, p4, p5, p6, p7, p8
-                                    bp_checker = np.sort(bp) == bp
-                                    if (true_range==300) and not(bp_checker.all() == False):
+                                    
+                                    if (true_range==300) and (p1<p2<p3<p4<p5<p6<p7<p8):
                                         sum_cost = c1+c2+c3+c4+c5+c6+c7+c8
 
                                         ## check a minimum cost
@@ -745,19 +742,20 @@ def curve8_Fitting(idxM, lenM, errM):
                                             #print("indd!!!!")
                                             min_cost = sum_cost
                                             min_l = l1, l2, l3, l4, l5, l6, l7, l8
+                                            min_bp = p1, p2, p3, p4, p5, p6, p7, p8
                                             count = count+1
 
                                         pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
 
 def curve9_Fitting(idxM, lenM, errM):
     groups, mat_iter = np.shape(lenM)
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
+    min_bp = [np.nan]*groups # minimum break points
 
     count = 0
 
@@ -818,9 +816,8 @@ def curve9_Fitting(idxM, lenM, errM):
 
                                         ## check whether range is 300 and index is valid
                                         true_range = l1+l2+l3+l4+l5+l6+l7+l8+l9
-                                        bp = p1, p2, p3, p4, p5, p6, p7, p8, p9
-                                        bp_checker = np.sort(bp) == bp
-                                        if (true_range==300) and not(bp_checker.all() == False):
+
+                                        if (true_range==300) and (p1<p2<p3<p4<p5<p6<p7<p8<p9):
                                             sum_cost = c1+c2+c3+c4+c5+c6+c7+c8+c9
 
                                             ## check a minimum cost
@@ -828,19 +825,20 @@ def curve9_Fitting(idxM, lenM, errM):
                                                 #print("indd!!!!")
                                                 min_cost = sum_cost
                                                 min_l = l1, l2, l3, l4, l5, l6, l7, l8, l9
+                                                min_bp = p1, p2, p3, p4, p5, p6, p7, p8, p9
                                                 count = count+1
 
                                             pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
 
 def curve10_Fitting(idxM, lenM, errM):
     groups, mat_iter = np.shape(lenM)
     pre_cost = np.nan # an argument to check successive cost
     min_cost = float('nan') # minimum cost
     min_l = [np.nan]*groups # minimum length
-    bp = [np.nan]*groups # break points
+    min_bp = [np.nan]*groups # minimum break points
 
     count = 0
 
@@ -907,9 +905,8 @@ def curve10_Fitting(idxM, lenM, errM):
 
                                             ## check whether range is 300 and index is valid
                                             true_range = l1+l2+l3+l4+l5+l6+l7+l8+l9+l10
-                                            bp = p1, p2, p3, p4, p5, p6, p7, p8, p9, p10
-                                            bp_checker = np.sort(bp) == bp
-                                            if (true_range==300) and not(bp_checker.all() == False):
+
+                                            if (true_range==300) and (p1<p2<p3<p4<p5<p6<p7<p8<p9<p10):
                                                 sum_cost = c1+c2+c3+c4+c5+c6+c7+c8+c9+c10
 
                                                 ## check a minimum cost
@@ -917,14 +914,15 @@ def curve10_Fitting(idxM, lenM, errM):
                                                     #print("indd!!!!")
                                                     min_cost = sum_cost
                                                     min_l = l1, l2, l3, l4, l5, l6, l7, l8, l9, l10
+                                                    min_bp = p1, p2, p3, p4, p5, p6, p7, p8, p9, p10
                                                     count = count+1
 
                                                 pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(bp, min_l))
-    return min_cost, min_l, bp
+    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    return min_cost, min_l, min_bp
 
-def multCurve_Fitting(y, lf, s=[1, 1], w=50, p=3):
+def multCurve_Fitting(y, lf, s=[1, 1], w=50, p=3): # y=data, lf=least square functions, s=seed, w=window, p=piece
     idx_matrix, err_matrix, len_matrix = curve_Matrix(y, lf, seed=s, window=w, piece=p)
     
     if p == 2:
