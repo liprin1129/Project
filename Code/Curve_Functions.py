@@ -88,6 +88,10 @@ def curve_Fitting(least_func, curve_func, x, y, seed, file_path, clt_num):
         y_mean = curve_func(x_fit, lsq.x)
         cost = lsq.cost
     '''
+    if len(seed) == 1:
+        lsq = least_squares(least_func, seed, args=(x, y))
+        y_mean = curve_func(x_fit, lsq.x)
+        cost = lsq.cost
     
     if len(seed) == 2:
         lsq = least_squares(least_func, seed, args=(x, y))
@@ -280,7 +284,7 @@ def curve_Matrix(y_data, least_func, seed=[1,1], window=10, piece=4):
     err_matrix = np.zeros([piece, count+1])
     idx_matrix = np.zeros([piece, count+1])
     len_matrix = np.zeros([piece, count+1])
-    print(np.shape(err_matrix))
+    #print(np.shape(err_matrix))
     
     ## change window for pieces except first pieces
     for group in range(piece-1):
@@ -350,7 +354,7 @@ def curve2_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
@@ -390,7 +394,7 @@ def curve3_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
@@ -437,7 +441,7 @@ def curve4_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
@@ -489,7 +493,7 @@ def curve5_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
@@ -548,7 +552,7 @@ def curve6_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
@@ -613,7 +617,7 @@ def curve7_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
@@ -684,7 +688,7 @@ def curve8_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
@@ -761,7 +765,7 @@ def curve9_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
@@ -844,7 +848,7 @@ def curve10_Fitting(idxM, lenM, errM):
 
     ## 1st piece
     for i1 in range(mat_iter):
-        print('iter ', i1)
+        # print('iter ', i1)
         p1 = idxM[0, i1]
         l1 = lenM[0, i1]
         c1 = errM[0, i1]
