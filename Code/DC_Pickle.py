@@ -34,7 +34,7 @@ def open_Pickle(pickle_path):
             train = pickle.load(f)
             return train
     except Exception as e :
-        print("Unable to save data to", pickle_path, ': ', e)
+        print("Unable to open data to", pickle_path, ': ', e)
         return
             
 def seperate_indi(groups, num_cores, dir_name):

@@ -5,6 +5,15 @@ import matplotlib.pyplot as plt
 #import DC_Pickle as dcp
 
 ############################################
+## Step Functioin
+############################################
+def step_curve(x, w0):
+    return  [w0]*len(x)
+
+def step_least(w, x, y):
+    return step_curve(x, w[0]) - y
+
+############################################
 ## Polynomial Functioin
 ############################################
 
@@ -380,7 +389,7 @@ def curve2_Fitting(idxM, lenM, errM):
 
                 pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
 
 def curve3_Fitting(idxM, lenM, errM):
@@ -427,7 +436,7 @@ def curve3_Fitting(idxM, lenM, errM):
 
                     pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
     
 def curve4_Fitting(idxM, lenM, errM):
@@ -479,7 +488,7 @@ def curve4_Fitting(idxM, lenM, errM):
 
                         pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
     
 def curve5_Fitting(idxM, lenM, errM):
@@ -538,7 +547,7 @@ def curve5_Fitting(idxM, lenM, errM):
 
                             pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
 
 def curve6_Fitting(idxM, lenM, errM):
@@ -603,7 +612,7 @@ def curve6_Fitting(idxM, lenM, errM):
 
                                 pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
 
 def curve7_Fitting(idxM, lenM, errM):
@@ -674,7 +683,7 @@ def curve7_Fitting(idxM, lenM, errM):
 
                                     pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
 
 def curve8_Fitting(idxM, lenM, errM):
@@ -751,7 +760,7 @@ def curve8_Fitting(idxM, lenM, errM):
 
                                         pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
 
 def curve9_Fitting(idxM, lenM, errM):
@@ -834,7 +843,7 @@ def curve9_Fitting(idxM, lenM, errM):
 
                                             pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
 
 def curve10_Fitting(idxM, lenM, errM):
@@ -923,7 +932,7 @@ def curve10_Fitting(idxM, lenM, errM):
 
                                                 pre_cost = sum_cost
 
-    print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
+    # print("min_cost: ", min_cost, "at {0} with {1}".format(min_bp, min_l))
     return min_cost, min_l, min_bp
 
 def multCurve_Fitting(y, lf, s=[1, 1], w=50, p=3): # y=data, lf=least square functions, s=seed, w=window, p=piece
