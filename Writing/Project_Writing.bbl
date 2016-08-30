@@ -103,6 +103,39 @@ Gallistel, C\BPBI R.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Gaschler%
+, Progscha%
+, Smallbone%
+, Ram%
+\BCBL {}\ \BBA {} Bilalic%
+}{%
+Gaschler%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2007}}%
+}]{%
+gaschler2007playing}
+\APACinsertmetastar {%
+gaschler2007playing}%
+\begin{APACrefauthors}%
+Gaschler, R.%
+, Progscha, J.%
+, Smallbone, K.%
+, Ram, N.%
+\BCBL {}\ \BBA {} Bilalic, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Playing off the curve-testing quantitative predictions
+  of skill acquisition theories in development of chess performance} {Playing
+  off the curve-testing quantitative predictions of skill acquisition theories
+  in development of chess performance}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Psychological perspectives on expertise}{20}{40}{137}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Hackeling%
 }{%
 Hackeling%
@@ -250,6 +283,62 @@ James, G.%
   statistical learning}\ (\BVOL~6).
 \newblock
 \APACaddressPublisher{}{Springer}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Kounios%
+\ \BBA {} Beeman%
+}{%
+Kounios%
+\ \BBA {} Beeman%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+kounios2009aha}
+\APACinsertmetastar {%
+kounios2009aha}%
+\begin{APACrefauthors}%
+Kounios, J.%
+\BCBT {}\ \BBA {} Beeman, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Aha! Moment the cognitive neuroscience of insight}
+  {The aha! moment the cognitive neuroscience of insight}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Current directions in psychological
+  science}{18}{4}{210--216}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lacroix%
+\ \BBA {} Cousineau%
+}{%
+Lacroix%
+\ \BBA {} Cousineau%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+lacroix2006introduction}
+\APACinsertmetastar {%
+lacroix2006introduction}%
+\begin{APACrefauthors}%
+Lacroix, G\BPBI L.%
+\BCBT {}\ \BBA {} Cousineau, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Introduction to the Special Issue on ?RT (N)= a+
+  bN-c?: The Power Law of Learning 25 years later} {The introduction to the
+  special issue on ?rt (n)= a+ bn-c?: The power law of learning 25 years
+  later}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Tutorials in Quantitative Methods for
+  Psychology}{2}{2}{38--42}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -509,6 +598,32 @@ Stuart, P.%
 \newblock
 \APACrefnote{Retrieved February 3, 2014, from
   http://preloaded.com/axon-game-science/}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sutton%
+\ \BBA {} Barto%
+}{%
+Sutton%
+\ \BBA {} Barto%
+}{%
+{\protect \APACyear {1998}}%
+}]{%
+sutton1998reinforcement}
+\APACinsertmetastar {%
+sutton1998reinforcement}%
+\begin{APACrefauthors}%
+Sutton, R\BPBI S.%
+\BCBT {}\ \BBA {} Barto, A\BPBI G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1998}.
+\newblock
+\APACrefbtitle {Reinforcement learning: An introduction} {Reinforcement
+  learning: An introduction}\ (\BVOL~1)\ (\BNUM~1).
+\newblock
+\APACaddressPublisher{}{MIT press Cambridge}.
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}

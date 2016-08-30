@@ -2,23 +2,23 @@
 \contentsline {section}{\numberline {1.1}Background and Motivation}{1}
 \contentsline {section}{\numberline {1.2}Problem Definition}{2}
 \contentsline {section}{\numberline {1.3}Aims and Objectives}{3}
-\contentsline {section}{\numberline {1.4}Project Management}{3}
-\contentsline {chapter}{\numberline {2}Data Curation}{4}
-\contentsline {section}{\numberline {2.1}Data Cleaning}{5}
-\contentsline {section}{\numberline {2.2}Data accommodating}{6}
-\contentsline {subsection}{\numberline {2.2.1}Original variables in the data source}{6}
-\contentsline {subsection}{\numberline {2.2.2}Hidden variables calculated from the original variables}{6}
+\contentsline {section}{\numberline {1.4}Project Management}{4}
+\contentsline {chapter}{\numberline {2}Data Curation}{5}
+\contentsline {section}{\numberline {2.1}Data Cleaning}{6}
+\contentsline {section}{\numberline {2.2}Data accommodating}{7}
+\contentsline {subsection}{\numberline {2.2.1}Original variables in the data source}{7}
+\contentsline {subsection}{\numberline {2.2.2}Hidden variables calculated from the original variables}{7}
 \contentsline {section}{\numberline {2.3}Data Deformation}{8}
-\contentsline {subsection}{\numberline {2.3.1}Pickle file format}{8}
-\contentsline {subsection}{\numberline {2.3.2}Data storage and index table}{9}
-\contentsline {subsection}{\numberline {2.3.3}Multiprocessing}{9}
-\contentsline {section}{\numberline {2.4}K-Means Clustering with Competitive Learning Algorithm}{10}
-\contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{11}
-\contentsline {subsection}{\numberline {2.4.2}Competitive learning}{12}
-\contentsline {subsection}{\numberline {2.4.3}Normalisation}{14}
-\contentsline {subsection}{\numberline {2.4.4}Procedure of the algorithm}{16}
-\contentsline {subsection}{\numberline {2.4.5}Local optima and optimal number of clusters}{17}
-\contentsline {subsection}{\numberline {2.4.6}Dealing with dead unit}{18}
+\contentsline {subsection}{\numberline {2.3.1}Pickle file format}{9}
+\contentsline {subsection}{\numberline {2.3.2}Data storage and index table}{10}
+\contentsline {subsection}{\numberline {2.3.3}Multiprocessing}{10}
+\contentsline {section}{\numberline {2.4}K-Means Clustering with Competitive Learning Algorithm}{11}
+\contentsline {subsection}{\numberline {2.4.1}K-Means clustering}{12}
+\contentsline {subsection}{\numberline {2.4.2}Competitive learning}{13}
+\contentsline {subsection}{\numberline {2.4.3}Normalisation}{15}
+\contentsline {subsection}{\numberline {2.4.4}Procedure of the algorithm}{17}
+\contentsline {subsection}{\numberline {2.4.5}Local optima and optimal number of clusters}{18}
+\contentsline {subsection}{\numberline {2.4.6}Dealing with dead unit}{20}
 \contentsline {subsection}{\numberline {2.4.7}Centroids}{24}
 \contentsline {chapter}{\numberline {3}Function Fitting}{27}
 \contentsline {section}{\numberline {3.1}Functions}{28}
@@ -28,7 +28,11 @@
 \contentsline {section}{\numberline {3.2}Method}{34}
 \contentsline {subsection}{\numberline {3.2.1}Squared Lost Function}{34}
 \contentsline {subsection}{\numberline {3.2.2}Training Set and Validation Set}{37}
-\contentsline {subsection}{\numberline {3.2.3}Over-fitting and Regularisation}{37}
-\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{39}
-\contentsline {section}{\numberline {3.3}Curve Fittings}{41}
-\contentsline {chapter}{References}{42}
+\contentsline {subsection}{\numberline {3.2.3}Over-fitting and Regularisation}{39}
+\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{40}
+\contentsline {chapter}{\numberline {4}Discussion}{43}
+\contentsline {section}{\numberline {4.1}The Best Learning Curve}{44}
+\contentsline {subsection}{\numberline {4.1.1}Power Law and Exponential Law}{44}
+\contentsline {subsection}{\numberline {4.1.2}Single and Piecewise Curves}{45}
+\contentsline {section}{\numberline {4.2}Exploitation and Exploration}{49}
+\contentsline {chapter}{References}{51}

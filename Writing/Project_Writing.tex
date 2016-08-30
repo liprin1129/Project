@@ -27,16 +27,17 @@
 \pagenumbering{Roman}
 
 \newpage \section*{ABSTRACT}
+There are a large amount of data set collected by 854,064 players from the on-line game called Axon. Using the on-line game data set, how individuals learn in practice is identifyed by fitting possible underlying learning models to the data set. The power law model is fitted to the data set, as well as other several functions; exponential, polynomial, step, and piecewise functions combined with various shape of functions. This analysis showed that many individuals follow the power law rather than other practice law in on-line game practice. Additionally, the trade-off between exploitation and exploration in reinforcement learning as the skill acquisition process in practice is discussed, based on the result of the curve fitting.
 
 % This section is compulsory -- guidelines can be found in the presentation about writing the dissertation.
 
 \newpage \section*{ACKNOWLEDGEMENTS}
-
+Firstly, thank Dr. Stafford for the kind supervision. He has supervised thoroughly how to appropriately deal with the unexpected problems in this data analysis, and encouraged me a lot when I faced many difficulties. Also, thank Dr. Vasilaki who is a lecturer in Computer Science at University of Sheffield, because the artificial intelligence algorithm, this analysis uses for the clustering task, was discussed though the Adaptive Intelligence model.
+Finally, the large amount of game data set is given by PRELOAD for the Wellcome Collection \cite{stuart2009Axon}. 
 
 %%% Table of Contents
 
 \tableofcontents
-
 \thispagestyle{empty}
 
 
@@ -77,60 +78,49 @@ However, the computer game provides an abundant "record of every action in the h
 % ======================================= %
 
 \section{Problem Definition}
+It has been often argued that the power law is an "artifact of averaging across individual learning curves" \cite{donner2015piecewise}. Power law of skill acquisition has a single monotonic power curve to predict individual performance. However, learning processes might be dynamic, and show various shape of curves. Individual may show a "step-like performance" \cite{gallistel2004learning} represented as "aha! moment" \cite{kounios2009aha}, which is involved in the abrupt increases in practice. 
 
-There are three main issues in traditional reinforcement learning curve. Because it has smooth power law with diminishing gain derived from average value, all possible individual learning curve are squashed into one learning curve. Thus, it cannot tell which learning curve will belong to a task, behaviour, and learning process. Furthermore, even though identifying bad or good on learnings are important, but it cannot provide sufficient information about those.
+\bigskip
+Even among monotonic shape of curves, whether the power law can be representative of learning curve or not is controversial. Heathcote et al. (2000) strongly insisted that the power law should be repealed, and that the exponential function with three parameters can describe the not-averaged data set better than the power functions. 
 
-Below is the list of problems on current reinforcement learning curve.
+Gaschler et al. (2007) tested the exponential function with various parameters to the data sets of chess game practice, and they found that "the exponential function with three parameters was better than the power function in fitting" \cite{gaschler2007playing}. 
+
+\bigskip
+Individuals may follow the learning process showing the shape of exponential curve rather than the power law. If individuals in the exponential law are averaged together, a grouped learning curve will be the shape of power law \cite{murre2011power}. In addition, if all other possible shapes of learning curves including the exponential curves are squashed into one learning curve, the power law has a possibility to be yielded as the outcome from the averaging those learning curves.
+
+\bigskip
+Moreover, as explained above, the traditional way to investigate the practice laws in the laboratories may restrict the amount of data, as well as the history of practice for the analysis \cite{stafford2014tracing}. The problem of this lack of data may cause different results rather than the true information.
+
+\bigskip
+To sum up, problems in current practice laws can be summarised as below,
 
 \begin{itemize}
-\item Not being able to categorise learning process.
-\item Averaging possible individual learning curves
-\item Not enough information for identification of learning success
+\item not being able to categorise the various learning processes,
+\item averaging possible individual learning curves,
+\item not enough information for the identification of skill acquisition,
 \end{itemize}
-%Explaining about the problem of bootstrapping analysis.\\
-%https://en.wikipedia.org/wiki/Bootstrapping (statistics)\\
-% "Unless one is reasonably sure that the underlying distribution is not heavy tailed, one should hesitate to use the naive bootstrap"\\
-%Bootstrap of the mean in the infinite variance case Athreya, K.B. Ann Stats vol 15 (2) 1987 724-731\\
+and those problems are dealt with, and discussed in this analysis.
 
-%%%%%%%%%%%%%%%%%%%
-% Piecewise powerlaw? ????? ??? ???? ??? curve? ?? ???? 
-% ??? ? ????!
-%%%%%%%%%%%%%%%%%%%
-
-% This is a suggested section heading
 
 % ======================================= %
 %		1.3. Aims and Objectives
 % ======================================= %
 
 \section{Aims and Objectives}
-%%%%%
-These are the concepts I think you should cover in your introduction:
+In order to solve these three main issues which is explained above, this analysis exploits the on-line game data set called Axon. In which, game play data of players are recorded in accordance with their attempts. Although the collected data set has a lot of information including the history of their practice, it also includes wrong information, such as the attempt time is recorded wrongly and the second attempt time is later than the first trial time. Therefore, this wrong information has to be filtered before the analysis is implemented.  
 
-Skill acquisition \& expertise
-- factors which are known to influence skill acquisition
-- practice amount, practice spacing, others
+At the same time, it is assumed that individuals may show different learning patterns. Therefore, players will be categorised into the several groups in which they show the similar learning processes. 
 
-Using games to study skill acquisition
+\bigskip
+Because the on-line data set has a large amount of data, the performance of these processes will be very slow, and the it may take a lot of time to analyse such the large amount of data set. In order to solve it, several methods will be introduced, such as using multiple cores of CPU.
 
-Learning curves
-- different possible underlying functions
-- problems with averaging over
+\bigskip
+To understand which are the underlying learning processes under the averaged power law, two theories will be tested that the power law model is the averaged curve according to individual exponential curves \cite{murre2011power, gaschler2007playing}, and that many tasks show step-like performance \cite{gallistel2004learning}. Therefore, function fitting for the possible underlying models; polynomial, exponential, power, stet, and piecewise functions with various combinations, to the data set will be implemented.
 
-The ultimate aim, of course, is to identify individuals who learn faster or for longer, and try and relate this to how they practice
-%%%%%
-The aim of this paper is to fit different functions to the Axon game data. In the data, there are 854,064 individuals data about when, where they did the game and other informations, as well as scores of game according to their attempts. And so identify the underlying learning process. Furthermore, it is to inspect features which may have influences on the learning curves. 
+Through these tasks, it can be identified which underlying learning curves disappear under the averaged power law model. 
 
-\begin{itemize}
-\item Understand several possible functions; step function, powerlaw, piecewise powerlaw and etc.
-\item Understand different underlying learning processes; insight learning, associative learning, multi-component/process learning and etc.
-\item Fit functions to individual Axon game data and compare those to identify.
-\item Test theories of what makes learning most effective, exploiting unsupervised learning, establish which parameter is important for getting learning curve from the data.
-\item Design more effective learning practices.
-\end{itemize}
-% This section is compulsory -- guidelines can be found in the presentation about writing the dissertation
-
-%The aim(s) should provide a general idea of what the project is about and the objectives should be more specific. The objectives should be actions that you expect to do (e.g. simulate..., test..., compare...). At the end of the project it should be possible to assess which of the objectives have been achieved. The objectives will also link into the work programme (below).
+\bigskip
+Finally, the trade-off in skill acquisition in practice, reinforcement learning, will be able to discussed after identifying the individual learning curves.
 
 % ======================================= %
 %		1.4. Project Management
@@ -138,9 +128,8 @@ The aim of this paper is to fit different functions to the Axon game data. In th
 
 \section{Project Management}
 
-% This section is compulsory -- guidelines can be found in the presentation about writing the dissertation
+Two gantt charts are attached in appendix. The first one is the gantt chart for the project time management, and the second chart is the actual time management.
 
-Text...
 
 % ======================================================== %
 %		2. Data Curation
@@ -199,9 +188,9 @@ What has to be noted before data cleaning is that it has to be implemented under
 \end{enumerate}
 
 The reason of discarding those who played less than 15 attempts is because those cannot show a causal relationship between attempts and scores. In this step, xxx individuals were deleted. 
-The reason for second step is that plays more than 300 attempts did not show many differences after 300 attempts. ??? out of the total number of players attempted the game more than 300 times, and also they were removed. Also discarded players having unrecognisable time information were ???. Finally, game play data for individuals were recorded discontinuously. In other words, there are non-recorded game play data between the first attempt and the last attempt for each players. The reason why this problem happened is unknown, though it is obvious that individuals with this issue have to be filtered appropriately. Though cleaning those is simply mentioned in this session, the specific method how to manage players with discontinuous data will be discussed in chapter ???.
+The reason for second step is that plays more than 300 attempts did not show many differences after 300 attempts, and they were removed. Next, players having unrecognisable time information were also discarded. Finally, game play data for individuals were recorded discontinuously. In other words, there are non-recorded game play data between the first attempt and the last attempt for each players. The reason why this problem happened is unknown, though it is obvious that individuals with this issue have to be filtered appropriately.
 
-As a result, raw data with 4, 038,802 plays with xxx players were cleaned, and then reduced to ??? plays and ??? individuals decreased by ???.
+As a result, raw data of 854,064 players with 4, 038,802 plays were cleaned, and then reduced to 22,832 individuals.
 
 \section{Data accommodating}
 The next step of data curation is to incrementally accommodate hidden but obvious features from the previous cleaned data set. It is originally constituted by 8 basic categories. After data accommodating task, 7 additional hidden variables would be derived.
@@ -262,7 +251,10 @@ Although the big data set can be converted to binary file, it still takes a larg
 Therefore, loading only necessary data to a specific task will be a solution to keep processing performance fast. Whole data set was separated by each type of variables. To secure and not to lose player information within the divided data, addresses of all data have to be indexed directing player ID. As a result of data deformation task, 15 pickle data files were generated; eventLabel, date, hour, minute, latitude, longitude, eventValue, play\_filter, comb\_time, diff\_time, local\_time, long\_gap, shor\_gap, sleep\_gap, gap\_type, and total\_plays, which are indicated by individual ID information, eventAction.
 
 \subsection{Multiprocessing}
-Because the raw data set is a large amount, the process time for data curation would take long time. Commonly, using multithreading is the easiest way to solve this operating time problem. However, unfortunately Python does not allow multiple statements at a kernel. Therefore, 
+Because the raw data set is a large amount, the process time for data curation would take long time. Commonly, using multithreading is the easiest way to solve this operating time problem. However, unfortunately Python does not allow multiple statements at a kernel \cite{python2016multiprocessing}. Therefore, the multiprocessing method which uses multiple cores in CPU is used.
+
+\bigskip
+In using a single core of Intel xeon processor, E5-2698V3, the data curation task took almost about 3 days. However, using multiprocessing under the 32 threads of 16 multiple cores with 2.3 GHz Processor Base Frequency showed the high performance; it only took below 3 hours.
 %%%%%% comment %%%%%%%%%%%%%
 \begin{comment}
 (Python 2001)
@@ -382,7 +374,7 @@ Competitive learning is unsupervised learning approaches in which the output neu
         \begin{center}
             \includegraphics[width=0.85\textwidth, height=0.65\textwidth]{Competitive_Diagram.png}
         \end{center} }}
-	\caption{Competitive neuron diagram. When an input enters the network, it generates output values according to weights between an input and output neuron (blue arrows). Output neurons compete with each other (red arrows), then only one output fires on an input pattern. Output neurons are considered only having binary $0/1$ output.}
+	\caption{Competitive neuron diagram. When an input enters the network, it generates output values according to weights between an input and output neurons (blue arrows). Output neurons compete with each other (red arrows), then only one output fires on an input pattern. Output neurons are considered only having binary $0/1$ output.}
 	\label{fig:Competitive_Diagram}
 \end{figure}
 
@@ -513,7 +505,7 @@ Sometimes, a number of mean values might be randomly initialised very nearly to 
 %\end{figure}
 
 \bigskip
-Another crux of K-Means clustering is that the optimal number of clusters is unknown. There are ??? players in the on-line game data-set, and it has no predefined information of how many groups showing what the similar learning patterns are. To estimate optimal number of clusters, Elbow method with Bayes and Akaike Information Criteria (\ref{eq:AICandBIC}) was used. The criteria which can determine the number of cluster is as follow,
+Another crux of K-Means clustering is that the optimal number of clusters is unknown. There 854,064 players in the on-line game data-set, and it has no predefined information of how many groups showing what the similar learning patterns are. To estimate optimal number of clusters, Elbow method with Bayes and Akaike Information Criteria (\ref{eq:AICandBIC}) was used. The criteria which can determine the number of cluster is as follow,
 \
 \begin{equation} \label{eq:AICandBIC}
     \begin{split}
@@ -522,12 +514,7 @@ Another crux of K-Means clustering is that the optimal number of clusters is unk
     \end{split}
 \end{equation}
 
-\bigskip
-The more a number of clusters, the less the value of the cost function, $J_K$. Because, increasing K can divide the data-set into smaller pieces of clusters than the actual number of how many clusters necessarily exists in it. Usually, using the Elbow method shows changes of the value of cost function. It goes down significantly at first some K, and suddenly slows down the change. By inspecting the point showing from dramatic to gradual change, generally the optimal number of K is detected. 
-
-However, when only Elbow method for the on-line data-set is plotted, this inflection point is rarely found. Because all costs seem decreasing gradually, Fig.~\ref{fig:AIC_BIC_Elbow}. Therefore, BIC and AIC was exploited with Elbow method. If plotting AIC values in different number of K, it will decrease by the certain amount cost, and then start to increase. It is because $2KD$ or  $K\log D$ proportionally compensates decreasing the value of cost function for various number of K. In high dimensions, AIC criteria gives "high penalty for many clusters" \cite{daume2012course}. As a result, K value which minimizes AIC or BIC (\ref{eq:AICandBIC}) could be considered as the optimal number of clusters. 
-
-\begin{figure}[thpb]
+\begin{figure}[t]
 	\centering
 	\framebox{\parbox{14cm}{
 	    \begin{center}
@@ -538,7 +525,13 @@ However, when only Elbow method for the on-line data-set is plotted, this inflec
 \end{figure}
 
 \bigskip
-Fig.~\ref{fig:AIC_BIC_Elbow} shows the information of elbow method with AIC and BIC to define the number of clusters for the on-line game data-set. By these three graphs, it seems that the data-set can be clustered into n clusters. Difference between 13K and 14K is xx and, 14 K and 15 K is yy. If the number of 14 is set as a threshold for these differences, increasing K beyond 14 would not improve the result of clustering.
+The more a number of clusters, the less the value of the cost function, $J_K$. Because, increasing K can divide the data-set into smaller pieces of clusters than the actual number of how many clusters necessarily exists in it. Usually, using the Elbow method shows changes of the value of cost function. It goes down significantly at first some K, and suddenly slows down the change. By inspecting the point showing from dramatic to gradual change, generally the optimal number of K is detected. 
+
+However, when only Elbow method for the on-line data-set is plotted, this inflection point is rarely found. Because all costs seem decreasing gradually, Fig.~\ref{fig:AIC_BIC_Elbow}. Therefore, BIC and AIC was exploited with Elbow method. If plotting AIC values in different number of K, it will decrease by the certain amount cost, and then start to increase. It is because $2KD$ or  $K\log D$ proportionally compensates decreasing the value of cost function for various number of K. In high dimensions, AIC criteria gives "high penalty for many clusters" \cite{daume2012course}. As a result, K value which minimizes AIC or BIC (\ref{eq:AICandBIC}) could be considered as the optimal number of clusters. 
+
+\bigskip
+Fig.~\ref{fig:AIC_BIC_Elbow} shows the information of elbow method with AIC and BIC to define the number of clusters for the on-line game data-set. By these three graphs, it seems that the data-set can be clustered into n clusters. %Difference between 13K and 14K is xx and, 14 K and 15 K is yy. 
+If the number of 14 is set as a threshold for these differences, increasing K beyond 14 would not improve the result of clustering.
 
 % ======================================= %
 %		2.4.5 Dealing with dead unit
@@ -546,7 +539,7 @@ Fig.~\ref{fig:AIC_BIC_Elbow} shows the information of elbow method with AIC and 
 \subsection{Dealing with dead unit}
 A common problem in competitive learning algorithm is dead unit issue. This is the case when weight vectors are initialised far distant from all input vectors. As they cannot fire among those which are closer to input vectors. Geometrically speaking, (\ref{fig:dead_unit}) would show precise understanding. Two arrows with different colours represent randomly initialised weight vectors. Red arrow is closer to two input groups than green weight vector. When they are threw into the network, red weight vector will move closer and closer to the centre between two groups at every iterations. Which means red weight vector always takes winner, and green weight vector will never be updated. 
 
-\begin{figure}[htpb]
+\begin{figure}[h]
     \centering
     \framebox{\parbox[t][0.8\textwidth][t]{0.9\textwidth}{
         \begin{center}
@@ -556,17 +549,7 @@ A common problem in competitive learning algorithm is dead unit issue. This is t
 	\label{fig:dead_unit}
 \end{figure}
 
-\begin{figure}[htpb]
-    \centering
-    \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
-        \begin{center}
-            \includegraphics[width=0.85\textwidth, height=0.65\textwidth]{dead_state.png}
-        \end{center} }}
-	\caption{Learning rate and existence of dead units}
-	\label{fig:dead_state}
-\end{figure}
-
-In (\ref{fig:dead_state}), ??? never fired and it is the dead unit, even though neuron ?? and ?? won several time compared to other ?? output neurons.
+For example of test data set for 7 clusters in (\ref{fig:dead_state}), neuron 6 was never fired and it is the dead unit, even though neuron 1 and 2 won over 1600 times.
 
 \bigskip
 There are several approaches which can tackle the dead units problem, and 4 of those;
@@ -614,6 +597,16 @@ The last approach is to initialise weight vectors with randomly sampled vectors 
 
 However, SV set initial weights in the actual input space. Therefore, they are always positioned inside the data set. Although they may manage dead units, there is other problem that some weight vectors are initialised near to each other. If some weight vectors are set nearly, they will converge the same optima, and data set will not properly clustered. 
 
+\begin{figure}[h]
+    \centering
+    \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.85\textwidth, height=0.65\textwidth]{dead_state.png}
+        \end{center} }}
+	\caption{Learning rate and existence of dead units}
+	\label{fig:dead_state}
+\end{figure}
+
 Thus, large (LSD) or small(SSD) values randomly sampled with Gaussian distribution are added to the initial weight vectors, so that they have enough distance from each other.
 
 \begin{equation} \label{eq:SV}
@@ -623,7 +616,7 @@ w_{ij}^{init} & = w_{ij}^{random} + \epsilon, \\
 \end{split}
 \end{equation}
 
-\begin{figure}[htpb]
+\begin{figure}[h]
     \centering
     \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
         \begin{center}
@@ -885,7 +878,7 @@ Every player may show a large variety of learning patterns, but exact learning c
 \end{figure}
 
 \bigskip
-Another clue about the best curve fitting in piecewise functions is identifying such transition points (or change-points) in the data set \cite{gallistel2004learning}. To identify the true discontinuities, Donner and Hardy (2015) suggested two conditions. First, a large data set is required with many individual learning curves. At the same time, those learning curves should have long enough data sequence including "potentially infrequent discontinuities". Fortunately, the on-line game data set complies with theses conditions. ??? individuals comprise the train set and almost all players have discontinuous data sequence because of unknown reasons.
+Another clue about the best curve fitting in piecewise functions is identifying such transition points (or change-points) in the data set \cite{gallistel2004learning}. To identify the true discontinuities, Donner and Hardy (2015) suggested two conditions. First, a large data set is required with many individual learning curves. At the same time, those learning curves should have long enough data sequence including "potentially infrequent discontinuities". Fortunately, the on-line game data set complies with theses conditions. 854,064 individuals comprise the train set and almost all players have discontinuous data sequence because of unknown reasons.
 
 In addition, in this on-line game data analysis, transition points would not only represent discontinuities of data sequences but also provide the position where squared errors in a piece wise function are minimum. The minimum cost can tell which points will result in the best curve fitting on the data set. How to find these transition points will be discussed in session \ref{abs:breaking_point}.
 
@@ -1006,7 +999,7 @@ Next, the entire 300 attempts data set is reduced to the data set containing fro
             \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{exp3_15sample_1.png}
         \end{center} }}
     \caption{Training set}
-    \label{fig:not_norm_data}
+    \label{fig:train_valid_1_a}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
     \framebox{\parbox{0.95\textwidth}{
@@ -1014,10 +1007,10 @@ Next, the entire 300 attempts data set is reduced to the data set containing fro
             \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{exp3_15sample_2.png}
         \end{center} }}
     \caption{Validation set}
-    \label{fig:not_norm_weight}
+    \label{fig:train_valid_1_b}
 \end{subfigure}
 \caption{Minimum cost in training set, but large cost in validation set. Exponential function fitting with 3 parameters to 15 training set of cluster 13, and validation check}
-\label{fig:not-normalised}
+\label{fig:train_valid_1}
 \end{figure}
 
 \begin{figure}[htpb]
@@ -1028,7 +1021,7 @@ Next, the entire 300 attempts data set is reduced to the data set containing fro
             \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{exp3_15valid_1.png}
         \end{center} }}
     \caption{Training set}
-    \label{fig:not_norm_data}
+    \label{fig:train_valid_2_a}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
     \framebox{\parbox{0.95\textwidth}{
@@ -1036,35 +1029,48 @@ Next, the entire 300 attempts data set is reduced to the data set containing fro
             \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{exp3_15valid_2.png}
         \end{center} }}
     \caption{Validation set}
-    \label{fig:not_norm_weight}
+    \label{fig:train_valid_2_b}
 \end{subfigure}
 \caption{The learning curve which has the minimum cost in validation set. Exponential function fitting with 3 parameters to 15 training set of cluster 1, and validation check}
-\label{fig:not-normalised}
+\label{fig:not-fig:train_valid_2}
 \end{figure}
+
+\newpage
 % ======================================= %
 %		3.2.2 Over-fitting and Regularisation
 % ======================================= %
 \subsection{Over-fitting and Regularisation} \label{sbs:over-fitting}
 The term of over-fitting in machine learning is the case that "a model is too complex and is using its surplus complexity to fit to noise" \cite{rogers2015first}. For example, in polynomial model, the higher order the function is, the lower errors loss the model will have. It makes sense that the best learning curve will have the least cost in different single functions. However, these criteria cannot afford the comparison method between a single function and piecewise model, because separating the data range as small as possible means fitting the data set into small intervals, and will lead definitely and undoubtedly to smaller cost (over-fitting), such as the situation that increasing the number of clusters leads to smaller mean square errors in session (\ref{sbs:number_clusters}). 
 
+\begin{figure}[h]
+    \centering
+    \framebox{\parbox[t][0.4\textheight][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.38\textheight]{elbow_avg4_power_3param.png}
+        \end{center} }}
+	\caption{Regularisation example of cluster 4 in the piecewise power function with 3 parameters.}
+    \label{fig:pieces}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \framebox{\parbox[t][0.4\textheight][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.38\textheight]{elbow_step_5.png}
+        \end{center} }}
+	\caption{Regularisation example of cluster 5 in the piecewise step-like functions.}
+    \label{fig:pieces}
+\end{figure}
+
 \bigskip
 Regularisation prevents the model becoming too complex, by penalising over complexity \cite{rogers2015first}. Likewise the solution of k-mean clustering with competitive learning algorithm, 'Bayes information criteria' (BIC) and 'Akaike Information Criteria' (AIC), equation (\ref{eq:AICandBIC}), are used as the regularisation criteria. 
+
 
 % ======================================= %
 %		3.2.4 Choice of Breaking Point
 % ======================================= %
 \subsection{Choice of Breaking Point} \label{abs:breaking_point}
-Fig. \ref{fig:pieces} shows an example of how to find the exact transition points. Firstly, the entire data range is separated to $n-1$ transition points in $n$ pieces. Thus, there are three lines as the transition points with different colours (red, green, blue). A minimum of 50 window in each piece is used for the example, though actual window is 10. Accordingly, transition point 1 is on 50, point 2 is on 100, and the last point is on 150, and the last piece has remained 150 of attempt range as an initial condition.
-
-\begin{figure}[htpb]
-    \centering
-    \framebox{\parbox[t][0.5\textheight][t]{0.95\textwidth}{
-        \begin{center}
-            \includegraphics[width=0.9\textwidth, height=0.48\textheight]{piece_test.jpg}
-        \end{center} }}
-	\caption{Transition point shift in 4 pieces}
-    \label{fig:pieces}
-\end{figure}
+Fig. \ref{fig:pieces} shows an example of how to find the exact transition points. Firstly, the entire data range is separated to $n-1$ transition points in $n$ pieces. Thus, there are three lines as the transition points with different colours (red, green, blue). A minimum of 50 window in each piece is used for the example, though actual window is 10. Accordingly, transition point 1 is on 50, point 2 is on 100, and the last point is on 150, and the last piece has remained 150 of attempt range as an initial condition. Fig. (\ref{fig:pieces}) shows this example of the transition point shifts.
 
 \bigskip
 In each of the pieces, a single function's cost is saved into a matrix. At the same time, length and transition points of each piece is also saved into another matrix. The shape for both matrices are $[\textit{\textrm{ number of pieces $\times$ number of shift of a last transition point}}]$. (\ref{eq:cost_matrix}) and (\ref{eq:length_matrix}) are examples of the cost matrix and length matrix for 3 transition points with 4 pieces.
@@ -1094,7 +1100,7 @@ In each of the pieces, a single function's cost is saved into a matrix. At the s
 Because a start point of the first piece does not change, all elements in the first row are 1. How much iteration is needed is calculated based on the size of the last row. In this case, the last piece has initially 150 range and minimum window 50, then a number of shift in each breaking-point becomes $150 \div 50 = 3$. Therefore, cost matrix has $4\times3$ shape.
 
 \bigskip
-Using those two matrices, the optimal points which allow the piecewise function have a minimum error cost that can be identified. Firstly, it is repeated that one element in each row is derived and summed. Then the total value from every iteration is checked whether is 300. 300 means the entire range of each individual data set. Then matrix L is mapped to the cost matrix, and tested that transition points are plausible. If a start point in a later row is smaller than earlier rows, the total cost value is discarded, and the costs in which each start point are greater than earlier rows from themselves are compared with each other. Finally, a minimum cost with corresponding starting points is found. Below is an pseudo-code of the algorithm to find starting point with a minimum cost.
+Using those two matrices, the optimal points which allow the piecewise function have a minimum error cost that can be identified. Firstly, it is repeated that one element in each row is derived and summed. Then the total value from every iteration is checked whether is 300. 300 means the entire range of each individual data set. Then matrix L is mapped to the cost matrix, and tested that transition points are plausible. If a start point in a later row is smaller than earlier rows, the total cost value is discarded, and the costs in which each start point are greater than earlier rows from themselves are compared with each other. Finally, a minimum cost with corresponding starting points is found. Below is an pseudo-code of the algorithm to find starting point with a minimum cost. 
 
 \bigskip
 \begin{algorithmic}
@@ -1111,10 +1117,262 @@ Using those two matrices, the optimal points which allow the piecewise function 
 \RETURN $s$ and $\min c$
 \end{algorithmic}
 
-\section{Curve Fittings}
+\begin{figure}[thpb]
+    \centering
+    \framebox{\parbox[t][0.6\textheight][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.95\textwidth, height=0.56\textheight]{piece_test.png}
+        \end{center} }}
+	\caption{Transition point shift in 4 pieces}
+    \label{fig:transition_shift}
+\end{figure}
+
+%\section{Curve Fittings}
+
+% ======================================= %
+%		4. Discussion
+% ======================================= %
+\chapter{Discussion}
+The traditional power law model (single smooth power function) is successfully fitted to the entirely averaged on-line game data set than the exponential law model. It became obvious that the power law model is the artificial learning curve comprised of several practice law models. 
+
+After the entire data set is categorised into the 13 groups through the data curation task, in which individuals show the similar learning patterns early in learning, each group provides different shape of learning curves. The most-frequent function is piece wise model, in which individuals follow the power law model with 4 parameters combined with step-like or first order polynomial models. 
+
+\bigskip
+It seems that power law model is still dominant in those 13 clusters rather than exponential or other models. The reason of that may be that those groups are still averaged data set over 1000 individuals having similar early learning patters. Because the raw data of the on-line game for almost all individuals have discontinuous data sequences; for example individual A has the data ranging from 40 to 90 practice, or the data of individual B starts attempt 1 with practice range 20 and the second interval starts 130 attempt with practice range 40, the function fitting for each individual could not be implemented, and thus players' data are clustered on the basis of the early 15 attempts, and are averaged instead.
+
+% ======================================= %
+%		4.1 The Best Learning Curve
+% ======================================= %
+\section{The Best Learning Curve}
+As discussed above, those 13 groups have different shape of learning curves. The most of them are piece wise function, while cluster 3 and 8 have a single first order polynomial function and power function with 4 parameters, respectively. 
+
+\bigskip
+Firstly, the argument insisted by Murr and Chessa (2011) is tested in session (\ref{sba:PL_EL}), which is that the exponential learning curve with 3 parameters describes the individual learning process better than power law model, and the power law model is the representative of averaging those individuals.
+
+Next, the result of differences between the single and multiple curves for each cluster are discussed in the following session. Those clusters are the reduced data set from the entirely averaged data set.
+% ======================================= %
+%		4.1.2 The Best Learning Curve
+% ======================================= %
+\subsection{Power Law and Exponential Law} \label{sba:PL_EL}
+In single learning curves, the power law model with 4 parameters are the best fitting model to the entirely averaged on-line game data set with minimum cost, 2.94. Among exponential functions with different number of parameter, 3 parameter exponential model has the minimum cost, 3.51. 
+% Fig.
+\graphicspath{ {Figs/} }
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{single_exponential3.png}
+        \end{center} }}
+    \caption{Exponential model with 3 parameters}
+    \label{fig:single_exponential3}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{single_powerlaw4.png}
+        \end{center} }}
+    \caption{Power law model with 4 parameters}
+    \label{fig:single_powerlaw4}
+\end{subfigure}
+\caption{Comparison between exponential function and power function. Both are the best fitting learning curve to the entirely averaged data set among different number of parameters.}
+\label{fig:single_functions}
+\end{figure}
+
+Therefore, it is assumed that when all performances of players are averaged together, learning dynamics disappears, and the global learning curve follows the power law.
+% ======================================= %
+%		4.1.3 The Best Learning Curve
+% ======================================= %
+\subsection{Single and Piecewise Curves}
+For clustered individuals, four functions; polynomial, exponential, power, and step functions, are tested through the possible all situations. As well as single curve fitting, piecewise cases in different number of pieces with window 30 are examined, by multiplying a function or combining  different functions together. After that, all squared errors loss of those situations are compared with each other, and the functions which has the least cost value are founded. Though this, the tasks for function fitting become a variety. 
+
+\bigskip
+Three multiple functions comprised by a single model are iterated 10 times in order to get the costs under the different number of pieces. These functions are as follow,
+\begin{itemize}
+    \item piecewise exponential model,
+    \item piecewise power model,
+    \item piecewise step-like model.
+\end{itemize}
+
+\bigskip
+Next, combinations of those functions are fitted to the averaged cluster data sets. 
+\begin{itemize}
+    \item piecewise exponential and step-like model,
+    \item piecewise exponential and polynomial model,
+    \item piecewise power and step-like model,
+    \item piecewise power and polynomial model.
+\end{itemize}
+
+\bigskip
+Fig. \ref{fig:best_fit} shows the result of the function fitting. 11 clusters have piecewise functions, while two clusters; cluster 3 and cluster 8, have a continuous single curve; first order polynomial model and power model with 4 parameters. Interestingly, first order polynomial function is fitted best to the individuals in cluster 3. Their performances improves gradually, but the rapid improvement at the early phase in learning with similar to other clusters does not exist. Therefore, they can be assumed as a group who learns slowly but steadily. Although their learning process is slow, they might be expert after sufficient time, because the learning curve increase without limitation, while others approaches to the asymptotes. 
+
+\bigskip
+The most dominant model is piecewise power law. In piecewise functions, power law models always appear before the first transition point.  7 clusters have piecewise power curves, not only in the early part of learning before the first transition point, but also in the later trials. 3 groups have a power curve in early attempts, followed by the polynomial functions. Only cluster 7 have the combination of piece wise functions for power and step-like models.
+
+\bigskip
+In additions, most first transition points appear after about 200 practice when they experience the stable learning process, which means the learning curves approaches asymptotes. Thus, through these two results that power model exists in almost all piecewise learning processes, and the first transition point appears when learning speed become significantly slow, the hypothesis can be established that individuals may follow the power law to learn any kind of new skills in practice, then they attempt different learning methods in order to exceed the currently slow learning process. 
+
+\bigskip
+%fig1
+\graphicspath{ {Figs/Learning_curves/} }
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg1_4param.png}
+        \end{center} }}
+    \caption{Cluster 1: Power and polynomial functions}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg2_4param.png}
+        \end{center} }}
+    \caption{Cluster 2: Power functions}
+\end{subfigure}
+\end{figure}
+%fig2
+\graphicspath{ {Figs/Learning_curves/} }
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg3.png}
+        \end{center} }}
+    \caption{Cluster 3: Single polynomial function}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg4_4param.png}
+        \end{center} }}
+    \caption{Cluster 4: Power functions}
+\end{subfigure}
+\end{figure}
+%fig3
+\graphicspath{ {Figs/Learning_curves/} }
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg5_4param.png}
+        \end{center} }}
+    \caption{Cluster 5: Power and polynomial functions}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg6_4param.png}
+        \end{center} }}
+    \caption{Cluster 6: Power functions}
+\end{subfigure}
+\end{figure}
+%fig4
+\graphicspath{ {Figs/Learning_curves/} }
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg7_4param.png}
+        \end{center} }}
+    \caption{Cluster 7: Power and step-like functions}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg8_power_single.png}
+        \end{center} }}
+    \caption{Cluster 8: Single power function}
+\end{subfigure}
+\end{figure}
+%fig5
+\graphicspath{ {Figs/Learning_curves/} }
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg9_4param.png}
+        \end{center} }}
+    \caption{Cluster 9: Power functions}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg10_4param.png}
+        \end{center} }}
+    \caption{Cluster 10: Power functions}
+    \label{fig:best_fit_5_b}
+\end{subfigure}
+\end{figure}
+%fig6
+\graphicspath{ {Figs/Learning_curves/} }
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg11_4param.png}
+        \end{center} }}
+    \caption{Cluster 7: Power and polynomial functions}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg12_4param.png}
+        \end{center} }}
+    \caption{Cluster 7: Power functions}
+    \label{fig:best_fit_6_b}
+\end{subfigure}
+\end{figure}
+%fig7
+\graphicspath{ {Figs/Learning_curves/} }
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{avg13_4param.png}
+        \end{center} }}
+    \caption{Cluster 7: Power functions}
+\end{subfigure}
+%\begin{subfigure}{0.5\textwidth}
+%    \framebox{\parbox{0.95\textwidth}{
+%        \begin{center}
+%            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{}
+%        \end{center} }}
+%    \caption{Validation set}
+%    \label{fig:best_fit_7_b}
+%\end{subfigure}
+%\caption{Minimum cost in training set, but large cost in validation set. Exponential function fitting with 3 parameters to 15 training set of cluster 13, and validation check}
+\caption{The result of the best function fitting curves for each clusters.}
+\label{fig:best_fit}
+\end{figure}
+
+\newpage
+\section{Exploitation and Exploration}
+The process of the skill acquisition in practice can be regarded as the theoretical framework of reinforcement learning \cite{stafford2014tracing}. The framework of reinforcement leaning is based on the situation in which the current decision is taken after considering the future rewards and states. A policy in the reinforcement learning affects the way of decisions at a given time . In other world, "a policy is a mapping from perceived states of the environment to actions to be taken when in those states" \cite{sutton1998reinforcement}. Depends on the policy, agents may take an action greedily, exploiting, or non-greedily, exploring. The exploration in reinforcement learning represent the case that agents take an action under the currently given or known value of the actions. However, there would be the better results beyond the current knowledge and experiences. In this case, the exploration can provide possibility of the improvement in the estimate of expected rewards, while the outcome after taking the action for the exploration would result in not superior or even worse rewards. Thus, agents are controlled by the policy of which action between exploitation and exploration will take, in order to maximise the future result. 
+
+\bigskip
+The same as the problem of the trade-off in reinforcement learning, individuals who play the on-line game decide an action whether they will exploit the current knowledge (otherwise, follow the instruction of the game) or explore the game under several plays, in order get the higher scores. Of course, the on-line game play is involved in not only "decision making", but also "motor responding", and "rapid perception" \cite{stafford2014tracing}. However, the results of the function fitting to the on-line game data set may imply the framework how players solve the trade-off.
+
+\bigskip
+The practice before the first transition point for almost all clusters shows the monotonic improvement in the early phases, getting slower and slower. Finally it approaches the asymptote. All of them, except cluster 3 which has polynomial learning curve, follow this power law learning process. At the end of the power curve, which is near to asymptote, scores become fluctuated until it reaches to the first transition, then they show different shape of learning curves with significantly fluctuated scores; but higher than the value of asymptotes.
+
+\bigskip
+Therefore, individuals tend to take the exploitation actions at the beginning of the game, and they does not choose the exploration actions at the beginning. Then, when they feel that their learning process became significantly slow, they try and explore different methods, in order to improve their performance.
+%\section{A Power Law : An Artificial Curve}
+
 
 %\nocite{*}
 \bibliographystyle{apacite}
 %\bibliographystyle{apalike}
 \bibliography{references}
+
+\newpage \section*{APPENDIX}
+Gantt charts are attached as bellow.
 \end{document}
