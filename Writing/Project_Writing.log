@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  30 AUG 2016 02:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  30 AUG 2016 04:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -263,7 +263,38 @@ Package: apacite 2013/07/21 v6.03 APA citation
 \bibitemsep=\skip55
 \biblabelsep=\skip56
 )
-(./Project_Writing.aux)
+(./Project_Writing.aux
+
+LaTeX Warning: Label `fig:not_norm_data' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:not_norm_data' multiply defined.
+
+
+LaTeX Warning: Label `fig:not_norm_weight' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:not_norm_weight' multiply defined.
+
+
+LaTeX Warning: Label `fig:not-normalised' multiply defined.
+
+
+LaTeX Warning: Label `fig:not_norm_data' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:not_norm_data' multiply defined.
+
+
+LaTeX Warning: Label `fig:not_norm_weight' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:not_norm_weight' multiply defined.
+
+
+LaTeX Warning: Label `fig:not-normalised' multiply defined.
+
+)
 \openout1 = `Project_Writing.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
@@ -279,8 +310,7 @@ LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 25.
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 *geometry* driver: auto-detecting
@@ -552,19 +582,56 @@ Package pdftex.def Info: Figs/Piecewise_Functions.png used on input line 882.
 [34]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 950.
- [35] [36] [37] <Figs/piece_test.jpg, id=170, 722.7pt x 542.025pt>
-File: Figs/piece_test.jpg Graphic file (type jpg)
+ [35] [36] <Figs/exp3_15sample_1.png, id=167, 433.62pt x 289.08pt>
+File: Figs/exp3_15sample_1.png Graphic file (type png)
 
-<use Figs/piece_test.jpg>
-Package pdftex.def Info: Figs/piece_test.jpg used on input line 1019.
+<use Figs/exp3_15sample_1.png>
+Package pdftex.def Info: Figs/exp3_15sample_1.png used on input line 1007.
+(pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
+
+<Figs/exp3_15sample_2.png, id=168, 433.62pt x 289.08pt>
+File: Figs/exp3_15sample_2.png Graphic file (type png)
+
+<use Figs/exp3_15sample_2.png>
+Package pdftex.def Info: Figs/exp3_15sample_2.png used on input line 1015.
+(pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
+
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1002--1019
+[]$[]$ $[]$ 
+ []
+
+<Figs/exp3_15valid_1.png, id=169, 433.62pt x 289.08pt>
+File: Figs/exp3_15valid_1.png Graphic file (type png)
+
+<use Figs/exp3_15valid_1.png>
+Package pdftex.def Info: Figs/exp3_15valid_1.png used on input line 1029.
+(pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
+
+<Figs/exp3_15valid_2.png, id=170, 433.62pt x 289.08pt>
+File: Figs/exp3_15valid_2.png Graphic file (type png)
+
+<use Figs/exp3_15valid_2.png>
+Package pdftex.def Info: Figs/exp3_15valid_2.png used on input line 1037.
+(pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
+
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1024--1041
+[]$[]$ $[]$ 
+ []
+
+[37] [38 <./Figs/exp3_15sample_1.png> <./Figs/exp3_15sample_2.png> <./Figs/exp3
+_15valid_1.png> <./Figs/exp3_15valid_2.png>]
+<Figs/piece_test.jpg, id=181, 722.7pt x 542.025pt>
+File: Figs/piece_test.jpg Graphic file (type jpg)
+ <use Figs/piece_test.jpg>
+Package pdftex.def Info: Figs/piece_test.jpg used on input line 1064.
 (pdftex.def)             Requested size: 375.1445pt x 336.52344pt.
 
-Overfull \hbox (13.99812pt too wide) in paragraph at lines 1025--1026
+Overfull \hbox (13.99812pt too wide) in paragraph at lines 1070--1071
 \OT1/ptm/m/n/12 shape for both ma-tri-ces are $\OT1/ztmcm/m/n/12 [[]]$\OT1/ptm/
 m/n/12 .
  []
 
-[38 <./Figs/piece_test.jpg>] [39] (./Project_Writing.bbl [40]
+[39] [40 <./Figs/piece_test.jpg>] (./Project_Writing.bbl [41]
 Underfull \hbox (badness 2351) in paragraph at lines 319--331
 []\OT1/ptm/m/n/12 python on-line doc-u-ment.  (n.d.[][]).  12.1. pickle ? pytho
 n ob-ject se-ri-al-
@@ -576,7 +643,7 @@ Underfull \hbox (badness 1173) in paragraph at lines 319--331
 , 2016, from
  []
 
-[41
+[42
 
 ]
 Underfull \hbox (badness 2635) in paragraph at lines 343--355
@@ -600,19 +667,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 343--355
 
  []
 
-) [42] (./Project_Writing.aux)
+) [43] (./Project_Writing.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 5332 strings out of 493014
- 81528 string characters out of 6133351
- 160140 words of memory out of 5000000
- 8743 multiletter control sequences out of 15000+600000
+ 5352 strings out of 493014
+ 82054 string characters out of 6133351
+ 160179 words of memory out of 5000000
+ 8759 multiletter control sequences out of 15000+600000
  40464 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,26n,40p,1082b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,26n,40p,1082b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -624,10 +694,10 @@ onts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
 urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/
 utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pf
 b></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Project_Writing.pdf (46 pages, 1271608 bytes).
+Output written on Project_Writing.pdf (47 pages, 1366165 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 139 compressed objects within 2 object streams
+ 238 PDF objects out of 1000 (max. 8388607)
+ 141 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

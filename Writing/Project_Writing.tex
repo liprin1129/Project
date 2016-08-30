@@ -988,14 +988,59 @@ Squared lost function is used not only to find the optimal parameters, but also 
 %		3.2.3 Training Set and Validation Set
 % ======================================= %
 \subsection{Training Set and Validation Set} \label{sbs:Training_Validation}
-Separating the entire data set into two parts; training set and validation set, is the method to deal with the over-fitting problem. Ideally, the best fitting learning curve can generalise predictions close to the true value \cite{rogers2015first}. Therefore, separating the individual data-set with 300 attempts to two parts can have the same role of the generalisation. Although the model fits well on the training set and has very small cost, the generalised predictions from the model for an unseen data may have great disparity with big errors loss.
+Separating the entire data set into two parts; training set and validation set, is the method to deal with the over-fitting problem. Ideally, the best fitting learning curve can generalise predictions close to the true value \cite{rogers2015first}. Therefore, separating the individual data-set with 300 attempts to two parts would have the same role of the generalisation. Although the model fits well on the training set and has very small cost, the generalised predictions from the model for an unseen data may have great disparity with big errors loss.
 
-\bigskip
 Therefore, to choose the best function among a set of models, each model is trained on the reduced training set, and then the corresponding costs are computed on the validation set. 
 
-\textbf{validation check}\\
-At first, assumption for learning processes will be tested on 14 data sets in which groups show similar learning patterns between 15 attempts and scores.
+\bigskip
+Particularly, training and validation set is used for identifying the best fitting single curve to the data set among four functions; polynomial, exponential, power and step-like functions. 
 
+At first, assumption for learning processes will be tested on early in learning of 14 data set, in which it is assumed that individuals with similar performances early in learning may show similar learning patterns after 15 attempts. 
+Next, the entire 300 attempts data set is reduced to the data set containing from 1 to 50 practice, which is supposed that the players practised enough.
+
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{exp3_15sample_1.png}
+        \end{center} }}
+    \caption{Training set}
+    \label{fig:not_norm_data}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{exp3_15sample_2.png}
+        \end{center} }}
+    \caption{Validation set}
+    \label{fig:not_norm_weight}
+\end{subfigure}
+\caption{Minimum cost in training set, but large cost in validation set. Exponential function fitting with 3 parameters to 15 training set of cluster 13, and validation check}
+\label{fig:not-normalised}
+\end{figure}
+
+\begin{figure}[htpb]
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{exp3_15valid_1.png}
+        \end{center} }}
+    \caption{Training set}
+    \label{fig:not_norm_data}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \framebox{\parbox{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.9\textwidth, height=0.6\textwidth]{exp3_15valid_2.png}
+        \end{center} }}
+    \caption{Validation set}
+    \label{fig:not_norm_weight}
+\end{subfigure}
+\caption{The learning curve which has the minimum cost in validation set. Exponential function fitting with 3 parameters to 15 training set of cluster 1, and validation check}
+\label{fig:not-normalised}
+\end{figure}
 % ======================================= %
 %		3.2.2 Over-fitting and Regularisation
 % ======================================= %

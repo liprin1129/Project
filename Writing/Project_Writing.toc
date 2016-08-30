@@ -29,6 +29,6 @@
 \contentsline {subsection}{\numberline {3.2.1}Squared Lost Function}{34}
 \contentsline {subsection}{\numberline {3.2.2}Training Set and Validation Set}{37}
 \contentsline {subsection}{\numberline {3.2.3}Over-fitting and Regularisation}{37}
-\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{38}
-\contentsline {section}{\numberline {3.3}Curve Fittings}{40}
-\contentsline {chapter}{References}{41}
+\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{39}
+\contentsline {section}{\numberline {3.3}Curve Fittings}{41}
+\contentsline {chapter}{References}{42}
