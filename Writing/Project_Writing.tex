@@ -54,35 +54,23 @@
 \section{Background and Motivation}
 
 % Conditioning paradigms reflects the "neurobiological basis of learning and memory" (Gallistel 2004).  
-Learning curves may reflect different underlying learning processes. For example, in insight learning, it may follow slightly fluctuated level and sudden dramatic increase at some points. Because the learning is sometimes the result of experience through personal interactions with the environment. And following the occurrence of insight, abrupt realisation of how to solve the problem can be repeated in future similar situations. This means that the associated experiences with insights can be parameterised, and it can be linked to future behaviours.
-% Also, experiences and insight may reinforce each other and can be associated to one another. This associated experience can be memorised and be a feedback as a parameter for future learning. 
-% Eventually, behaviour can memorise stimuli and feedbacks, and these may affect and eventually change behaviour.
-% insight learning, associative learning, multi-component/process learning.
+Shape of learning curve may reflect different underlying learning processes. For example, in insight learning, the learning curve may follow slightly fluctuated level and sudden dramatic increase at some points. If this feature between performances and practises is trained to identify the underlying learning curve, it would result in a step-like model. Another example is a power curve. It is well known "law of practice" in Psychology \cite{newell1981mechanisms}. Many different skill acquisition tasks can be described well under the power law \cite{lacroix2006introduction}. Howard (2014) said that power law is "correct and general" to explain learning processes. If subjectives show a learning performance of power law, their learning performance will be enhanced progressively early in learning, but will become slower and slower, and then will reach to asymptote. Therefore, "curve fitting with benefit of a model" would provide effective understanding of skill acquisition and learning processes \cite{newell1981mechanisms}.
 
-% These learning processes are reinforced by the conditioned stimulus
-% Insight learning is the first cognitive learning.  
-% https://psychlopedia.wikispaces.com/insight+learning
+\bigskip
+Power function has been used as a fundamental and popular practice law in Psychology, such as Ericsson et al. (1993) proved the expert performance theory that "performance increases monotonically" following with the power law, although "the form of the practice law may also seem to be an unsolvable technical issue, rather than an important psychological question" \cite{heathcote2000power}.
 
-%Associative learning : a learning principle that states ideas and experiences reinforce each other and can be mentally linked to one another. Conditioning; behaviour can be modified or learned based on a stimulus and a response. Reinforcers; stimuli used to change behaviour.
+\bigskip
+Individuals may show different shapes of learning process beyond power function. %which has monotonic shape. 
+Some may follow exponential law, and others may have "multi-step changes in behaviour" if experiences and insight may reinforce each other and can be associated to one another \cite{gallistel2004learning}. There are several possible functions which might fit to the curve of skill acquisition, and may describe different learning processes; step function, power law, piecewise power function, and so on. Because the power law is often said that it is the outcome of averaging these possible functions, individuals can be categorised into several groups in which they show similar learning patterns on these possible functions.
 
-Therefore, there are several possible functions which might fit learning curves and represent different learning processes; step function, powerlaw, piecewise powerlaw and etc. Through possible functions and learning curves, people can be grouped into several learning patterns. Moreover, by inspecting people in those groups, 'how they practice' to get the learning curve and 'which features' having an affect upon individuals can be found. Then suggestions for better learning for individuals may be categorised and proposed.
+\begin{comment}
+Moreover, by inspecting people in those groups, 'how they practice' to get the learning curve and 'which features' having an affect upon individuals can be found. Then suggestions for better learning for individuals may be categorised and proposed.
+\end{comment}
 
-% By fitting those functions to the big data of individuals' game result with various features,
-% may influence the individuals' learning curve' 
-% on their learning process'
+\bigskip
+In contrary with the traditional approaches for investigation of learning curve which usually brought experts into a lab to test skill acquisition, this analysis uses a large amount of data set collected from on-line game. The traditional approaches lack "comprehensive details" of subjectives' training and the exact feature of "the history of their practice which is related to the skilled performance" \cite{stafford2014tracing}. Also, it has a limited number of subjectives. It might thus result in the power curve for the investigation of skill acquisition.
 
-For this, online games are a reasonable instrument. As it involves "rapid perception, decision making, and motor responding", as well as it gives rich details of practice history, in order to find individuals' learning curve and investigate their features (Stafford and Dewar, 2013) 
-
-%\textit{An online game involving rapid perception, decision making, and motor responding. Use of game data-> rich details of training history with measures of performance. Relations between \textbf{practice amount} and \textbf{subsequent performance}, and between \textbf{practice spacing} and \textbf{subsequent performance.}\\
-%Greater initial variation in performance is linked to higher subsequent performance-> \textbf{a result we link to the exploration/exploitation trade-off from the computational framework of reinforcement learning.}//
-%Explaining two dilemmas: \\
-%Reinforcement learning, exploration/exploitation dilemma}
-
-% \subsection{[level 3 heading]}
-
-% As a general rule don't use more than three levels for a heading
-
-Text...
+However, the computer game provides an abundant "record of every action in the history" of practice, as well as a large number of samples of players \cite{stafford2014tracing}. This large number of data set and records may be able to allow identifying the underlying practice law which are hidden under the power law of averaged learning curves.
 
 % ======================================= %
 %		1.2. Problem Definition
@@ -800,8 +788,18 @@ In total 4 functions which are briefly explained above are examined as possible 
     \item polynomial functions in different orders
     \item exponential functions with different parameters,
     \item power functions with various parameters,
-    \item step function.
+    \item step-like function.
 \end{enumerate}
+
+\begin{figure}[htpb]
+    \centering
+    \framebox{\parbox[t][0.7\textwidth][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.95\textwidth, height=0.7\textwidth]{Functions.png}
+        \end{center} }}
+	\caption{Possible 4 models; first order polynomial, 3 parameters exponential function, 4 parameters power function, step-like function with change point at 5}
+	\label{fig:Functions}
+\end{figure}
 
 Polynomial functions from first up to five orders are trained for on-line game learning curve. First and second order were introduced in equation (\ref{eq:first_order}). Other remaining functions are as below,
 \begin{equation} \label{eq:high_order}
@@ -876,6 +874,16 @@ Similarly, all different functions can be combined together, such as the power f
 \end{equation}
 Every player may show a large variety of learning patterns, but exact learning curves are ambiguous. Thus, functions are fitted as many and various as possible, and compared with each other under a criterion, squared lost function. This criterion will be discussed in session \ref{sbs:square_lost_function}
 
+\begin{figure}[htpb]
+    \centering
+    \framebox{\parbox[t][0.5\textwidth][t]{0.95\textwidth}{
+        \begin{center}
+            \includegraphics[width=0.95\textwidth, height=0.45\textwidth]{Piecewise_Functions.png}
+        \end{center} }}
+	\caption{Example of piecewise functions; exponential and power functions}
+	\label{fig:Piecewise_Functions}
+\end{figure}
+
 \bigskip
 Another clue about the best curve fitting in piecewise functions is identifying such transition points (or change-points) in the data set \cite{gallistel2004learning}. To identify the true discontinuities, Donner and Hardy (2015) suggested two conditions. First, a large data set is required with many individual learning curves. At the same time, those learning curves should have long enough data sequence including "potentially infrequent discontinuities". Fortunately, the on-line game data set complies with theses conditions. ??? individuals comprise the train set and almost all players have discontinuous data sequence because of unknown reasons.
 
@@ -888,12 +896,12 @@ To sum up, individual learning curve may be represented as a single curve or mul
 %		3.2 Method
 % ======================================= %
 \section{Method}
-Through the previous chapter, it is discussed that what kind of models might be contained in the on-line data set as the individual learning curves. However, the on-line data set seems containing many noises, and they make hard to identify true parameters of the models with such high disturbance. Furthermore, even after feasible parameters are found, some criteria which measure how the trained learning curves fit well on the predefined models are necessary. If not, there is no way to distinguish the best individual learning curve among various outcomes.
+It was discussed throughout the previous chapter what kind of models might be contained in the on-line data set as the individual learning curves. However, the on-line data set seems to be containing many noises, and they make it hard to identify true parameters of the models with such high disturbance. Furthermore, even after feasible parameters are found, criteria which measure how the trained learning curves fit well on the predefined models are necessary. If not, there is no way to distinguish the best individual learning curve among various outcomes.
 
 Therefore, some appropriate methods have to be operated through the curve fitting process. This session introduces the curve fitting method and relevant criteria.
 
 \subsection{Squared Lost Function} \label{sbs:square_lost_function}
-There are several optimality criterion to search for optimal parameters. Squared lost function is one of possible and well known method to fit the linear model \cite{james2013introduction} which is linear itself or in parameters. The best learning curve may consist of the parameters producing a line that passes as many and close as possible the data points.
+There are several optimality criteria to search for optimal parameters. Squared lost function is one of the possible and well known methods to fit the linear model \cite{james2013introduction} which is linear itself or in parameters. The best learning curve may consist of the parameters producing a line that passes as many and as close as possible to the data points.
 
 \bigskip
 The squared lost function is defined as below,
@@ -907,7 +915,7 @@ where $\mathcal{L}_n$ represents cost value of the difference between true value
 %The best curve will have a minimum cost of average loss discovered by tuning parameters across the entire data set as follow,
 
 \bigskip
-The $\arg\min$ of the average loss is involved finding such geometrical turning points with respect to parameters, and it will tells the minima corresponding the turning points,
+The $\arg\min$ of the average loss is involved in finding such geometrical turning points with respect to parameters, and it will tell the minima corresponding to the turning points,
 \begin{equation} \label{eq:avg_loss_function}
 \begin{split}
     \textbf{w}_{\textrm{opt}} = {\arg\min}_{\textbf{w}} \frac{1}{N}\sum_{n=1}^{N}(y_n - f(x_n;\; \textbf{w}) )^2. %\textbf{\textrm{w}})) =  
@@ -951,8 +959,8 @@ Then, (\ref{eq:loss_zero}) is solved with respect to $\textbf{w}$, using the Pyt
     \mathbf{R} \textbf{w} &= \mathbf{Q}^\top \mathbf{y},
 \end{split}
 \end{equation}
-where $\mathbf{Q}$ is orthogonal matrix, so that $\mathbf{Q}^\top \mathbf{Q}=\mathbf{I}$, and matrix $\mathbf{R}$ is upper triangular. QR decomposition may provide a solution with more numerically stability, because $\mathbf{X}\top \mathbf{X}$ is removed, in which all elements are squared and then potentially numerical precision is disappeared. However, QR decomposition will operate on X directly, preserving the model's numerical precision.
-Finally, second derivatives tells that whether the turning  points correspond to minimum, maximum or saddle point. 
+where $\mathbf{Q}$ is orthogonal matrix, so that $\mathbf{Q}^\top \mathbf{Q}=\mathbf{I}$, and matrix $\mathbf{R}$ is upper triangular. QR decomposition may provide a solution with more numerical stability, because $\mathbf{X}\top \mathbf{X}$ is removed, in which all elements are squared and then potentially numerical precision disappears. However, QR decomposition will operate on X directly, preserving the model's numerical precision.
+Finally, second derivatives show that whether the turning  points correspond to minimum, maximum or saddle point. 
 %Using the vector and matrix formation for linear functions in parameters, the partial derivative develops simple task.
 %A potential minimum can be derived easily; computing the partial derivatives, equating to zero, and solving for parameters.
 
@@ -971,27 +979,37 @@ For non-linear function, it is not tractable to find the optimal parameters by e
 \end{algorithmic}
 
 \bigskip
-Through these two methods, it can be determined that the optimal parameters which results in the best learning curve. For convenience of these methods, Python command scipy.optimize.least\_squares is utilised, which "solve a nonlinear least-squares problem with bounds on the variables" \cite{pythonLeastSquare}, and returns costs and other useful arguments.
+Through these two methods, it can be determined that the optimal parameters results in the best learning curve. For convenience of these methods, Python command scipy.optimize.least\_squares is utilised, which "solve a nonlinear least-squares problem with bounds on the variables" \cite{pythonLeastSquare}, and returns costs and other useful arguments.
 
 \bigskip
-Squared lost function is used not only for to find the optimal parameters, but also for the criteria to compare the fitted learning curves. For this analysis, it is assumed that the best fitting learning curve among different models will have a minimum cost.
+Squared lost function is used not only to find the optimal parameters, but also for the criteria to compare the fitted learning curves. For this analysis, it is assumed that the best fitting learning curve among different models will have a minimum cost.
 
-\subsection{Over-fitting and Regularisation} \label{sbs:over-fitting}
-The term of over-fitting in machine learning is the case that "a model is too complex and is using its surplus complexity to fit to noise" \cite{rogers2015first}. For example, in polynomial model, the higher order the function is, the lower errors loss the model will have. It makes sense that the best learning curve will have the least cost in different single functions. However, this criteria cannot afford the comparison method between a single function and piecewise model, because separating the data range as smaller as possible means fitting data set in small interval, and will lead definitely and undoubtedly smaller cost (over-fitting), such as the situation that increasing the number of clusters leads smaller mean square errors in session (\ref{sbs:number_clusters}). 
-
-\bigskip
-Regularisation prevents the model to become too complex, by penalising over complexity \cite{rogers2015first}. Likewise the solution of k-mean clustering with competitive learning algorithm, 'Bayes information criteria' (BIC) and 'Akaike Information Criteria' (AIC), equation (\ref{eq:AICandBIC}), are used as the regularisation criteria. 
-
+% ======================================= %
+%		3.2.3 Training Set and Validation Set
+% ======================================= %
 \subsection{Training Set and Validation Set} \label{sbs:Training_Validation}
-Separating the entire data set into two parts; training set and validation set, is another method to deal with the over-fitting problem. Ideally, the best fitting learning curve can generalise predictions close to the true value. Therefore, separating the individual data-set with 300 attempts to two parts can have the same role of the generalisation. Although the model fits well on the training set and have very small cost, the generalised predictions from the model for an unseen data may have great disparity with big errors loss.
+Separating the entire data set into two parts; training set and validation set, is the method to deal with the over-fitting problem. Ideally, the best fitting learning curve can generalise predictions close to the true value \cite{rogers2015first}. Therefore, separating the individual data-set with 300 attempts to two parts can have the same role of the generalisation. Although the model fits well on the training set and has very small cost, the generalised predictions from the model for an unseen data may have great disparity with big errors loss.
 
 \bigskip
 Therefore, to choose the best function among a set of models, each model is trained on the reduced training set, and then the corresponding costs are computed on the validation set. 
 
 \textbf{validation check}\\
 At first, assumption for learning processes will be tested on 14 data sets in which groups show similar learning patterns between 15 attempts and scores.
+
+% ======================================= %
+%		3.2.2 Over-fitting and Regularisation
+% ======================================= %
+\subsection{Over-fitting and Regularisation} \label{sbs:over-fitting}
+The term of over-fitting in machine learning is the case that "a model is too complex and is using its surplus complexity to fit to noise" \cite{rogers2015first}. For example, in polynomial model, the higher order the function is, the lower errors loss the model will have. It makes sense that the best learning curve will have the least cost in different single functions. However, these criteria cannot afford the comparison method between a single function and piecewise model, because separating the data range as small as possible means fitting the data set into small intervals, and will lead definitely and undoubtedly to smaller cost (over-fitting), such as the situation that increasing the number of clusters leads to smaller mean square errors in session (\ref{sbs:number_clusters}). 
+
+\bigskip
+Regularisation prevents the model becoming too complex, by penalising over complexity \cite{rogers2015first}. Likewise the solution of k-mean clustering with competitive learning algorithm, 'Bayes information criteria' (BIC) and 'Akaike Information Criteria' (AIC), equation (\ref{eq:AICandBIC}), are used as the regularisation criteria. 
+
+% ======================================= %
+%		3.2.4 Choice of Breaking Point
+% ======================================= %
 \subsection{Choice of Breaking Point} \label{abs:breaking_point}
-Fig. \ref{fig:pieces} shows an example how to find the exact transition points. Firstly, entire data range is separated to $n-1$ transition points in $n$ pieces. Thus, there are three lines as the transition points with different colours (red, green, blue). Minimum 50 window in each piece is used for the example, though actual window is 10. Accordingly, transition point 1 is on 50, point 2 is on 100, and the last point is on 150, and the last piece have remained 150 of attempt range as an initial condition.
+Fig. \ref{fig:pieces} shows an example of how to find the exact transition points. Firstly, the entire data range is separated to $n-1$ transition points in $n$ pieces. Thus, there are three lines as the transition points with different colours (red, green, blue). A minimum of 50 window in each piece is used for the example, though actual window is 10. Accordingly, transition point 1 is on 50, point 2 is on 100, and the last point is on 150, and the last piece has remained 150 of attempt range as an initial condition.
 
 \begin{figure}[htpb]
     \centering
@@ -1004,7 +1022,7 @@ Fig. \ref{fig:pieces} shows an example how to find the exact transition points. 
 \end{figure}
 
 \bigskip
-In each pieces, a single function's cost is saved into a matrix. At the same time, length and staring points of each piece is also saved into another matrix. The shape of both matrices is $[\textit{\textrm{ number of pieces $\times$ number of shift of a last transition point}}]$. (\ref{eq:cost_matrix}) and (\ref{eq:length_matrix}) are an examples of the cost matrix and length matrix for 3 transition points with 4 pieces.
+In each of the pieces, a single function's cost is saved into a matrix. At the same time, length and transition points of each piece is also saved into another matrix. The shape for both matrices are $[\textit{\textrm{ number of pieces $\times$ number of shift of a last transition point}}]$. (\ref{eq:cost_matrix}) and (\ref{eq:length_matrix}) are examples of the cost matrix and length matrix for 3 transition points with 4 pieces.
 
 \begin{equation} \label{eq:cost_matrix}
 \begin{split}
@@ -1028,10 +1046,10 @@ In each pieces, a single function's cost is saved into a matrix. At the same tim
 \end{split}
 \end{equation}
 
-Because a start point of the first piece does not change, all elements in the first row are 1. How many iteration is needed is calculated based on the size of the last row. In this case, the last piece has initially 150 range and minimum window 50, then a number of shift in each breaking-point becomes $150 \div 50 = 3$. Therefore, cost matrix has $4\times3$ shape.
+Because a start point of the first piece does not change, all elements in the first row are 1. How much iteration is needed is calculated based on the size of the last row. In this case, the last piece has initially 150 range and minimum window 50, then a number of shift in each breaking-point becomes $150 \div 50 = 3$. Therefore, cost matrix has $4\times3$ shape.
 
 \bigskip
-Using those two matrices, the optimal points which allow the piecewise function has a minimum error cost can be identified. Firstly, it is repeated that one element in each row is derived and summed. Then the total value from every iterations is checked whether is 300. 300 means the entire range of each individual data set. Then matrix L is mapped to the cost matrix, and tested that transition points are plausible. If a start point in a later row is smaller than earlier rows, the total cost value is discarded, and the costs in which each start point are greater than earlier rows from themselves are compared with each other. Finally, a minimum cost with corresponding starting points is found. Below is an pseudo-code of the algorithm to find starting point with a minimum cost.
+Using those two matrices, the optimal points which allow the piecewise function have a minimum error cost that can be identified. Firstly, it is repeated that one element in each row is derived and summed. Then the total value from every iteration is checked whether is 300. 300 means the entire range of each individual data set. Then matrix L is mapped to the cost matrix, and tested that transition points are plausible. If a start point in a later row is smaller than earlier rows, the total cost value is discarded, and the costs in which each start point are greater than earlier rows from themselves are compared with each other. Finally, a minimum cost with corresponding starting points is found. Below is an pseudo-code of the algorithm to find starting point with a minimum cost.
 
 \bigskip
 \begin{algorithmic}

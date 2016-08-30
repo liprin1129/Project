@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  28 AUG 2016 17:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  30 AUG 2016 02:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -430,15 +430,18 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 
  [4]
 Chapter 1.
+
+LaTeX Warning: Citation `lacroix2006introduction' undefined on input line 57.
+
 [1
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 98.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 86.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 86.
  [2]
 [3]
 Chapter 2.
@@ -446,7 +449,7 @@ Chapter 2.
 
 ] [5]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 221.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 209.
  [6]
 Missing character: There is no × in font zptmcm7t!
  [7] [8] [9] [10] [11] [12]
@@ -454,24 +457,24 @@ Missing character: There is no × in font zptmcm7t!
 File: Figs/Competitive_Diagram.png Graphic file (type png)
 
 <use Figs/Competitive_Diagram.png>
-Package pdftex.def Info: Figs/Competitive_Diagram.png used on input line 396.
+Package pdftex.def Info: Figs/Competitive_Diagram.png used on input line 384.
 (pdftex.def)             Requested size: 354.33922pt x 270.93983pt.
  [13 <./Figs/Competitive_Diagram.png>]
 [14] <Figs/not_norm_data.png, id=70, 574.20773pt x 592.27524pt>
 File: Figs/not_norm_data.png Graphic file (type png)
 
 <use Figs/not_norm_data.png>
-Package pdftex.def Info: Figs/not_norm_data.png used on input line 452.
+Package pdftex.def Info: Figs/not_norm_data.png used on input line 440.
 (pdftex.def)             Requested size: 187.57033pt x 187.57083pt.
 
 <Figs/not_norm_weight.png, id=71, 574.20773pt x 592.27524pt>
 File: Figs/not_norm_weight.png Graphic file (type png)
 
 <use Figs/not_norm_weight.png>
-Package pdftex.def Info: Figs/not_norm_weight.png used on input line 460.
+Package pdftex.def Info: Figs/not_norm_weight.png used on input line 448.
 (pdftex.def)             Requested size: 187.57033pt x 187.57083pt.
 
-Overfull \hbox (2.28001pt too wide) in paragraph at lines 447--464
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 435--452
 []$[]$ $[]$ 
  []
 
@@ -480,69 +483,88 @@ Overfull \hbox (2.28001pt too wide) in paragraph at lines 447--464
 File: Figs/AIC_BIC_Elbow.png Graphic file (type png)
 
 <use Figs/AIC_BIC_Elbow.png>
-Package pdftex.def Info: Figs/AIC_BIC_Elbow.png used on input line 547.
+Package pdftex.def Info: Figs/AIC_BIC_Elbow.png used on input line 535.
 (pdftex.def)             Requested size: 398.33858pt x 278.83473pt.
  [18] [19 <./Figs/AIC_BIC_Elbow.png>]
 <Figs/dead_unit.png, id=92, 574.20773pt x 592.27524pt>
 File: Figs/dead_unit.png Graphic file (type png)
 
 <use Figs/dead_unit.png>
-Package pdftex.def Info: Figs/dead_unit.png used on input line 566.
+Package pdftex.def Info: Figs/dead_unit.png used on input line 554.
 (pdftex.def)             Requested size: 312.63474pt x 312.63011pt.
  <Figs/dead_state.png, id=93, 578.16pt x 433.62pt>
 File: Figs/dead_state.png Graphic file (type png)
 
 <use Figs/dead_state.png>
-Package pdftex.def Info: Figs/dead_state.png used on input line 576.
+Package pdftex.def Info: Figs/dead_state.png used on input line 564.
 (pdftex.def)             Requested size: 354.30916pt x 270.95229pt.
  [20 <./Figs/dead_unit.png>] [21 <./Figs/dead_state.png>] [22] <Figs/dead_state
 s_solved.png, id=106, 578.16pt x 433.62pt>
 File: Figs/dead_states_solved.png Graphic file (type png)
 
 <use Figs/dead_states_solved.png>
-Package pdftex.def Info: Figs/dead_states_solved.png used on input line 643.
+Package pdftex.def Info: Figs/dead_states_solved.png used on input line 631.
 (pdftex.def)             Requested size: 354.30916pt x 270.95229pt.
  [23 <./Figs/dead_states_solved.png>]
 <Figs/centroid1.png, id=111, 722.7pt x 469.755pt>
 File: Figs/centroid1.png Graphic file (type png)
  <use Figs/centroid1.png>
-Package pdftex.def Info: Figs/centroid1.png used on input line 664.
+Package pdftex.def Info: Figs/centroid1.png used on input line 652.
 (pdftex.def)             Requested size: 375.1445pt x 210.31978pt.
 
 <Figs/centroid2.png, id=112, 722.7pt x 469.755pt>
 File: Figs/centroid2.png Graphic file (type png)
  <use Figs/centroid2.png>
-Package pdftex.def Info: Figs/centroid2.png used on input line 674.
+Package pdftex.def Info: Figs/centroid2.png used on input line 662.
 (pdftex.def)             Requested size: 375.1445pt x 210.31978pt.
 
 <Figs/centroid3.png, id=113, 722.7pt x 469.755pt>
 File: Figs/centroid3.png Graphic file (type png)
  <use Figs/centroid3.png>
-Package pdftex.def Info: Figs/centroid3.png used on input line 684.
+Package pdftex.def Info: Figs/centroid3.png used on input line 672.
 (pdftex.def)             Requested size: 375.1445pt x 210.31978pt.
 
 <Figs/centroid4.png, id=114, 721.69624pt x 234.8775pt>
 File: Figs/centroid4.png Graphic file (type png)
 
 <use Figs/centroid4.png>
-Package pdftex.def Info: Figs/centroid4.png used on input line 694.
+Package pdftex.def Info: Figs/centroid4.png used on input line 682.
 (pdftex.def)             Requested size: 375.14105pt x 140.21078pt.
  [24 <./Figs/centroid1.png>] [25 <./Figs/centroid2.png> <./Figs/centroid3.png>]
  [26 <./Figs/centroid4.png>]
 Chapter 3.
 [27
 
-] [28] [29] [30] [31] [32] [33]
+] [28] [29] <Figs/Functions.png, id=139, 722.7pt x 578.16pt>
+File: Figs/Functions.png Graphic file (type png)
+
+<use Figs/Functions.png>
+Package pdftex.def Info: Figs/Functions.png used on input line 799.
+(pdftex.def)             Requested size: 395.98648pt x 291.77882pt.
+ [30 <./Figs/Functions.png>] [31] [32]
+<Figs/Piecewise_Functions.png, id=150, 722.7pt x 361.35pt>
+File: Figs/Piecewise_Functions.png Graphic file (type png)
+
+<use Figs/Piecewise_Functions.png>
+Package pdftex.def Info: Figs/Piecewise_Functions.png used on input line 882.
+(pdftex.def)             Requested size: 395.98648pt x 187.57225pt.
+ [33 <./Figs/Piecewise_Functions.png>]
+[34]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 942.
- [34] [35] [36]
-<Figs/piece_test.jpg, id=163, 722.7pt x 542.025pt>
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 950.
+ [35] [36] [37] <Figs/piece_test.jpg, id=170, 722.7pt x 542.025pt>
 File: Figs/piece_test.jpg Graphic file (type jpg)
- <use Figs/piece_test.jpg>
-Package pdftex.def Info: Figs/piece_test.jpg used on input line 1001.
+
+<use Figs/piece_test.jpg>
+Package pdftex.def Info: Figs/piece_test.jpg used on input line 1019.
 (pdftex.def)             Requested size: 375.1445pt x 336.52344pt.
 
-[37 <./Figs/piece_test.jpg>] [38] (./Project_Writing.bbl [39]
+Overfull \hbox (13.99812pt too wide) in paragraph at lines 1025--1026
+\OT1/ptm/m/n/12 shape for both ma-tri-ces are $\OT1/ztmcm/m/n/12 [[]]$\OT1/ptm/
+m/n/12 .
+ []
+
+[38 <./Figs/piece_test.jpg>] [39] (./Project_Writing.bbl [40]
 Underfull \hbox (badness 2351) in paragraph at lines 319--331
 []\OT1/ptm/m/n/12 python on-line doc-u-ment.  (n.d.[][]).  12.1. pickle ? pytho
 n ob-ject se-ri-al-
@@ -554,7 +576,7 @@ Underfull \hbox (badness 1173) in paragraph at lines 319--331
 , 2016, from
  []
 
-[40
+[41
 
 ]
 Underfull \hbox (badness 2635) in paragraph at lines 343--355
@@ -578,31 +600,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 343--355
 
  []
 
-) [41] (./Project_Writing.aux) ) 
+) [42] (./Project_Writing.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 5318 strings out of 493014
- 81180 string characters out of 6133351
- 160118 words of memory out of 5000000
- 8731 multiletter control sequences out of 15000+600000
+ 5332 strings out of 493014
+ 81528 string characters out of 6133351
+ 160140 words of memory out of 5000000
+ 8743 multiletter control sequences out of 15000+600000
  40464 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,26n,40p,993b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/d
-vips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/rsfs/rsfs10.
-pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/l
-ocal/texlive/2016/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texliv
-e/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/tex
-mf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/f
-onts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
-/urw/times/utmri8a.pfb>
-Output written on Project_Writing.pdf (45 pages, 1189364 bytes).
+ 42i,26n,40p,1082b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
+ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
+e/2016/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2016/t
+exmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/f
+onts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
+urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/
+utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pf
+b></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Project_Writing.pdf (46 pages, 1271608 bytes).
 PDF statistics:
- 220 PDF objects out of 1000 (max. 8388607)
- 137 compressed objects within 2 object streams
+ 227 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 

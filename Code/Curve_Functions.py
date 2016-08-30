@@ -90,7 +90,7 @@ def curve_Fitting(least_func, curve_func, x, y, seed, file_path, clt_num):
         lower_bound.append(popt[i] - pcov[i,i])
     '''
     
-    x_fit = np.linspace(0, 16, 100)
+    x_fit = np.linspace(0, 50, 100)
     '''
     if seed == 1:
         lsq = least_squares(least_func, seed, args=(x, y))
@@ -120,8 +120,8 @@ def curve_Fitting(least_func, curve_func, x, y, seed, file_path, clt_num):
     print(" - Curve Fitting Parameters: {0}".format(lsq.x))    
     print(" - Curve Fitting Cost: {0}\n".format(cost))
     
-    ax.plot(x, y, 'rx', label="average score")
-    ax.plot(x_fit, y_mean, 'b-', label="curve fitting")    
+    ax.plot(x, y, '.', c='black', label="average score")
+    ax.plot(x_fit, y_mean, 'b-', label="curve fitting", linewidth=4)    
     '''    
     for i in range(len(x_fit)):
         if i == 0:
@@ -132,7 +132,7 @@ def curve_Fitting(least_func, curve_func, x, y, seed, file_path, clt_num):
     '''
     ax.set_ylim([0, max(y)+0.2])
     ax.legend(fontsize=14)
-    ax.set_title("Cluster {0} (Cost {1})".format(clt_num, round(cost, 2)))
+    ax.set_title("Cluster {0}: {1} errors loss".format(clt_num, round(cost, 2)))
     # ax.text(0.77, 0.03, "cost: {0}".format(round(cost, 2)), horizontalalignment='left', verticalalignment='bottom', transform=ax.transAxes, fontsize=15)
     fig.savefig(file_path, dpi=100)
     
@@ -142,7 +142,6 @@ def curve_Fitting(least_func, curve_func, x, y, seed, file_path, clt_num):
 ############################################
 ## About multipe curve fitting
 ############################################
-'''
 def multi_curveFitting_2(least_func, avg, seed, min_range=5):
     cost = []
     #param1 = np.ones((n_param, 300))
@@ -172,6 +171,7 @@ def multi_curveFitting_2(least_func, avg, seed, min_range=5):
     idx = np.argmin(cost)
     return min_range*(idx+1)#, param1[:, idx], param2[:, idx]
 
+'''
 def multi_curveFitting_3(least_func, avg, seed, min_range=5):
     cost = []
     break_point2 = []

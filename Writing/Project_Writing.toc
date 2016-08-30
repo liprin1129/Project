@@ -1,7 +1,7 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {1.1}Background and Motivation}{1}
 \contentsline {section}{\numberline {1.2}Problem Definition}{2}
-\contentsline {section}{\numberline {1.3}Aims and Objectives}{2}
+\contentsline {section}{\numberline {1.3}Aims and Objectives}{3}
 \contentsline {section}{\numberline {1.4}Project Management}{3}
 \contentsline {chapter}{\numberline {2}Data Curation}{4}
 \contentsline {section}{\numberline {2.1}Data Cleaning}{5}
@@ -25,10 +25,10 @@
 \contentsline {subsection}{\numberline {3.1.1}Parametric Method}{28}
 \contentsline {subsection}{\numberline {3.1.2}Functions for Single Curve}{30}
 \contentsline {subsection}{\numberline {3.1.3}Piecewise Function}{32}
-\contentsline {section}{\numberline {3.2}Method}{33}
+\contentsline {section}{\numberline {3.2}Method}{34}
 \contentsline {subsection}{\numberline {3.2.1}Squared Lost Function}{34}
-\contentsline {subsection}{\numberline {3.2.2}Over-fitting and Regularisation}{36}
-\contentsline {subsection}{\numberline {3.2.3}Training Set and Validation Set}{36}
-\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{37}
-\contentsline {section}{\numberline {3.3}Curve Fittings}{39}
-\contentsline {chapter}{References}{40}
+\contentsline {subsection}{\numberline {3.2.2}Training Set and Validation Set}{37}
+\contentsline {subsection}{\numberline {3.2.3}Over-fitting and Regularisation}{37}
+\contentsline {subsection}{\numberline {3.2.4}Choice of Breaking Point}{38}
+\contentsline {section}{\numberline {3.3}Curve Fittings}{40}
+\contentsline {chapter}{References}{41}
