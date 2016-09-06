@@ -1096,6 +1096,16 @@ In each of the pieces, a single function's cost is saved into a matrix. At the s
         \end{array} \right].
 \end{split}
 \end{equation}
+\begin{equation} \label{eq:error_matrix}
+\begin{split}
+   \mathbf{R}= \left[\begin{array}{lll}
+        7.92		& 	4.44		&	2.69\\
+        13.62	& 	11.96	&	7.92\\
+        	22.89	& 	18.65	&	10.62\\
+        49.33	& 	41.31	&	30.63
+        \end{array} \right].
+\end{split}
+\end{equation}
 
 Because a start point of the first piece does not change, all elements in the first row are 1. How much iteration is needed is calculated based on the size of the last row. In this case, the last piece has initially 150 range and minimum window 50, then a number of shift in each breaking-point becomes $150 \div 50 = 3$. Therefore, cost matrix has $4\times3$ shape.
 

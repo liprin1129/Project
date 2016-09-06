@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  30 AUG 2016 23:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  3 SEP 2016 21:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -640,7 +640,7 @@ m/n/12 .
 <Figs/piece_test.png, id=195, 722.7pt x 542.025pt>
 File: Figs/piece_test.png Graphic file (type png)
  <use Figs/piece_test.png>
-Package pdftex.def Info: Figs/piece_test.png used on input line 1125.
+Package pdftex.def Info: Figs/piece_test.png used on input line 1135.
 (pdftex.def)             Requested size: 395.98648pt x 392.61482pt.
 
 [42 <./Figs/piece_test.png>]
@@ -651,17 +651,17 @@ Chapter 4.
 File: Figs/single_exponential3.png Graphic file (type png)
 
 <use Figs/single_exponential3.png>
-Package pdftex.def Info: Figs/single_exponential3.png used on input line 1166.
+Package pdftex.def Info: Figs/single_exponential3.png used on input line 1176.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
 <Figs/single_powerlaw4.png, id=204, 433.62pt x 289.08pt>
 File: Figs/single_powerlaw4.png Graphic file (type png)
 
 <use Figs/single_powerlaw4.png>
-Package pdftex.def Info: Figs/single_powerlaw4.png used on input line 1174.
+Package pdftex.def Info: Figs/single_powerlaw4.png used on input line 1184.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
-Overfull \hbox (2.28001pt too wide) in paragraph at lines 1161--1178
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1171--1188
 []$[]$ $[]$ 
  []
 
@@ -671,7 +671,7 @@ File: Figs/Learning_curves/avg1_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg1_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg1_4param.png used on input lin
-e 1224.
+e 1234.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
 <Figs/Learning_curves/avg2_4param.png, id=215, 433.62pt x 289.08pt>
@@ -679,10 +679,10 @@ File: Figs/Learning_curves/avg2_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg2_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg2_4param.png used on input lin
-e 1231.
+e 1241.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
-Overfull \hbox (2.28001pt too wide) in paragraph at lines 1219--1234
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1229--1244
 []$[]$ $[]$ 
  []
 
@@ -690,7 +690,7 @@ Overfull \hbox (2.28001pt too wide) in paragraph at lines 1219--1234
 File: Figs/Learning_curves/avg3.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg3.png>
-Package pdftex.def Info: Figs/Learning_curves/avg3.png used on input line 1243.
+Package pdftex.def Info: Figs/Learning_curves/avg3.png used on input line 1253.
 
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
@@ -699,10 +699,10 @@ File: Figs/Learning_curves/avg4_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg4_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg4_4param.png used on input lin
-e 1250.
+e 1260.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
-Overfull \hbox (2.28001pt too wide) in paragraph at lines 1238--1253
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1248--1263
 []$[]$ $[]$ 
  []
 
@@ -711,7 +711,7 @@ File: Figs/Learning_curves/avg5_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg5_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg5_4param.png used on input lin
-e 1262.
+e 1272.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
 <Figs/Learning_curves/avg6_4param.png, id=219, 433.62pt x 289.08pt>
@@ -719,10 +719,10 @@ File: Figs/Learning_curves/avg6_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg6_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg6_4param.png used on input lin
-e 1269.
+e 1279.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
-Overfull \hbox (2.28001pt too wide) in paragraph at lines 1257--1272
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1267--1282
 []$[]$ $[]$ 
  []
 
@@ -731,7 +731,7 @@ File: Figs/Learning_curves/avg7_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg7_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg7_4param.png used on input lin
-e 1281.
+e 1291.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
 <Figs/Learning_curves/avg8_power_single.png, id=221, 433.62pt x 289.08pt>
@@ -739,10 +739,10 @@ File: Figs/Learning_curves/avg8_power_single.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg8_power_single.png>
 Package pdftex.def Info: Figs/Learning_curves/avg8_power_single.png used on inp
-ut line 1288.
+ut line 1298.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
-Overfull \hbox (2.28001pt too wide) in paragraph at lines 1276--1291
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1286--1301
 []$[]$ $[]$ 
  []
 
@@ -751,7 +751,7 @@ File: Figs/Learning_curves/avg9_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg9_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg9_4param.png used on input lin
-e 1300.
+e 1310.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
 <Figs/Learning_curves/avg10_4param.png, id=223, 433.62pt x 289.08pt>
@@ -759,10 +759,10 @@ File: Figs/Learning_curves/avg10_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg10_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg10_4param.png used on input li
-ne 1307.
+ne 1317.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
-Overfull \hbox (2.28001pt too wide) in paragraph at lines 1295--1311
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1305--1321
 []$[]$ $[]$ 
  []
 
@@ -771,7 +771,7 @@ File: Figs/Learning_curves/avg11_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg11_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg11_4param.png used on input li
-ne 1320.
+ne 1330.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
 <Figs/Learning_curves/avg12_4param.png, id=225, 433.62pt x 289.08pt>
@@ -779,10 +779,10 @@ File: Figs/Learning_curves/avg12_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg12_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg12_4param.png used on input li
-ne 1327.
+ne 1337.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
 
-Overfull \hbox (2.28001pt too wide) in paragraph at lines 1315--1331
+Overfull \hbox (2.28001pt too wide) in paragraph at lines 1325--1341
 []$[]$ $[]$ 
  []
 
@@ -791,7 +791,7 @@ File: Figs/Learning_curves/avg13_4param.png Graphic file (type png)
 
 <use Figs/Learning_curves/avg13_4param.png>
 Package pdftex.def Info: Figs/Learning_curves/avg13_4param.png used on input li
-ne 1340.
+ne 1350.
 (pdftex.def)             Requested size: 187.57115pt x 125.04742pt.
  [46 <./Figs/Learning_curves/avg1_4param.png> <./Figs/Learning_curves/avg2_4par
 am.png>] [47 <./Figs/Learning_curves/avg3.png> <./Figs/Learning_curves/avg4_4pa
@@ -846,13 +846,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5475 strings out of 493014
- 85859 string characters out of 6133351
- 161907 words of memory out of 5000000
- 8865 multiletter control sequences out of 15000+600000
+ 5476 strings out of 493014
+ 85876 string characters out of 6133351
+ 161919 words of memory out of 5000000
+ 8866 multiletter control sequences out of 15000+600000
  40464 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,26n,40p,1297b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,26n,40p,1297b,527s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -864,7 +864,7 @@ onts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
 urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/
 utmbi8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pf
 b></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Project_Writing.pdf (57 pages, 1714154 bytes).
+Output written on Project_Writing.pdf (57 pages, 1714341 bytes).
 PDF statistics:
  305 PDF objects out of 1000 (max. 8388607)
  163 compressed objects within 2 object streams
